@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/dentaltourismclinicsindia/static/css/main.7da22baa.css",
-    "main.js": "/dentaltourismclinicsindia/static/js/main.140e98c8.js",
+    "main.css": "/dentaltourismclinicsindia/static/css/main.cc30158e.css",
+    "main.js": "/dentaltourismclinicsindia/static/js/main.a812f318.js",
     "static/media/Facial Muscle Twitching on One Side.png": "/dentaltourismclinicsindia/static/media/Facial Muscle Twitching on One Side.cfb89c892ce33f43c149.png",
     "static/media/Facial Twitch.png": "/dentaltourismclinicsindia/static/media/Facial Twitch.1ae7e2c5d49222080d23.png",
     "static/media/One Sided Facial Weakness.png": "/dentaltourismclinicsindia/static/media/One Sided Facial Weakness.14f00b8791b300c5501f.png",
@@ -34,7 +34,6 @@
     "static/media/Prosthodontist.png": "/dentaltourismclinicsindia/static/media/Prosthodontist.c157a8f1d626c23b74a9.png",
     "static/media/Loud Sleeping.png": "/dentaltourismclinicsindia/static/media/Loud Sleeping.47ac8a21da2e166e6117.png",
     "static/media/Mouth Infection.png": "/dentaltourismclinicsindia/static/media/Mouth Infection.5ffdc82bfbe2c5ee53b1.png",
-    "static/media/custom-logo.png": "/dentaltourismclinicsindia/static/media/custom-logo.ef4f9300f436a4832ccc.png",
     "static/media/Mouth Wash.png": "/dentaltourismclinicsindia/static/media/Mouth Wash.4abe0665bf3f1e153467.png",
     "static/media/Wearing Down of Teeth.png": "/dentaltourismclinicsindia/static/media/Wearing Down of Teeth.8984c69e0744bf1012c6.png",
     "static/media/Tooth Wear.png": "/dentaltourismclinicsindia/static/media/Tooth Wear.7a2c79460eb65896e8ef.png",
@@ -62,6 +61,7 @@
     "static/media/Mouth Cancer.png": "/dentaltourismclinicsindia/static/media/Mouth Cancer.4968c32a1583091b3379.png",
     "static/media/Mouth Ulcer.png": "/dentaltourismclinicsindia/static/media/Mouth Ulcer.273f0208a0bcf7fd88aa.png",
     "static/media/Sensitive Teeth.png": "/dentaltourismclinicsindia/static/media/Sensitive Teeth.e756b56fc102729c86ad.png",
+    "static/media/custom-logo.png": "/dentaltourismclinicsindia/static/media/custom-logo.4be1addd544f4532ffe0.png",
     "static/media/Tooth Cavities.png": "/dentaltourismclinicsindia/static/media/Tooth Cavities.4f9e5e239ed4553b7d48.png",
     "static/media/Severe Gum Infection.png": "/dentaltourismclinicsindia/static/media/Severe Gum Infection.87ee8888b80a2c207c51.png",
     "static/media/Pain in the Jaw Joint.png": "/dentaltourismclinicsindia/static/media/Pain in the Jaw Joint.171f4980e5eb45eb888e.png",
@@ -92,11 +92,11 @@
     "static/media/Tooth Removal.png": "/dentaltourismclinicsindia/static/media/Tooth Removal.d00b4e280547780223fb.png",
     "static/media/Tongue Pushing.png": "/dentaltourismclinicsindia/static/media/Tongue Pushing.60401549489cd68f2408.png",
     "index.html": "/dentaltourismclinicsindia/index.html",
-    "main.7da22baa.css.map": "/dentaltourismclinicsindia/static/css/main.7da22baa.css.map",
-    "main.140e98c8.js.map": "/dentaltourismclinicsindia/static/js/main.140e98c8.js.map"
+    "main.cc30158e.css.map": "/dentaltourismclinicsindia/static/css/main.cc30158e.css.map",
+    "main.a812f318.js.map": "/dentaltourismclinicsindia/static/js/main.a812f318.js.map"
   },
   "entrypoints": [
-    "static/css/main.7da22baa.css",
-    "static/js/main.140e98c8.js"
+    "static/css/main.cc30158e.css",
+    "static/js/main.a812f318.js"
   ]
 }
