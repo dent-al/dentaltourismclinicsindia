@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/dentaltourismclinicsindia/static/css/main.426f7737.css",
-    "main.js": "/dentaltourismclinicsindia/static/js/main.db66f454.js",
+    "main.css": "/dentaltourismclinicsindia/static/css/main.22f60e2b.css",
+    "main.js": "/dentaltourismclinicsindia/static/js/main.4bf2a6f2.js",
     "static/media/Facial Muscle Twitching on One Side.png": "/dentaltourismclinicsindia/static/media/Facial Muscle Twitching on One Side.cfb89c892ce33f43c149.png",
     "static/media/Facial Twitch.png": "/dentaltourismclinicsindia/static/media/Facial Twitch.1ae7e2c5d49222080d23.png",
     "static/media/One Sided Facial Weakness.png": "/dentaltourismclinicsindia/static/media/One Sided Facial Weakness.14f00b8791b300c5501f.png",
@@ -92,11 +92,11 @@
     "static/media/Tooth Removal.png": "/dentaltourismclinicsindia/static/media/Tooth Removal.d00b4e280547780223fb.png",
     "static/media/Tongue Pushing.png": "/dentaltourismclinicsindia/static/media/Tongue Pushing.60401549489cd68f2408.png",
     "index.html": "/dentaltourismclinicsindia/index.html",
-    "main.426f7737.css.map": "/dentaltourismclinicsindia/static/css/main.426f7737.css.map",
-    "main.db66f454.js.map": "/dentaltourismclinicsindia/static/js/main.db66f454.js.map"
+    "main.22f60e2b.css.map": "/dentaltourismclinicsindia/static/css/main.22f60e2b.css.map",
+    "main.4bf2a6f2.js.map": "/dentaltourismclinicsindia/static/js/main.4bf2a6f2.js.map"
   },
   "entrypoints": [
-    "static/css/main.426f7737.css",
-    "static/js/main.db66f454.js"
+    "static/css/main.22f60e2b.css",
+    "static/js/main.4bf2a6f2.js"
   ]
 }
