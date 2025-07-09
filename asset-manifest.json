@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/dentaltourismclinicsindia/static/css/main.359d0a13.css",
-    "main.js": "/dentaltourismclinicsindia/static/js/main.ab29b10d.js",
+    "main.css": "/dentaltourismclinicsindia/static/css/main.a7eefe51.css",
+    "main.js": "/dentaltourismclinicsindia/static/js/main.75e4a733.js",
     "static/media/bloodtest.png.png": "/dentaltourismclinicsindia/static/media/bloodtest.png.087bc9a0aa7d3bbd44e7.png",
     "static/media/consult.png": "/dentaltourismclinicsindia/static/media/consult.83c9fed7ea5420f9d861.png",
     "static/media/Facial Muscle Twitching on One Side.png": "/dentaltourismclinicsindia/static/media/Facial Muscle Twitching on One Side.cfb89c892ce33f43c149.png",
@@ -20,6 +20,7 @@
     "static/media/Children’s Dentistry.png": "/dentaltourismclinicsindia/static/media/Children’s Dentistry.76a08ca5194246fd2546.png",
     "static/media/Cosmetic Dentist.png": "/dentaltourismclinicsindia/static/media/Cosmetic Dentist.13a43fb3a67fe83cbe49.png",
     "static/media/Oral Radiologist.png": "/dentaltourismclinicsindia/static/media/Oral Radiologist.e7b163e564c7d4886c42.png",
+    "static/media/Braces Adjustment.png": "/dentaltourismclinicsindia/static/media/Braces Adjustment.f33f2a08bc60b38f812e.png",
     "static/media/Loud Sleeping.png": "/dentaltourismclinicsindia/static/media/Loud Sleeping.eec519d8bd64e55dcde5.png",
     "static/media/Endodontist.png": "/dentaltourismclinicsindia/static/media/Endodontist.2207541980ae89fb9833.png",
     "static/media/Periodontist.png": "/dentaltourismclinicsindia/static/media/Periodontist.6035c020363e6c7b79f4.png",
@@ -44,6 +45,7 @@
     "static/media/tajmahal.png": "/dentaltourismclinicsindia/static/media/tajmahal.e7b1965e7db261240d63.png",
     "static/media/Tooth is Stuck.png": "/dentaltourismclinicsindia/static/media/Tooth is Stuck.b6961c010ed948b8fb21.png",
     "static/media/Gum Pocket.png": "/dentaltourismclinicsindia/static/media/Gum Pocket.7bfe6e1395f8f4a325fb.png",
+    "static/media/Dental Implant Pain.png": "/dentaltourismclinicsindia/static/media/Dental Implant Pain.06811c15b1e3e0107229.png",
     "static/media/Bad Breath.png": "/dentaltourismclinicsindia/static/media/Bad Breath.c9f203ada0c0816f1b99.png",
     "static/media/Pain in the Jaw Joint.png": "/dentaltourismclinicsindia/static/media/Pain in the Jaw Joint.1c97b8ee6d7b26753a29.png",
     "static/media/Smile Makeover.png": "/dentaltourismclinicsindia/static/media/Smile Makeover.ee7e1eeb1beafe8374f9.png",
@@ -96,11 +98,11 @@
     "static/media/4.png": "/dentaltourismclinicsindia/static/media/4.26930db025fd4afe9f22.png",
     "static/media/2.png": "/dentaltourismclinicsindia/static/media/2.c1e318337b45de8e626d.png",
     "index.html": "/dentaltourismclinicsindia/index.html",
-    "main.359d0a13.css.map": "/dentaltourismclinicsindia/static/css/main.359d0a13.css.map",
-    "main.ab29b10d.js.map": "/dentaltourismclinicsindia/static/js/main.ab29b10d.js.map"
+    "main.a7eefe51.css.map": "/dentaltourismclinicsindia/static/css/main.a7eefe51.css.map",
+    "main.75e4a733.js.map": "/dentaltourismclinicsindia/static/js/main.75e4a733.js.map"
   },
   "entrypoints": [
-    "static/css/main.359d0a13.css",
-    "static/js/main.ab29b10d.js"
+    "static/css/main.a7eefe51.css",
+    "static/js/main.75e4a733.js"
   ]
 }
