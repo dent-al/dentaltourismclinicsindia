@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/dentaltourismclinicsindia/static/css/main.b7d58be9.css",
-    "main.js": "/dentaltourismclinicsindia/static/js/main.4cbad54b.js",
+    "main.css": "/dentaltourismclinicsindia/static/css/main.359d0a13.css",
+    "main.js": "/dentaltourismclinicsindia/static/js/main.ab29b10d.js",
     "static/media/bloodtest.png.png": "/dentaltourismclinicsindia/static/media/bloodtest.png.087bc9a0aa7d3bbd44e7.png",
     "static/media/consult.png": "/dentaltourismclinicsindia/static/media/consult.83c9fed7ea5420f9d861.png",
     "static/media/Facial Muscle Twitching on One Side.png": "/dentaltourismclinicsindia/static/media/Facial Muscle Twitching on One Side.cfb89c892ce33f43c149.png",
@@ -86,7 +86,7 @@
     "static/media/Tooth Replacement.png": "/dentaltourismclinicsindia/static/media/Tooth Replacement.c8633b45954012954782.png",
     "static/media/Teeth Cleaning & Polishing.png": "/dentaltourismclinicsindia/static/media/Teeth Cleaning & Polishing.bf4fbaff1f9de3210981.png",
     "static/media/Tooth Rescue Treatment.png": "/dentaltourismclinicsindia/static/media/Tooth Rescue Treatment.85dd87a87d89c80eb7da.png",
-    "static/media/Teeth Protector for  Night.png": "/dentaltourismclinicsindia/static/media/Teeth Protector for  Night.2018c0011ae52161b83c.png",
+    "static/media/Teeth Protector for Night.png": "/dentaltourismclinicsindia/static/media/Teeth Protector for Night.2018c0011ae52161b83c.png",
     "static/media/Crooked Tooth.png": "/dentaltourismclinicsindia/static/media/Crooked Tooth.2e6039151f1a3a016b83.png",
     "static/media/Dry Peeling Lips.png": "/dentaltourismclinicsindia/static/media/Dry Peeling Lips.70f82113b85e551efc6d.png",
     "static/media/Severe Gum Infection.png": "/dentaltourismclinicsindia/static/media/Severe Gum Infection.87ee8888b80a2c207c51.png",
@@ -96,11 +96,11 @@
     "static/media/4.png": "/dentaltourismclinicsindia/static/media/4.26930db025fd4afe9f22.png",
     "static/media/2.png": "/dentaltourismclinicsindia/static/media/2.c1e318337b45de8e626d.png",
     "index.html": "/dentaltourismclinicsindia/index.html",
-    "main.b7d58be9.css.map": "/dentaltourismclinicsindia/static/css/main.b7d58be9.css.map",
-    "main.4cbad54b.js.map": "/dentaltourismclinicsindia/static/js/main.4cbad54b.js.map"
+    "main.359d0a13.css.map": "/dentaltourismclinicsindia/static/css/main.359d0a13.css.map",
+    "main.ab29b10d.js.map": "/dentaltourismclinicsindia/static/js/main.ab29b10d.js.map"
   },
   "entrypoints": [
-    "static/css/main.b7d58be9.css",
-    "static/js/main.4cbad54b.js"
+    "static/css/main.359d0a13.css",
+    "static/js/main.ab29b10d.js"
   ]
 }
