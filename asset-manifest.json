@@ -1,10 +1,18 @@
 {
   "files": {
-    "main.css": "/dentaltourismclinicsindia/static/css/main.76a46997.css",
-    "main.js": "/dentaltourismclinicsindia/static/js/main.5c446714.js",
+    "main.css": "/dentaltourismclinicsindia/static/css/main.dbf7fdfb.css",
+    "main.js": "/dentaltourismclinicsindia/static/js/main.08927ea8.js",
+    "static/media/Neha Gupta.png": "/dentaltourismclinicsindia/static/media/Neha Gupta.5311135769735c1ca6fc.png",
+    "static/media/Amit Patel.png": "/dentaltourismclinicsindia/static/media/Amit Patel.9d5fb44a5ee5b9533ab6.png",
+    "static/media/Maria Garcia.png": "/dentaltourismclinicsindia/static/media/Maria Garcia.c45b781da04c749a6bec.png",
     "static/media/bloodtest.png": "/dentaltourismclinicsindia/static/media/bloodtest.087bc9a0aa7d3bbd44e7.png",
+    "static/media/Priya Sharma.png": "/dentaltourismclinicsindia/static/media/Priya Sharma.69056d5e7299c348d012.png",
     "static/media/consult.png": "/dentaltourismclinicsindia/static/media/consult.83c9fed7ea5420f9d861.png",
+    "static/media/Sophie Dubois.png": "/dentaltourismclinicsindia/static/media/Sophie Dubois.e149267652628d1761b7.png",
+    "static/media/Rahul Verma.png": "/dentaltourismclinicsindia/static/media/Rahul Verma.acd0af548449468dd9aa.png",
     "static/media/Facial Muscle Twitching on One Side.png": "/dentaltourismclinicsindia/static/media/Facial Muscle Twitching on One Side.cfb89c892ce33f43c149.png",
+    "static/media/Elena Rossi.png": "/dentaltourismclinicsindia/static/media/Elena Rossi.b864d6d608c00b76063f.png",
+    "static/media/John Smith.png": "/dentaltourismclinicsindia/static/media/John Smith.b3269f29e0d76ebf31fe.png",
     "static/media/clinic.png": "/dentaltourismclinicsindia/static/media/clinic.f0f7f8312dc0a85b4e51.png",
     "static/media/Orthodontist.png": "/dentaltourismclinicsindia/static/media/Orthodontist.011fa1da488b073155ce.png",
     "static/media/Missing Front Tooth.png": "/dentaltourismclinicsindia/static/media/Missing Front Tooth.64ab6521278f99ee2cff.png",
@@ -123,11 +131,11 @@
     "static/media/Assisted Travel Plans.png": "/dentaltourismclinicsindia/static/media/Assisted Travel Plans.26930db025fd4afe9f22.png",
     "static/media/Expert Dentist.png": "/dentaltourismclinicsindia/static/media/Expert Dentist.c1e318337b45de8e626d.png",
     "index.html": "/dentaltourismclinicsindia/index.html",
-    "main.76a46997.css.map": "/dentaltourismclinicsindia/static/css/main.76a46997.css.map",
-    "main.5c446714.js.map": "/dentaltourismclinicsindia/static/js/main.5c446714.js.map"
+    "main.dbf7fdfb.css.map": "/dentaltourismclinicsindia/static/css/main.dbf7fdfb.css.map",
+    "main.08927ea8.js.map": "/dentaltourismclinicsindia/static/js/main.08927ea8.js.map"
   },
   "entrypoints": [
-    "static/css/main.76a46997.css",
-    "static/js/main.5c446714.js"
+    "static/css/main.dbf7fdfb.css",
+    "static/js/main.08927ea8.js"
   ]
 }
