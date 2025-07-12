@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/dentaltourismclinicsindia/static/css/main.dbf7fdfb.css",
-    "main.js": "/dentaltourismclinicsindia/static/js/main.08927ea8.js",
+    "main.css": "/dentaltourismclinicsindia/static/css/main.e9eafc0f.css",
+    "main.js": "/dentaltourismclinicsindia/static/js/main.193237f8.js",
     "static/media/Neha Gupta.png": "/dentaltourismclinicsindia/static/media/Neha Gupta.5311135769735c1ca6fc.png",
     "static/media/Amit Patel.png": "/dentaltourismclinicsindia/static/media/Amit Patel.9d5fb44a5ee5b9533ab6.png",
     "static/media/Maria Garcia.png": "/dentaltourismclinicsindia/static/media/Maria Garcia.c45b781da04c749a6bec.png",
@@ -18,6 +18,7 @@
     "static/media/Missing Front Tooth.png": "/dentaltourismclinicsindia/static/media/Missing Front Tooth.64ab6521278f99ee2cff.png",
     "static/media/Facial Twitch.png": "/dentaltourismclinicsindia/static/media/Facial Twitch.1ae7e2c5d49222080d23.png",
     "static/media/custom-logo.png": "/dentaltourismclinicsindia/static/media/custom-logo.08df632b512a267e392a.png",
+    "static/media/logo.png": "/dentaltourismclinicsindia/static/media/logo.08df632b512a267e392a.png",
     "static/media/Tight Tongue Skin.png": "/dentaltourismclinicsindia/static/media/Tight Tongue Skin.19d11d1418090444b1ea.png",
     "static/media/General Dentist.png": "/dentaltourismclinicsindia/static/media/General Dentist.cd3e7df1902206cea109.png",
     "static/media/One Sided Facial Weakness.png": "/dentaltourismclinicsindia/static/media/One Sided Facial Weakness.14f00b8791b300c5501f.png",
@@ -131,11 +132,11 @@
     "static/media/Assisted Travel Plans.png": "/dentaltourismclinicsindia/static/media/Assisted Travel Plans.26930db025fd4afe9f22.png",
     "static/media/Expert Dentist.png": "/dentaltourismclinicsindia/static/media/Expert Dentist.c1e318337b45de8e626d.png",
     "index.html": "/dentaltourismclinicsindia/index.html",
-    "main.dbf7fdfb.css.map": "/dentaltourismclinicsindia/static/css/main.dbf7fdfb.css.map",
-    "main.08927ea8.js.map": "/dentaltourismclinicsindia/static/js/main.08927ea8.js.map"
+    "main.e9eafc0f.css.map": "/dentaltourismclinicsindia/static/css/main.e9eafc0f.css.map",
+    "main.193237f8.js.map": "/dentaltourismclinicsindia/static/js/main.193237f8.js.map"
   },
   "entrypoints": [
-    "static/css/main.dbf7fdfb.css",
-    "static/js/main.08927ea8.js"
+    "static/css/main.e9eafc0f.css",
+    "static/js/main.193237f8.js"
   ]
 }
