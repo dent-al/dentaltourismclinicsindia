@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/dentaltourismclinicsindia/static/css/main.e9eafc0f.css",
-    "main.js": "/dentaltourismclinicsindia/static/js/main.193237f8.js",
+    "main.css": "/dentaltourismclinicsindia/static/css/main.0b952ea3.css",
+    "main.js": "/dentaltourismclinicsindia/static/js/main.0264822f.js",
     "static/media/Neha Gupta.png": "/dentaltourismclinicsindia/static/media/Neha Gupta.5311135769735c1ca6fc.png",
     "static/media/Amit Patel.png": "/dentaltourismclinicsindia/static/media/Amit Patel.9d5fb44a5ee5b9533ab6.png",
     "static/media/Maria Garcia.png": "/dentaltourismclinicsindia/static/media/Maria Garcia.c45b781da04c749a6bec.png",
@@ -58,6 +58,7 @@
     "static/media/Invisible Braces.png": "/dentaltourismclinicsindia/static/media/Invisible Braces.37237cb62b6a7640fbf4.png",
     "static/media/Bleeding Gums.png": "/dentaltourismclinicsindia/static/media/Bleeding Gums.000aa327f07695ab6aa2.png",
     "static/media/Mouth Ulcer.png": "/dentaltourismclinicsindia/static/media/Mouth Ulcer.3b8d9c3e292e0439246f.png",
+    "static/media/Lip & Oral care.png": "/dentaltourismclinicsindia/static/media/Lip & Oral care.328a848f59a44874a650.png",
     "static/media/Oral Surgeon.png": "/dentaltourismclinicsindia/static/media/Oral Surgeon.93012420cc11d189a1f1.png",
     "static/media/Discoloured Teeth.png": "/dentaltourismclinicsindia/static/media/Discoloured Teeth.fe6f16366f3c19f98c0b.png",
     "static/media/Tounge Cleaner.png": "/dentaltourismclinicsindia/static/media/Tounge Cleaner.d6779fe145a8d0da9a00.png",
@@ -132,11 +133,11 @@
     "static/media/Assisted Travel Plans.png": "/dentaltourismclinicsindia/static/media/Assisted Travel Plans.26930db025fd4afe9f22.png",
     "static/media/Expert Dentist.png": "/dentaltourismclinicsindia/static/media/Expert Dentist.c1e318337b45de8e626d.png",
     "index.html": "/dentaltourismclinicsindia/index.html",
-    "main.e9eafc0f.css.map": "/dentaltourismclinicsindia/static/css/main.e9eafc0f.css.map",
-    "main.193237f8.js.map": "/dentaltourismclinicsindia/static/js/main.193237f8.js.map"
+    "main.0b952ea3.css.map": "/dentaltourismclinicsindia/static/css/main.0b952ea3.css.map",
+    "main.0264822f.js.map": "/dentaltourismclinicsindia/static/js/main.0264822f.js.map"
   },
   "entrypoints": [
-    "static/css/main.e9eafc0f.css",
-    "static/js/main.193237f8.js"
+    "static/css/main.0b952ea3.css",
+    "static/js/main.0264822f.js"
   ]
 }
