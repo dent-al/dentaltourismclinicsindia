@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/dentaltourismclinicsindia/static/css/main.0b952ea3.css",
-    "main.js": "/dentaltourismclinicsindia/static/js/main.0264822f.js",
+    "main.css": "/dentaltourismclinicsindia/static/css/main.a0751735.css",
+    "main.js": "/dentaltourismclinicsindia/static/js/main.a59019c2.js",
     "static/media/Neha Gupta.png": "/dentaltourismclinicsindia/static/media/Neha Gupta.5311135769735c1ca6fc.png",
     "static/media/Amit Patel.png": "/dentaltourismclinicsindia/static/media/Amit Patel.9d5fb44a5ee5b9533ab6.png",
     "static/media/Maria Garcia.png": "/dentaltourismclinicsindia/static/media/Maria Garcia.c45b781da04c749a6bec.png",
@@ -133,11 +133,11 @@
     "static/media/Assisted Travel Plans.png": "/dentaltourismclinicsindia/static/media/Assisted Travel Plans.26930db025fd4afe9f22.png",
     "static/media/Expert Dentist.png": "/dentaltourismclinicsindia/static/media/Expert Dentist.c1e318337b45de8e626d.png",
     "index.html": "/dentaltourismclinicsindia/index.html",
-    "main.0b952ea3.css.map": "/dentaltourismclinicsindia/static/css/main.0b952ea3.css.map",
-    "main.0264822f.js.map": "/dentaltourismclinicsindia/static/js/main.0264822f.js.map"
+    "main.a0751735.css.map": "/dentaltourismclinicsindia/static/css/main.a0751735.css.map",
+    "main.a59019c2.js.map": "/dentaltourismclinicsindia/static/js/main.a59019c2.js.map"
   },
   "entrypoints": [
-    "static/css/main.0b952ea3.css",
-    "static/js/main.0264822f.js"
+    "static/css/main.a0751735.css",
+    "static/js/main.a59019c2.js"
   ]
 }
