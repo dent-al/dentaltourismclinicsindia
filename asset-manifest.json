@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/dentaltourismclinicsindia/static/css/main.99f8a7b6.css",
-    "main.js": "/dentaltourismclinicsindia/static/js/main.b7c009f8.js",
+    "main.css": "/dentaltourismclinicsindia/static/css/main.cdc46c8c.css",
+    "main.js": "/dentaltourismclinicsindia/static/js/main.1f504090.js",
     "static/media/dentist4.png": "/dentaltourismclinicsindia/static/media/dentist4.46e567bd31f2c9731048.png",
     "static/media/MichaelS.png": "/dentaltourismclinicsindia/static/media/MichaelS.0b1dfd4615730e0d19a5.png",
     "static/media/Neha Gupta.png": "/dentaltourismclinicsindia/static/media/Neha Gupta.5311135769735c1ca6fc.png",
@@ -141,16 +141,17 @@
     "static/media/Flossers.png": "/dentaltourismclinicsindia/static/media/Flossers.c6d1f76a03970a452c9d.png",
     "static/media/Tooth Brush.png": "/dentaltourismclinicsindia/static/media/Tooth Brush.e9a28447cc00a9e1f956.png",
     "static/media/Tourism + Treatment.png": "/dentaltourismclinicsindia/static/media/Tourism + Treatment.ae1581d444bbb1b610c5.png",
+    "static/media/location.png": "/dentaltourismclinicsindia/static/media/location.bb5d35081c377aee5720.png",
     "static/media/Affordable Treatment.png": "/dentaltourismclinicsindia/static/media/Affordable Treatment.1d7b7027d606aa8ab560.png",
     "static/media/youtube.png": "/dentaltourismclinicsindia/static/media/youtube.84555ccd839c941360aa.png",
     "static/media/Assisted Travel Plans.png": "/dentaltourismclinicsindia/static/media/Assisted Travel Plans.26930db025fd4afe9f22.png",
     "static/media/Expert Dentist.png": "/dentaltourismclinicsindia/static/media/Expert Dentist.c1e318337b45de8e626d.png",
     "index.html": "/dentaltourismclinicsindia/index.html",
-    "main.99f8a7b6.css.map": "/dentaltourismclinicsindia/static/css/main.99f8a7b6.css.map",
-    "main.b7c009f8.js.map": "/dentaltourismclinicsindia/static/js/main.b7c009f8.js.map"
+    "main.cdc46c8c.css.map": "/dentaltourismclinicsindia/static/css/main.cdc46c8c.css.map",
+    "main.1f504090.js.map": "/dentaltourismclinicsindia/static/js/main.1f504090.js.map"
   },
   "entrypoints": [
-    "static/css/main.99f8a7b6.css",
-    "static/js/main.b7c009f8.js"
+    "static/css/main.cdc46c8c.css",
+    "static/js/main.1f504090.js"
   ]
 }
