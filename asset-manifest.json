@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/dentaltourismclinicsindia/static/css/main.e1610c2d.css",
-    "main.js": "/dentaltourismclinicsindia/static/js/main.08c5d9ec.js",
+    "main.css": "/dentaltourismclinicsindia/static/css/main.7beee7db.css",
+    "main.js": "/dentaltourismclinicsindia/static/js/main.aa7f39e8.js",
     "static/media/dentist4.png": "/dentaltourismclinicsindia/static/media/dentist4.46e567bd31f2c9731048.png",
     "static/media/MichaelS.png": "/dentaltourismclinicsindia/static/media/MichaelS.0b1dfd4615730e0d19a5.png",
     "static/media/Neha Gupta.png": "/dentaltourismclinicsindia/static/media/Neha Gupta.5311135769735c1ca6fc.png",
@@ -25,15 +25,18 @@
     "static/media/Orthodontist.png": "/dentaltourismclinicsindia/static/media/Orthodontist.011fa1da488b073155ce.png",
     "static/media/dentist3.png": "/dentaltourismclinicsindia/static/media/dentist3.1d9db098ab094939dae3.png",
     "static/media/Missing Front Tooth.png": "/dentaltourismclinicsindia/static/media/Missing Front Tooth.64ab6521278f99ee2cff.png",
+    "static/media/banner2.png": "/dentaltourismclinicsindia/static/media/banner2.f58ad21f005c9f7cf09a.png",
     "static/media/Facial Twitch.png": "/dentaltourismclinicsindia/static/media/Facial Twitch.1ae7e2c5d49222080d23.png",
     "static/media/custom-logo.png": "/dentaltourismclinicsindia/static/media/custom-logo.08df632b512a267e392a.png",
     "static/media/logo.png": "/dentaltourismclinicsindia/static/media/logo.08df632b512a267e392a.png",
     "static/media/Tight Tongue Skin.png": "/dentaltourismclinicsindia/static/media/Tight Tongue Skin.19d11d1418090444b1ea.png",
     "static/media/General Dentist.png": "/dentaltourismclinicsindia/static/media/General Dentist.cd3e7df1902206cea109.png",
     "static/media/One Sided Facial Weakness.png": "/dentaltourismclinicsindia/static/media/One Sided Facial Weakness.14f00b8791b300c5501f.png",
+    "static/media/banner1.png": "/dentaltourismclinicsindia/static/media/banner1.690cf5d64e13a0851153.png",
     "static/media/Lump on the Facial Nerve.png": "/dentaltourismclinicsindia/static/media/Lump on the Facial Nerve.bb1f118fda50cc4f32a9.png",
     "static/media/Difficulty in Chewing & Kids Speaking.png": "/dentaltourismclinicsindia/static/media/Difficulty in Chewing & Kids Speaking.e60dbff222cf53bb2ea1.png",
     "static/media/Wisdom Tooth Swelling.png": "/dentaltourismclinicsindia/static/media/Wisdom Tooth Swelling.a2d386806e34f6b5c682.png",
+    "static/media/banner3.png": "/dentaltourismclinicsindia/static/media/banner3.9392bd762e4c71eec788.png",
     "static/media/Dental Implant Specialist.png": "/dentaltourismclinicsindia/static/media/Dental Implant Specialist.7ff881a52e141a7a0dfc.png",
     "static/media/Denture & Retainer.png": "/dentaltourismclinicsindia/static/media/Denture & Retainer.6c4f61bbb8feb283a30c.png",
     "static/media/Audible Breathing.png": "/dentaltourismclinicsindia/static/media/Audible Breathing.6c3407840c300f75139a.png",
@@ -158,11 +161,11 @@
     "static/media/Expert Dentist.png": "/dentaltourismclinicsindia/static/media/Expert Dentist.c1e318337b45de8e626d.png",
     "static/media/followup.png": "/dentaltourismclinicsindia/static/media/followup.02393bac4ad7541473dd.png",
     "index.html": "/dentaltourismclinicsindia/index.html",
-    "main.e1610c2d.css.map": "/dentaltourismclinicsindia/static/css/main.e1610c2d.css.map",
-    "main.08c5d9ec.js.map": "/dentaltourismclinicsindia/static/js/main.08c5d9ec.js.map"
+    "main.7beee7db.css.map": "/dentaltourismclinicsindia/static/css/main.7beee7db.css.map",
+    "main.aa7f39e8.js.map": "/dentaltourismclinicsindia/static/js/main.aa7f39e8.js.map"
   },
   "entrypoints": [
-    "static/css/main.e1610c2d.css",
-    "static/js/main.08c5d9ec.js"
+    "static/css/main.7beee7db.css",
+    "static/js/main.aa7f39e8.js"
   ]
 }
