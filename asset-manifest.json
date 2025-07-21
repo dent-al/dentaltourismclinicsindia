@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/dentaltourismclinicsindia/static/css/main.7beee7db.css",
-    "main.js": "/dentaltourismclinicsindia/static/js/main.aa7f39e8.js",
+    "main.css": "/dentaltourismclinicsindia/static/css/main.943fde44.css",
+    "main.js": "/dentaltourismclinicsindia/static/js/main.417c4d93.js",
     "static/media/dentist4.png": "/dentaltourismclinicsindia/static/media/dentist4.46e567bd31f2c9731048.png",
     "static/media/MichaelS.png": "/dentaltourismclinicsindia/static/media/MichaelS.0b1dfd4615730e0d19a5.png",
     "static/media/Neha Gupta.png": "/dentaltourismclinicsindia/static/media/Neha Gupta.5311135769735c1ca6fc.png",
@@ -23,12 +23,12 @@
     "static/media/clinic.png": "/dentaltourismclinicsindia/static/media/clinic.f0f7f8312dc0a85b4e51.png",
     "static/media/dentist2.png": "/dentaltourismclinicsindia/static/media/dentist2.1c76896046f63ac2e120.png",
     "static/media/Orthodontist.png": "/dentaltourismclinicsindia/static/media/Orthodontist.011fa1da488b073155ce.png",
+    "static/media/logo.svg": "/dentaltourismclinicsindia/static/media/logo.a185471ff62568738ad7617ae8f4b0ea.svg",
     "static/media/dentist3.png": "/dentaltourismclinicsindia/static/media/dentist3.1d9db098ab094939dae3.png",
     "static/media/Missing Front Tooth.png": "/dentaltourismclinicsindia/static/media/Missing Front Tooth.64ab6521278f99ee2cff.png",
     "static/media/banner2.png": "/dentaltourismclinicsindia/static/media/banner2.f58ad21f005c9f7cf09a.png",
     "static/media/Facial Twitch.png": "/dentaltourismclinicsindia/static/media/Facial Twitch.1ae7e2c5d49222080d23.png",
     "static/media/custom-logo.png": "/dentaltourismclinicsindia/static/media/custom-logo.08df632b512a267e392a.png",
-    "static/media/logo.png": "/dentaltourismclinicsindia/static/media/logo.08df632b512a267e392a.png",
     "static/media/Tight Tongue Skin.png": "/dentaltourismclinicsindia/static/media/Tight Tongue Skin.19d11d1418090444b1ea.png",
     "static/media/General Dentist.png": "/dentaltourismclinicsindia/static/media/General Dentist.cd3e7df1902206cea109.png",
     "static/media/One Sided Facial Weakness.png": "/dentaltourismclinicsindia/static/media/One Sided Facial Weakness.14f00b8791b300c5501f.png",
@@ -129,7 +129,7 @@
     "static/media/Thin Shells for Teeth.png": "/dentaltourismclinicsindia/static/media/Thin Shells for Teeth.1d2b65ae775a37f2ac9c.png",
     "static/media/Mouth Cancer.png": "/dentaltourismclinicsindia/static/media/Mouth Cancer.781406ced2dbffd78af5.png",
     "static/media/TMJ Wellness Expert.png": "/dentaltourismclinicsindia/static/media/TMJ Wellness Expert.67dbb9f518db98004d99.png",
-    "static/media/Biomimetic Biologic Dentist.png": "/dentaltourismclinicsindia/static/media/Biomimetic Biologic Dentist.11de081b1bddebd28047.png",
+    "static/media/Biomimetic Dentist.png": "/dentaltourismclinicsindia/static/media/Biomimetic Dentist.11de081b1bddebd28047.png",
     "static/media/hero section.jpg": "/dentaltourismclinicsindia/static/media/hero section.255dc8937bfaa0e63bcc.jpg",
     "static/media/Grinding Teeth at Night.png": "/dentaltourismclinicsindia/static/media/Grinding Teeth at Night.4b5f1d1d6c7d60d451b3.png",
     "static/media/Mouth Wash.png": "/dentaltourismclinicsindia/static/media/Mouth Wash.8975537769d33fc87921.png",
@@ -149,23 +149,24 @@
     "static/media/verified.png": "/dentaltourismclinicsindia/static/media/verified.d4f9a85d2fb8758a90ee.png",
     "static/media/Flossers.png": "/dentaltourismclinicsindia/static/media/Flossers.c6d1f76a03970a452c9d.png",
     "static/media/Tooth Brush.png": "/dentaltourismclinicsindia/static/media/Tooth Brush.e9a28447cc00a9e1f956.png",
+    "static/media/view details.png": "/dentaltourismclinicsindia/static/media/view details.890b59c796acb99448ee.png",
     "static/media/Tourism + Treatment.png": "/dentaltourismclinicsindia/static/media/Tourism + Treatment.ae1581d444bbb1b610c5.png",
     "static/media/call now.png": "/dentaltourismclinicsindia/static/media/call now.9a71f3fb98be47e6500f.png",
+    "static/media/view offers.png": "/dentaltourismclinicsindia/static/media/view offers.613b9d50fe2b7bb7f781.png",
     "static/media/location.png": "/dentaltourismclinicsindia/static/media/location.bb5d35081c377aee5720.png",
     "static/media/prescription.png": "/dentaltourismclinicsindia/static/media/prescription.c49e0edf1670d9110ab6.png",
     "static/media/Affordable Treatment.png": "/dentaltourismclinicsindia/static/media/Affordable Treatment.1d7b7027d606aa8ab560.png",
-    "static/media/view details.png": "/dentaltourismclinicsindia/static/media/view details.fff91fa337db3e3a388a.png",
     "static/media/youtube.png": "/dentaltourismclinicsindia/static/media/youtube.84555ccd839c941360aa.png",
     "static/media/Assisted Travel Plans.png": "/dentaltourismclinicsindia/static/media/Assisted Travel Plans.26930db025fd4afe9f22.png",
     "static/media/Book Now.png": "/dentaltourismclinicsindia/static/media/Book Now.eafdbc96acb1c47c8b5d.png",
     "static/media/Expert Dentist.png": "/dentaltourismclinicsindia/static/media/Expert Dentist.c1e318337b45de8e626d.png",
     "static/media/followup.png": "/dentaltourismclinicsindia/static/media/followup.02393bac4ad7541473dd.png",
     "index.html": "/dentaltourismclinicsindia/index.html",
-    "main.7beee7db.css.map": "/dentaltourismclinicsindia/static/css/main.7beee7db.css.map",
-    "main.aa7f39e8.js.map": "/dentaltourismclinicsindia/static/js/main.aa7f39e8.js.map"
+    "main.943fde44.css.map": "/dentaltourismclinicsindia/static/css/main.943fde44.css.map",
+    "main.417c4d93.js.map": "/dentaltourismclinicsindia/static/js/main.417c4d93.js.map"
   },
   "entrypoints": [
-    "static/css/main.7beee7db.css",
-    "static/js/main.aa7f39e8.js"
+    "static/css/main.943fde44.css",
+    "static/js/main.417c4d93.js"
   ]
 }
