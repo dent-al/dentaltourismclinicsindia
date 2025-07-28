@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import FullPageLoader from "../components/FullPageLoader";
 
 const plans = [
   { value: "basic", label: "Basic (Free)" },
@@ -14,6 +15,12 @@ const RegisterClinic = () => {
     plan: plans[0].value,
   });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1200);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -27,6 +34,8 @@ const RegisterClinic = () => {
     localStorage.setItem("registeredClinics", JSON.stringify(clinics));
     setSubmitted(true);
   };
+
+  if (loading) return <FullPageLoader />;
 
   return (
     <div className="p-8 min-h-[70vh] flex items-center justify-center bg-gradient-to-br from-[#ede7f6] to-[#fff3e0]">

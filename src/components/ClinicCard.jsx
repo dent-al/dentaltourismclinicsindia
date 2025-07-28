@@ -1,8 +1,13 @@
 import React from "react";
+import OptimizedImage from './OptimizedImage';
 
 const ClinicCard = ({ clinic }) => (
   <div className="bg-white rounded-xl shadow-lg flex flex-col items-center p-4 border-t-4 border-[#0a7ffb] hover:border-blue-400 transition">
-    <img src={clinic.img} alt={clinic.name} className="w-full h-32 object-cover rounded mb-2" />
+    <OptimizedImage 
+      src={clinic.img} 
+      alt={clinic.name} 
+      className="w-full h-32 object-cover rounded mb-2" 
+    />
     <div className="font-bold text-lg text-[#0a7ffb] mb-1">{clinic.name}</div>
     <div className="text-gray-600 mb-1">{clinic.treatment}</div>
     <div className="text-yellow-500 mb-1">Rating: {clinic.rating} ⭐</div>

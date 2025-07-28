@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import OptimizedImage from './OptimizedImage';
 
 const cities = [
   { name: "Delhi", img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=facearea&w=400&h=200&q=80" },
@@ -26,7 +27,11 @@ const CitySlider = () => (
         className="min-w-[220px] bg-white rounded-xl shadow-lg flex flex-col items-center p-4 border-t-4 border-[#0a7ffb] hover:border-blue-400 transition cursor-pointer"
         whileHover={{ scale: 1.05 }}
       >
-        <img src={city.img} alt={city.name} className="w-full h-28 object-cover rounded mb-2" />
+        <OptimizedImage 
+          src={city.img} 
+          alt={city.name} 
+          className="w-full h-28 object-cover rounded mb-2" 
+        />
         <div className="font-bold text-lg text-[#0a7ffb]">{city.name}</div>
       </motion.div>
     ))}
