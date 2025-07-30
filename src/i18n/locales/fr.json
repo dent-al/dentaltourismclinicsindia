@@ -1,0 +1,195 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "services": "Services",
+    "doctors": "Médecins",
+    "shop": "Boutique",
+    "contact": "Contact",
+    "blog": "Blog",
+    "consultation": "Consultation",
+    "language": "Langue"
+  },
+  "hero": {
+    "title": "Soins Dentaires de Classe Mondiale en Inde",
+    "subtitle": "Découvrez des traitements dentaires premium avec des prix abordables et des installations de classe mondiale",
+    "cta": "Réserver une Consultation",
+    "features": {
+      "affordable": "Traitement Abordable",
+      "worldClass": "Installations de Classe Mondiale",
+      "experienced": "Médecins Expérimentés"
+    }
+  },
+  "about": {
+    "title": "À Propos de Nous",
+    "subtitle": "Destination Leader du Tourisme Dentaire",
+    "description": "Nous fournissons des soins dentaires de classe mondiale avec des installations de pointe et des professionnels expérimentés à des prix abordables.",
+    "stats": {
+      "patients": "Patients Satisfaits",
+      "doctors": "Médecins Experts",
+      "experience": "Années d'Expérience",
+      "success": "Taux de Réussite"
+    }
+  },
+  "services": {
+    "title": "Nos Services",
+    "subtitle": "Soins Dentaires Complets",
+    "implants": {
+      "title": "Implants Dentaires",
+      "description": "Solutions permanentes de remplacement dentaire"
+    },
+    "orthodontics": {
+      "title": "Orthodontie",
+      "description": "Alignement dentaire et appareils"
+    },
+    "cosmetic": {
+      "title": "Dentisterie Esthétique",
+      "description": "Traitements de relooking du sourire"
+    },
+    "surgery": {
+      "title": "Chirurgie Orale",
+      "description": "Procédures chirurgicales avancées"
+    },
+    "pediatric": {
+      "title": "Dentisterie Pédiatrique",
+      "description": "Soins spécialisés pour enfants"
+    },
+    "endodontics": {
+      "title": "Endodontie",
+      "description": "Traitements de canal radiculaire"
+    }
+  },
+  "shop": {
+    "title": "Boutique de Produits Dentaires",
+    "subtitle": "Produits de Soins Dentaires de Qualité",
+    "filter": {
+      "all": "Tous les Produits",
+      "problem": "Filtrer par Problème Dentaire",
+      "search": "Rechercher des produits...",
+      "clear": "Effacer les Filtres"
+    },
+    "problems": {
+      "teethWhitening": "Blanchiment des Dents",
+      "toothache": "Mal de Dents",
+      "sensitivity": "Sensibilité Dentaire",
+      "gumDisease": "Maladie des Gencives",
+      "badBreath": "Mauvaise Haleine",
+      "bleedingGums": "Gencives Saignantes",
+      "drySockets": "Alvéoles Sèches",
+      "jawPain": "Douleur de Mâchoire",
+      "crookedTeeth": "Dents Tordues",
+      "toothdecay": "Carie Dentaire",
+      "missingTeeth": "Dents Manquantes",
+      "oralCancer": "Cancer Oral"
+    },
+    "product": {
+      "price": "Prix",
+      "addToCart": "Ajouter au Panier",
+      "buyNow": "Acheter Maintenant",
+      "description": "Description",
+      "features": "Caractéristiques",
+      "reviews": "Avis",
+      "inStock": "En Stock",
+      "outOfStock": "Rupture de Stock"
+    },
+    "cart": {
+      "title": "Panier d'Achat",
+      "empty": "Votre panier est vide",
+      "total": "Total",
+      "checkout": "Commander",
+      "continue": "Continuer les Achats"
+    }
+  },
+  "doctors": {
+    "title": "Nos Médecins Experts",
+    "subtitle": "Rencontrez Notre Équipe Expérimentée",
+    "specialization": "Spécialisation",
+    "experience": "Expérience",
+    "education": "Éducation",
+    "contact": "Contacter le Médecin",
+    "bookAppointment": "Prendre Rendez-vous"
+  },
+  "consultation": {
+    "title": "Consultation Gratuite",
+    "subtitle": "Obtenez des Conseils d'Experts",
+    "form": {
+      "name": "Nom Complet",
+      "email": "Adresse Email",
+      "phone": "Numéro de Téléphone",
+      "country": "Pays",
+      "treatment": "Intérêt pour le Traitement",
+      "message": "Message",
+      "submit": "Soumettre la Consultation",
+      "success": "Demande de consultation soumise avec succès!",
+      "error": "Erreur lors de la soumission du formulaire. Veuillez réessayer."
+    },
+    "treatments": {
+      "implants": "Implants Dentaires",
+      "braces": "Appareils/Orthodontie",
+      "cosmetic": "Dentisterie Esthétique",
+      "surgery": "Chirurgie Orale",
+      "general": "Dentisterie Générale",
+      "other": "Autre"
+    }
+  },
+  "contact": {
+    "title": "Nous Contacter",
+    "subtitle": "Restons en Contact",
+    "address": "Adresse",
+    "phone": "Téléphone",
+    "email": "Email",
+    "hours": "Heures de Travail",
+    "form": {
+      "name": "Nom",
+      "email": "Email",
+      "subject": "Sujet",
+      "message": "Message",
+      "send": "Envoyer le Message"
+    }
+  },
+  "footer": {
+    "description": "Destination premier du tourisme dentaire offrant des traitements de classe mondiale à des prix abordables.",
+    "quickLinks": "Liens Rapides",
+    "services": "Services",
+    "contact": "Informations de Contact",
+    "followUs": "Suivez-nous",
+    "rights": "Tous droits réservés.",
+    "privacy": "Politique de Confidentialité",
+    "terms": "Conditions de Service"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "close": "Fermer",
+    "save": "Sauvegarder",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "view": "Voir",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "sort": "Trier",
+    "clear": "Effacer",
+    "apply": "Appliquer",
+    "reset": "Réinitialiser",
+    "readMore": "Lire Plus",
+    "showLess": "Afficher Moins",
+    "learnMore": "En Savoir Plus",
+    "getStarted": "Commencer",
+    "bookNow": "Réserver Maintenant",
+    "callNow": "Appeler Maintenant",
+    "emailUs": "Nous Envoyer un Email",
+    "whatsapp": "WhatsApp",
+    "currency": "$",
+    "currencyINR": "₹"
+  },
+  "meta": {
+    "title": "Cliniques de Tourisme Dentaire Inde - Soins Dentaires de Classe Mondiale",
+    "description": "Découvrez des traitements dentaires premium en Inde avec des installations de classe mondiale, des médecins expérimentés et des prix abordables. Réservez votre consultation de tourisme dentaire aujourd'hui.",
+    "keywords": "tourisme dentaire, soins dentaires Inde, dentisterie abordable, implants dentaires, dentisterie esthétique"
+  }
+}

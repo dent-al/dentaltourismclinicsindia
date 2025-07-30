@@ -1,0 +1,195 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Acerca de",
+    "services": "Servicios",
+    "doctors": "Doctores",
+    "shop": "Tienda",
+    "contact": "Contacto",
+    "blog": "Blog",
+    "consultation": "Consulta",
+    "language": "Idioma"
+  },
+  "hero": {
+    "title": "Atención Dental de Clase Mundial en India",
+    "subtitle": "Experimente tratamientos dentales premium con precios asequibles e instalaciones de clase mundial",
+    "cta": "Reservar Consulta",
+    "features": {
+      "affordable": "Tratamiento Asequible",
+      "worldClass": "Instalaciones de Clase Mundial",
+      "experienced": "Doctores Experimentados"
+    }
+  },
+  "about": {
+    "title": "Acerca de Nosotros",
+    "subtitle": "Destino Líder en Turismo Dental",
+    "description": "Brindamos atención dental de clase mundial con instalaciones de última generación y profesionales experimentados a precios asequibles.",
+    "stats": {
+      "patients": "Pacientes Satisfechos",
+      "doctors": "Doctores Expertos",
+      "experience": "Años de Experiencia",
+      "success": "Tasa de Éxito"
+    }
+  },
+  "services": {
+    "title": "Nuestros Servicios",
+    "subtitle": "Atención Dental Integral",
+    "implants": {
+      "title": "Implantes Dentales",
+      "description": "Soluciones permanentes de reemplazo dental"
+    },
+    "orthodontics": {
+      "title": "Ortodoncia",
+      "description": "Alineación dental y brackets"
+    },
+    "cosmetic": {
+      "title": "Odontología Cosmética",
+      "description": "Tratamientos de renovación de sonrisa"
+    },
+    "surgery": {
+      "title": "Cirugía Oral",
+      "description": "Procedimientos quirúrgicos avanzados"
+    },
+    "pediatric": {
+      "title": "Odontología Pediátrica",
+      "description": "Atención especializada para niños"
+    },
+    "endodontics": {
+      "title": "Endodoncia",
+      "description": "Tratamientos de conducto radicular"
+    }
+  },
+  "shop": {
+    "title": "Tienda de Productos Dentales",
+    "subtitle": "Productos de Calidad para el Cuidado Dental",
+    "filter": {
+      "all": "Todos los Productos",
+      "problem": "Filtrar por Problema Dental",
+      "search": "Buscar productos...",
+      "clear": "Limpiar Filtros"
+    },
+    "problems": {
+      "teethWhitening": "Blanqueamiento Dental",
+      "toothache": "Dolor de Muelas",
+      "sensitivity": "Sensibilidad Dental",
+      "gumDisease": "Enfermedad de las Encías",
+      "badBreath": "Mal Aliento",
+      "bleedingGums": "Encías Sangrantes",
+      "drySockets": "Alvéolos Secos",
+      "jawPain": "Dolor de Mandíbula",
+      "crookedTeeth": "Dientes Torcidos",
+      "toothdecay": "Caries Dental",
+      "missingTeeth": "Dientes Faltantes",
+      "oralCancer": "Cáncer Oral"
+    },
+    "product": {
+      "price": "Precio",
+      "addToCart": "Agregar al Carrito",
+      "buyNow": "Comprar Ahora",
+      "description": "Descripción",
+      "features": "Características",
+      "reviews": "Reseñas",
+      "inStock": "En Stock",
+      "outOfStock": "Agotado"
+    },
+    "cart": {
+      "title": "Carrito de Compras",
+      "empty": "Tu carrito está vacío",
+      "total": "Total",
+      "checkout": "Finalizar Compra",
+      "continue": "Continuar Comprando"
+    }
+  },
+  "doctors": {
+    "title": "Nuestros Doctores Expertos",
+    "subtitle": "Conoce a Nuestro Equipo Experimentado",
+    "specialization": "Especialización",
+    "experience": "Experiencia",
+    "education": "Educación",
+    "contact": "Contactar Doctor",
+    "bookAppointment": "Reservar Cita"
+  },
+  "consultation": {
+    "title": "Consulta Gratuita",
+    "subtitle": "Obtén Asesoramiento Experto",
+    "form": {
+      "name": "Nombre Completo",
+      "email": "Dirección de Email",
+      "phone": "Número de Teléfono",
+      "country": "País",
+      "treatment": "Interés en Tratamiento",
+      "message": "Mensaje",
+      "submit": "Enviar Consulta",
+      "success": "¡Solicitud de consulta enviada exitosamente!",
+      "error": "Error al enviar el formulario. Por favor, inténtalo de nuevo."
+    },
+    "treatments": {
+      "implants": "Implantes Dentales",
+      "braces": "Brackets/Ortodoncia",
+      "cosmetic": "Odontología Cosmética",
+      "surgery": "Cirugía Oral",
+      "general": "Odontología General",
+      "other": "Otro"
+    }
+  },
+  "contact": {
+    "title": "Contáctanos",
+    "subtitle": "Ponte en Contacto",
+    "address": "Dirección",
+    "phone": "Teléfono",
+    "email": "Email",
+    "hours": "Horarios de Trabajo",
+    "form": {
+      "name": "Nombre",
+      "email": "Email",
+      "subject": "Asunto",
+      "message": "Mensaje",
+      "send": "Enviar Mensaje"
+    }
+  },
+  "footer": {
+    "description": "Destino premier de turismo dental que ofrece tratamientos de clase mundial a precios asequibles.",
+    "quickLinks": "Enlaces Rápidos",
+    "services": "Servicios",
+    "contact": "Información de Contacto",
+    "followUs": "Síguenos",
+    "rights": "Todos los derechos reservados.",
+    "privacy": "Política de Privacidad",
+    "terms": "Términos de Servicio"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "close": "Cerrar",
+    "save": "Guardar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "view": "Ver",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "sort": "Ordenar",
+    "clear": "Limpiar",
+    "apply": "Aplicar",
+    "reset": "Restablecer",
+    "readMore": "Leer Más",
+    "showLess": "Mostrar Menos",
+    "learnMore": "Saber Más",
+    "getStarted": "Comenzar",
+    "bookNow": "Reservar Ahora",
+    "callNow": "Llamar Ahora",
+    "emailUs": "Envíanos un Email",
+    "whatsapp": "WhatsApp",
+    "currency": "$",
+    "currencyINR": "₹"
+  },
+  "meta": {
+    "title": "Clínicas de Turismo Dental India - Atención Dental de Clase Mundial",
+    "description": "Experimenta tratamientos dentales premium en India con instalaciones de clase mundial, doctores experimentados y precios asequibles. Reserva tu consulta de turismo dental hoy.",
+    "keywords": "turismo dental, atención dental India, odontología asequible, implantes dentales, odontología cosmética"
+  }
+}

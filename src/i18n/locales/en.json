@@ -1,0 +1,253 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "doctors": "Doctors",
+    "shop": "Shop",
+    "contact": "Contact",
+    "blog": "Blog",
+    "consultation": "Consult Now",
+    "language": "Language",
+    "clinics": "Dental Clinics",
+    "calculator": "Cost Calculator",
+    "scans": "Dental Scans",
+    "bloodTest": "Blood Test Labs",
+    "essentials": "Dental Essentials",
+    "login": "Log In"
+  },
+  "hero": {
+    "title": "Smile Confidently with India's Top Dental Tourism Clinics",
+    "subtitle": "Affordable, world-class dental care with personalized travel assistance. Trusted by thousands of international patients.",
+    "cta": "Book Consultation",
+    "exploreClinics": "Explore Dental Clinics",
+    "videoConsultation": "Book Online Video Consultation",
+    "features": {
+      "affordable": "Affordable Treatment",
+      "worldClass": "World-Class Facilities",
+      "experienced": "Expert Dentists You Can Trust",
+      "travel": "Assisted Travel Plans",
+      "consultation": "Instant Video Consultation - Consult dentist online from anywhere",
+      "clinics": "Trusted Dental Clinics - Book appointments with leading dental clinics",
+      "scans": "3D Dental Scans - Locate CBCT & OPG dental scan centers",
+      "bloodTest": "Blood Test Labs - Book a blood test at a lab close to you",
+      "expertDesc": "Precision, passion and a perfect smile — led by experts",
+      "facilitiesDesc": "State-of-the-art technology with international standards",
+      "travelDesc": "Complete travel assistance and accommodation support"
+    }
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "Leading Dental Tourism Destination",
+    "description": "We provide world-class dental care with state-of-the-art facilities and experienced professionals at affordable prices.",
+    "stats": {
+      "patients": "Happy Patients",
+      "doctors": "Expert Doctors",
+      "experience": "Years Experience",
+      "success": "Success Rate"
+    }
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Comprehensive Dental Care",
+    "whyIndia": "Why India is the Global Hub for Dental Tourism?",
+    "saveUpTo": "Save up to 70% on world-class dental treatments.",
+    "implants": {
+      "title": "Dental Implants",
+      "description": "Permanent tooth replacement solutions"
+    },
+    "orthodontics": {
+      "title": "Orthodontics",
+      "description": "Teeth alignment and braces"
+    },
+    "cosmetic": {
+      "title": "Cosmetic Dentistry",
+      "description": "Smile makeover treatments"
+    },
+    "surgery": {
+      "title": "Oral Surgery",
+      "description": "Advanced surgical procedures"
+    },
+    "pediatric": {
+      "title": "Pediatric Dentistry",
+      "description": "Specialized care for children"
+    },
+    "endodontics": {
+      "title": "Endodontics",
+      "description": "Root canal treatments"
+    }
+  },
+  "search": {
+    "placeholder": "Search by State/ UTs",
+    "selectState": "Select State/UT",
+    "findClinics": "Find Dental Clinics",
+    "allStates": "All States/UTs"
+  },
+  "shop": {
+    "title": "Dental Products Shop",
+    "subtitle": "Quality Dental Care Products",
+    "filter": {
+      "all": "All Products",
+      "problem": "Filter by Dental Problems",
+      "search": "Search products...",
+      "clear": "Clear Filters",
+      "filters": "Filters"
+    },
+    "problems": {
+      "teethWhitening": "Teeth Whitening",
+      "toothache": "Toothache",
+      "sensitivity": "Tooth Sensitivity",
+      "gumDisease": "Gum Disease",
+      "badBreath": "Bad Breath",
+      "bleedingGums": "Bleeding Gums",
+      "drySockets": "Dry Sockets",
+      "jawPain": "Jaw Pain",
+      "crookedTeeth": "Crooked Teeth",
+      "toothdecay": "Tooth Decay",
+      "missingTeeth": "Missing Teeth",
+      "oralCancer": "Oral Cancer"
+    },
+    "product": {
+      "price": "Price",
+      "addToCart": "Add to Cart",
+      "buyNow": "Buy Now",
+      "description": "Description",
+      "features": "Features",
+      "reviews": "Reviews",
+      "inStock": "In Stock",
+      "outOfStock": "Out of Stock"
+    },
+    "cart": {
+      "title": "Shopping Cart",
+      "empty": "Your cart is empty",
+      "total": "Total",
+      "checkout": "Checkout",
+      "continue": "Continue Shopping"
+    }
+  },
+  "doctors": {
+    "title": "Our Expert Doctors",
+    "subtitle": "Meet Our Experienced Team",
+    "specialization": "Specialization",
+    "experience": "Experience",
+    "education": "Education",
+    "contact": "Contact Doctor",
+    "bookAppointment": "Book Appointment"
+  },
+  "consultation": {
+    "title": "Free Consultation",
+    "subtitle": "Get Expert Advice",
+    "form": {
+      "name": "Full Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "country": "Country",
+      "treatment": "Treatment Interest",
+      "message": "Message",
+      "submit": "Submit Consultation",
+      "success": "Consultation request submitted successfully!",
+      "error": "Error submitting form. Please try again."
+    },
+    "treatments": {
+      "implants": "Dental Implants",
+      "braces": "Braces/Orthodontics",
+      "cosmetic": "Cosmetic Dentistry",
+      "surgery": "Oral Surgery",
+      "general": "General Dentistry",
+      "other": "Other"
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Get in Touch",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "hours": "Working Hours",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "send": "Send Message"
+    }
+  },
+  "offers": {
+    "latest": "Latest Offers:",
+    "smile10": "Smile Dental Care: 10% off on first visit",
+    "pearlFree": "Pearl Dental Studio: Free consultation for new patients",
+    "brightCheckup": "Bright Smiles Clinic: Complimentary dental checkup"
+  },
+  "footer": {
+    "description": "Premier dental tourism destination offering world-class treatments at affordable prices.",
+    "quickLinks": "Quick Links",
+    "services": "Services",
+    "contact": "Contact Info",
+    "followUs": "Follow Us",
+    "rights": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "close": "Close",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "view": "View",
+    "next": "Next",
+    "previous": "Previous",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "clear": "Clear",
+    "apply": "Apply",
+    "reset": "Reset",
+    "readMore": "Read More",
+    "showLess": "Show Less",
+    "learnMore": "Learn More",
+    "getStarted": "Get Started",
+    "bookNow": "Book Now",
+    "callNow": "Call Now",
+    "emailUs": "Email Us",
+    "whatsapp": "WhatsApp",
+    "currency": "$",
+    "currencyINR": "₹",
+    "found": "found",
+    "available": "Available"
+  },
+  "testimonials": {
+    "title": "What Our Patients Say",
+    "review1": "Excellent treatment and amazing staff. The dental implants procedure was painless and the results are fantastic!",
+    "review2": "I traveled from Spain for my dental makeover. The quality of care exceeded all my expectations. Highly recommended!",
+    "review3": "Outstanding service and world-class facilities. The doctors are highly skilled and caring. Worth every penny!"
+  },
+  "meta": {
+    "title": "Dental Tourism Clinics India - World-Class Dental Care",
+    "description": "Experience premium dental treatments in India with world-class facilities, experienced doctors, and affordable prices. Book your dental tourism consultation today.",
+    "keywords": "dental tourism, dental care India, affordable dentistry, dental implants, cosmetic dentistry"
+  },
+  "cookies": {
+    "title": "Cookie Notice",
+    "message": "We use cookies to enhance your browsing experience, provide personalized content, and analyze our traffic. By clicking \"Accept All\", you consent to our use of cookies.",
+    "acceptAll": "Accept All",
+    "rejectAll": "Reject All",
+    "customize": "Customize Settings",
+    "essential": "Essential Cookies",
+    "analytics": "Analytics Cookies", 
+    "marketing": "Marketing Cookies",
+    "preferences": "Preference Cookies",
+    "essentialDesc": "These cookies are necessary for the website to function and cannot be switched off.",
+    "analyticsDesc": "These cookies help us understand how visitors interact with our website.",
+    "marketingDesc": "These cookies are used to deliver advertisements more relevant to you.",
+    "preferencesDesc": "These cookies enable the website to remember choices you make.",
+    "alwaysOn": "Always On",
+    "saveSettings": "Save Settings",
+    "cookieSettings": "Cookie Settings",
+    "managePreferences": "Manage your cookie preferences below."
+  }
+}
