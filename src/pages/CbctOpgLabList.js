@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import allStatesAndUTs from '../data/allStatesAndUTs';
+import FullPageLoader from "../components/FullPageLoader";
 
 const labs = [
   {
@@ -38,6 +39,12 @@ const CbctOpgLabList = () => {
   const [search, setSearch] = useState("");
   const [city, setCity] = useState("");
   const [selectedState, setSelectedState] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1200);
+    return () => clearTimeout(timer);
+  }, []);
 
   const filteredLabs = labs.filter((lab) => {
     const matchesSearch = lab.name
@@ -47,6 +54,8 @@ const CbctOpgLabList = () => {
     const matchesState = selectedState ? lab.location === selectedState : true;
     return matchesSearch && matchesCity && matchesState;
   });
+
+  if (loading) return <FullPageLoader />;
 
   return (
     <div className="p-8 bg-[#ede7f6] min-h-screen">

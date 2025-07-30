@@ -1,27 +1,49 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import LoginRolePopup from "../components/LoginRolePopup";
+import FullPageLoader from "../components/FullPageLoader";
 
 const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
+  const [rolePopup, setRolePopup] = useState(false);
+  const [selectedRole, setSelectedRole] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1200);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleRoleSelect = (role) => {
+    setSelectedRole(role);
+    setRolePopup(false);
+    // Add logic for role-based login here
+    // Only submit the form after role selection
     if (!form.email || !form.password) {
       setError("Please enter both email and password.");
       return;
     }
     setError("");
-    // Add authentication logic here
-    alert("Logged in!");
+    alert(`Logged in as: ${role}`);
+    // Place authentication logic here
   };
+
+  // Show popup before form submit
+  const handlePreSubmit = (e) => {
+    e.preventDefault();
+    setRolePopup(true);
+  };
+
+  if (loading) return <FullPageLoader />;
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row items-center justify-center bg-gradient-to-br from-[#ede7f6] to-[#fff3e0] px-4 py-12">
+      <LoginRolePopup open={rolePopup} onClose={() => setRolePopup(false)} onSelect={handleRoleSelect} />
       <div className="w-full md:w-1/2 flex flex-col items-center justify-center mb-8 md:mb-0">
         <motion.h1
           className="text-4xl md:text-5xl font-bold text-[#6548ee] mb-4 text-center"
@@ -50,7 +72,7 @@ const Login = () => {
       <div className="w-full md:w-1/2 flex items-center justify-center">
         <form
           id="login-form"
-          onSubmit={handleSubmit}
+          onSubmit={handlePreSubmit}
           className="w-full max-w-md bg-white rounded-xl shadow-lg p-8 border-t-8 border-[#6548ee] flex flex-col gap-4"
         >
           <h2 className="text-2xl font-bold text-[#6548ee] mb-2 text-center">Login</h2>
