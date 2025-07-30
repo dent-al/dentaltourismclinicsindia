@@ -110,7 +110,7 @@ const FullyTranslatedDemo = () => {
             <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition">
               <div className="text-center">
                 <img 
-                  src={(() => { try { return require('../assets/Oral Surgeon.png'); } catch { return require('../logo.svg'); } })()} 
+                  src={(() => { try { return require('../assets/oral surgeon.png'); } catch { return require('../logo.svg'); } })()} 
                   alt={t('services.surgery.title')} 
                   className="w-20 h-20 mx-auto mb-4" 
                 />

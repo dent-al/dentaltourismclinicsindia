@@ -27,6 +27,10 @@ db.once('open', () => {
 const userRoutes = require('./routes/user');
 app.use('/api/users', userRoutes);
 
+// Analytics routes
+const analyticsRoutes = require('./routes/analytics');
+app.use('/api', analyticsRoutes);
+
 app.get('/', (req, res) => {
   res.send('Dental Tourism Local Server Running!');
 });
