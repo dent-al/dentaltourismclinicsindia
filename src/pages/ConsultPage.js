@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import consultBannerImg from '../assets/consult-banner.png';
 import FullPageLoader from "../components/FullPageLoader";
 import { useNavigate, Link } from "react-router-dom";
@@ -35,7 +36,7 @@ const specialists = [
   { name: "Pediatric Dentist", img: require('../assets/Children’s Dentistry.png'), desc: "Cares for children’s teeth, specializes in the dental needs of kids from babies to teens, helps children develop healthy brushing & flossing routines.", points: [
     "Teeth present at birth.", "Tight tongue skin.", "Thumb sucking.", "Tooth cavities.", "Tooth filling.", "Children's dentistry.", "Bad breath.", "Tooth sensitivity.", "Mouth breathing in kids."
   ] },
-  { name: "Oral and Maxillofacial Surgeon", img: require('../assets/Oral Surgeon.png'), desc: "Wisdom tooth removal, fixes jaw issues & facial injuries through advanced surgery, places dental implants.", points: [
+  { name: "Oral and Maxillofacial Surgeon", img: require('../assets/oral surgeon.png'), desc: "Wisdom tooth removal, fixes jaw issues & facial injuries through advanced surgery, places dental implants.", points: [
     "Adding bone to the socket.", "Dental implants.", "Fractured tooth.", "Facial twitch.", "Facial muscle twitching on one side.", "Hole in the roof of the mouth."
   ] },
   { name: "Holistic Dentist", img: require('../assets/Holistic Dentist.png'), desc: "Natural dental care, uses biocompatible materials & treatments that support overall health, focuses on whole-body wellness.", points: [
@@ -59,6 +60,7 @@ const specialists = [
 ];
 
 const ConsultPage = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [problem, setProblem] = useState("");
   const [speciality, setSpeciality] = useState("");

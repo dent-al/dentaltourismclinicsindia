@@ -1,0 +1,195 @@
+{
+  "nav": {
+    "home": "主页",
+    "about": "关于我们",
+    "services": "服务",
+    "doctors": "医生",
+    "shop": "商店",
+    "contact": "联系",
+    "blog": "博客",
+    "consultation": "咨询",
+    "language": "语言"
+  },
+  "hero": {
+    "title": "印度世界级牙科护理",
+    "subtitle": "体验优质牙科治疗，价格实惠，设施世界一流",
+    "cta": "预约咨询",
+    "features": {
+      "affordable": "价格实惠的治疗",
+      "worldClass": "世界级设施",
+      "experienced": "经验丰富的医生"
+    }
+  },
+  "about": {
+    "title": "关于我们",
+    "subtitle": "领先的牙科旅游目的地",
+    "description": "我们以实惠的价格提供世界级牙科护理，拥有最先进的设施和经验丰富的专业人士。",
+    "stats": {
+      "patients": "满意患者",
+      "doctors": "专家医生",
+      "experience": "年经验",
+      "success": "成功率"
+    }
+  },
+  "services": {
+    "title": "我们的服务",
+    "subtitle": "全面的牙科护理",
+    "implants": {
+      "title": "牙科植入物",
+      "description": "永久性牙齿替换解决方案"
+    },
+    "orthodontics": {
+      "title": "正畸学",
+      "description": "牙齿对齐和牙套"
+    },
+    "cosmetic": {
+      "title": "美容牙科",
+      "description": "微笑改造治疗"
+    },
+    "surgery": {
+      "title": "口腔外科",
+      "description": "先进的外科手术"
+    },
+    "pediatric": {
+      "title": "儿童牙科",
+      "description": "专门的儿童护理"
+    },
+    "endodontics": {
+      "title": "牙髓病学",
+      "description": "根管治疗"
+    }
+  },
+  "shop": {
+    "title": "牙科产品商店",
+    "subtitle": "优质牙科护理产品",
+    "filter": {
+      "all": "所有产品",
+      "problem": "按牙科问题筛选",
+      "search": "搜索产品...",
+      "clear": "清除筛选器"
+    },
+    "problems": {
+      "teethWhitening": "牙齿美白",
+      "toothache": "牙痛",
+      "sensitivity": "牙齿敏感",
+      "gumDisease": "牙龈疾病",
+      "badBreath": "口臭",
+      "bleedingGums": "牙龈出血",
+      "drySockets": "干槽症",
+      "jawPain": "下颌疼痛",
+      "crookedTeeth": "牙齿不齐",
+      "toothdecay": "蛀牙",
+      "missingTeeth": "缺失牙齿",
+      "oralCancer": "口腔癌"
+    },
+    "product": {
+      "price": "价格",
+      "addToCart": "加入购物车",
+      "buyNow": "立即购买",
+      "description": "描述",
+      "features": "特点",
+      "reviews": "评论",
+      "inStock": "有库存",
+      "outOfStock": "缺货"
+    },
+    "cart": {
+      "title": "购物车",
+      "empty": "您的购物车是空的",
+      "total": "总计",
+      "checkout": "结账",
+      "continue": "继续购物"
+    }
+  },
+  "doctors": {
+    "title": "我们的专家医生",
+    "subtitle": "认识我们经验丰富的团队",
+    "specialization": "专业",
+    "experience": "经验",
+    "education": "教育",
+    "contact": "联系医生",
+    "bookAppointment": "预约"
+  },
+  "consultation": {
+    "title": "免费咨询",
+    "subtitle": "获得专家建议",
+    "form": {
+      "name": "姓名",
+      "email": "电子邮箱",
+      "phone": "电话号码",
+      "country": "国家",
+      "treatment": "治疗兴趣",
+      "message": "消息",
+      "submit": "提交咨询",
+      "success": "咨询请求已成功提交！",
+      "error": "提交表单时出错。请重试。"
+    },
+    "treatments": {
+      "implants": "牙科植入物",
+      "braces": "牙套/正畸",
+      "cosmetic": "美容牙科",
+      "surgery": "口腔外科",
+      "general": "普通牙科",
+      "other": "其他"
+    }
+  },
+  "contact": {
+    "title": "联系我们",
+    "subtitle": "保持联系",
+    "address": "地址",
+    "phone": "电话",
+    "email": "电子邮箱",
+    "hours": "工作时间",
+    "form": {
+      "name": "姓名",
+      "email": "电子邮箱",
+      "subject": "主题",
+      "message": "消息",
+      "send": "发送消息"
+    }
+  },
+  "footer": {
+    "description": "提供世界级治疗、价格实惠的首要牙科旅游目的地。",
+    "quickLinks": "快速链接",
+    "services": "服务",
+    "contact": "联系信息",
+    "followUs": "关注我们",
+    "rights": "版权所有。",
+    "privacy": "隐私政策",
+    "terms": "服务条款"
+  },
+  "common": {
+    "loading": "加载中...",
+    "error": "错误",
+    "success": "成功",
+    "cancel": "取消",
+    "confirm": "确认",
+    "close": "关闭",
+    "save": "保存",
+    "edit": "编辑",
+    "delete": "删除",
+    "view": "查看",
+    "next": "下一个",
+    "previous": "上一个",
+    "search": "搜索",
+    "filter": "筛选",
+    "sort": "排序",
+    "clear": "清除",
+    "apply": "应用",
+    "reset": "重置",
+    "readMore": "阅读更多",
+    "showLess": "显示更少",
+    "learnMore": "了解更多",
+    "getStarted": "开始",
+    "bookNow": "立即预约",
+    "callNow": "立即拨打",
+    "emailUs": "给我们发邮件",
+    "whatsapp": "微信",
+    "currency": "$",
+    "currencyINR": "₹"
+  },
+  "meta": {
+    "title": "印度牙科旅游诊所 - 世界级牙科护理",
+    "description": "在印度体验优质牙科治疗，拥有世界级设施、经验丰富的医生和实惠的价格。立即预约您的牙科旅游咨询。",
+    "keywords": "牙科旅游，印度牙科护理，实惠牙科，牙科植入物，美容牙科"
+  }
+}

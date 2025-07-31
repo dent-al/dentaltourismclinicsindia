@@ -56,7 +56,7 @@ const specialists = [
     "Tooth rescue treatment.",
     "Re-root canal treatment."
   ] },
-  { name: "Oral and Maxillofacial Surgeon", img: require('../assets/Oral Surgeon.png'), desc: "Wisdom tooth removal, fixes jaw issues & facial injuries through advanced surgery, places dental implants.", points: [
+  { name: "Oral and Maxillofacial Surgeon", img: require('../assets/oral surgeon.png'), desc: "Wisdom tooth removal, fixes jaw issues & facial injuries through advanced surgery, places dental implants.", points: [
     "Adding bone to the socket.",
     "Dental implants.",
     "Fractured tooth.",

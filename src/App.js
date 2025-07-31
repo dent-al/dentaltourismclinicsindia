@@ -5,11 +5,14 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import './App.css';
 import { AuthProvider } from "./contexts/AuthContext";
 import { SEOProvider } from "./contexts/SEOContext.jsx";
+import { AnalyticsProvider } from "./contexts/AnalyticsContext";
+import { AdminProvider } from "./contexts/AdminContext";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import { usePerformance } from './hooks/usePerformance';
 import { registerSW, initPerformanceMonitoring } from './utils/buildOptimization';
+import './i18n'; // Initialize internationalization
 
 // Lazy load components for better performance
 const Home = lazy(() => import("./pages/Home"));
@@ -37,6 +40,15 @@ const AppointmentConfirmPage = lazy(() => import("./pages/AppointmentConfirmPage
 const ConfirmAndPay = lazy(() => import("./pages/ConfirmAndPay.jsx"));
 const SEOPage = lazy(() => import("./pages/SEOPage"));
 const ChatBot = lazy(() => import("./components/ChatBot"));
+const AppDownloadPage = lazy(() => import("./pages/AppDownloadPage"));
+const FloatingSocialButtons = lazy(() => import("./components/FloatingSocialButtons"));
+const AdminAnalyticsDashboard = lazy(() => import("./pages/AdminAnalyticsDashboard"));
+const AdminLogin = lazy(() => import("./pages/AdminLogin"));
+const ProtectedAdminRoute = lazy(() => import("./components/ProtectedAdminRoute"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const TermsAndConditions = lazy(() => import("./pages/TermsAndConditions"));
+const RefundPolicy = lazy(() => import("./pages/RefundPolicy"));
+const PatientRefundPolicy = lazy(() => import("./pages/PatientRefundPolicy"));
 
 // Loading component
 const LoadingSpinner = () => (
@@ -84,9 +96,11 @@ function App() {
   return (
     <SEOProvider>
       <SEOMeta />
-      <AuthProvider>
-        <ScrollToTop />
-        {!hideHeader && <Header />}
+      <AnalyticsProvider>
+        <AdminProvider>
+          <AuthProvider>
+            <ScrollToTop />
+            {!hideHeader && <Header />}
         {/* Animated Offers Strip - now global, appears on all pages below header */}
         <div style={{
           width: '100%',
@@ -148,6 +162,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/clinics" element={<ClinicList type="clinic" />} />
+            <Route path="/famous-dental-clinic" element={<ClinicList type="clinic" featured={true} />} />
             <Route path="/clinic/:id" element={<ClinicDetails />} />
             <Route path="/book-appointment" element={<BookAppointment />} />
             <Route path="/register-clinic" element={<RegisterClinic />} />
@@ -171,6 +186,22 @@ function App() {
             <Route path="/confirm-pay" element={<ConfirmAndPay />} />
             <Route path="/appointment-details" element={<AppointmentDetails />} />
             <Route path="/seo-manager" element={<SEOPage />} />
+            <Route path="/download-app" element={<AppDownloadPage />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms" element={<TermsAndConditions />} />
+            <Route path="/refund-policy" element={<RefundPolicy />} />
+            <Route path="/patient-refund-policy" element={<PatientRefundPolicy />} />
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/analytics-dashboard" element={<AdminLogin />} />
+            <Route path="/admin-panel" element={<AdminLogin />} />
+            <Route 
+              path="/admin/analytics" 
+              element={
+                <ProtectedAdminRoute>
+                  <AdminAnalyticsDashboard />
+                </ProtectedAdminRoute>
+              } 
+            />
           </Routes>
         </Suspense>
       </div>
@@ -178,7 +209,12 @@ function App() {
       <Suspense fallback={null}>
         <ChatBot />
       </Suspense>
+      <Suspense fallback={null}>
+        <FloatingSocialButtons />
+      </Suspense>
       </AuthProvider>
+      </AdminProvider>
+      </AnalyticsProvider>
     </SEOProvider>
   );
 }

@@ -1,5 +1,5 @@
 // API service for connecting frontend to backend
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000';
 
 class ApiService {
   constructor() {
@@ -114,6 +114,18 @@ class ApiService {
       method: 'POST',
       body: JSON.stringify(paymentData),
     });
+  }
+
+  // Health check endpoint for testing connection
+  async testConnection() {
+    try {
+      const response = await this.request('/health');
+      console.log('✅ Backend connection successful:', response);
+      return response;
+    } catch (error) {
+      console.error('❌ Backend connection failed:', error);
+      throw error;
+    }
   }
 }
 

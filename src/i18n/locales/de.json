@@ -1,0 +1,195 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "about": "Über uns",
+    "services": "Dienstleistungen",
+    "doctors": "Ärzte",
+    "shop": "Shop",
+    "contact": "Kontakt",
+    "blog": "Blog",
+    "consultation": "Beratung",
+    "language": "Sprache"
+  },
+  "hero": {
+    "title": "Weltklasse-Zahnpflege in Indien",
+    "subtitle": "Erleben Sie Premium-Zahnbehandlungen mit erschwinglichen Preisen und erstklassigen Einrichtungen",
+    "cta": "Beratung buchen",
+    "features": {
+      "affordable": "Erschwingliche Behandlung",
+      "worldClass": "Weltklasse-Einrichtungen",
+      "experienced": "Erfahrene Ärzte"
+    }
+  },
+  "about": {
+    "title": "Über uns",
+    "subtitle": "Führendes Zahntourismus-Ziel",
+    "description": "Wir bieten erstklassige Zahnpflege mit modernsten Einrichtungen und erfahrenen Fachkräften zu erschwinglichen Preisen.",
+    "stats": {
+      "patients": "Zufriedene Patienten",
+      "doctors": "Fachärzte",
+      "experience": "Jahre Erfahrung",
+      "success": "Erfolgsrate"
+    }
+  },
+  "services": {
+    "title": "Unsere Dienstleistungen",
+    "subtitle": "Umfassende Zahnpflege",
+    "implants": {
+      "title": "Zahnimplantate",
+      "description": "Permanente Zahnersatzlösungen"
+    },
+    "orthodontics": {
+      "title": "Kieferorthopädie",
+      "description": "Zahnausrichtung und Zahnspangen"
+    },
+    "cosmetic": {
+      "title": "Kosmetische Zahnheilkunde",
+      "description": "Lächeln-Makeover-Behandlungen"
+    },
+    "surgery": {
+      "title": "Mundchirurgie",
+      "description": "Fortgeschrittene chirurgische Verfahren"
+    },
+    "pediatric": {
+      "title": "Kinderzahnheilkunde",
+      "description": "Spezialisierte Betreuung für Kinder"
+    },
+    "endodontics": {
+      "title": "Endodontie",
+      "description": "Wurzelkanalbehandlungen"
+    }
+  },
+  "shop": {
+    "title": "Zahnprodukte-Shop",
+    "subtitle": "Hochwertige Zahnpflegeprodukte",
+    "filter": {
+      "all": "Alle Produkte",
+      "problem": "Nach Zahnproblem filtern",
+      "search": "Produkte suchen...",
+      "clear": "Filter löschen"
+    },
+    "problems": {
+      "teethWhitening": "Zahnaufhellung",
+      "toothache": "Zahnschmerzen",
+      "sensitivity": "Zahnempfindlichkeit",
+      "gumDisease": "Zahnfleischerkrankung",
+      "badBreath": "Mundgeruch",
+      "bleedingGums": "Zahnfleischbluten",
+      "drySockets": "Trockene Alveolen",
+      "jawPain": "Kieferschmerzen",
+      "crookedTeeth": "Schiefe Zähne",
+      "toothdecay": "Zahnfäule",
+      "missingTeeth": "Fehlende Zähne",
+      "oralCancer": "Mundkrebs"
+    },
+    "product": {
+      "price": "Preis",
+      "addToCart": "In den Warenkorb",
+      "buyNow": "Jetzt kaufen",
+      "description": "Beschreibung",
+      "features": "Eigenschaften",
+      "reviews": "Bewertungen",
+      "inStock": "Auf Lager",
+      "outOfStock": "Nicht vorrätig"
+    },
+    "cart": {
+      "title": "Warenkorb",
+      "empty": "Ihr Warenkorb ist leer",
+      "total": "Gesamt",
+      "checkout": "Zur Kasse",
+      "continue": "Weiter einkaufen"
+    }
+  },
+  "doctors": {
+    "title": "Unsere Fachärzte",
+    "subtitle": "Lernen Sie unser erfahrenes Team kennen",
+    "specialization": "Spezialisierung",
+    "experience": "Erfahrung",
+    "education": "Ausbildung",
+    "contact": "Arzt kontaktieren",
+    "bookAppointment": "Termin buchen"
+  },
+  "consultation": {
+    "title": "Kostenlose Beratung",
+    "subtitle": "Expertenrat erhalten",
+    "form": {
+      "name": "Vollständiger Name",
+      "email": "E-Mail-Adresse",
+      "phone": "Telefonnummer",
+      "country": "Land",
+      "treatment": "Behandlungsinteresse",
+      "message": "Nachricht",
+      "submit": "Beratung einreichen",
+      "success": "Beratungsanfrage erfolgreich eingereicht!",
+      "error": "Fehler beim Senden des Formulars. Bitte versuchen Sie es erneut."
+    },
+    "treatments": {
+      "implants": "Zahnimplantate",
+      "braces": "Zahnspangen/Kieferorthopädie",
+      "cosmetic": "Kosmetische Zahnheilkunde",
+      "surgery": "Mundchirurgie",
+      "general": "Allgemeine Zahnheilkunde",
+      "other": "Andere"
+    }
+  },
+  "contact": {
+    "title": "Kontaktieren Sie uns",
+    "subtitle": "In Kontakt bleiben",
+    "address": "Adresse",
+    "phone": "Telefon",
+    "email": "E-Mail",
+    "hours": "Arbeitszeiten",
+    "form": {
+      "name": "Name",
+      "email": "E-Mail",
+      "subject": "Betreff",
+      "message": "Nachricht",
+      "send": "Nachricht senden"
+    }
+  },
+  "footer": {
+    "description": "Premier-Zahntourismus-Ziel, das erstklassige Behandlungen zu erschwinglichen Preisen anbietet.",
+    "quickLinks": "Schnelle Links",
+    "services": "Dienstleistungen",
+    "contact": "Kontaktinformationen",
+    "followUs": "Folgen Sie uns",
+    "rights": "Alle Rechte vorbehalten.",
+    "privacy": "Datenschutzrichtlinie",
+    "terms": "Nutzungsbedingungen"
+  },
+  "common": {
+    "loading": "Wird geladen...",
+    "error": "Fehler",
+    "success": "Erfolg",
+    "cancel": "Abbrechen",
+    "confirm": "Bestätigen",
+    "close": "Schließen",
+    "save": "Speichern",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "view": "Ansehen",
+    "next": "Weiter",
+    "previous": "Zurück",
+    "search": "Suchen",
+    "filter": "Filter",
+    "sort": "Sortieren",
+    "clear": "Löschen",
+    "apply": "Anwenden",
+    "reset": "Zurücksetzen",
+    "readMore": "Mehr lesen",
+    "showLess": "Weniger anzeigen",
+    "learnMore": "Mehr erfahren",
+    "getStarted": "Loslegen",
+    "bookNow": "Jetzt buchen",
+    "callNow": "Jetzt anrufen",
+    "emailUs": "E-Mail senden",
+    "whatsapp": "WhatsApp",
+    "currency": "$",
+    "currencyINR": "₹"
+  },
+  "meta": {
+    "title": "Zahntourismus-Kliniken Indien - Weltklasse-Zahnpflege",
+    "description": "Erleben Sie Premium-Zahnbehandlungen in Indien mit erstklassigen Einrichtungen, erfahrenen Ärzten und erschwinglichen Preisen. Buchen Sie heute Ihre Zahntourismus-Beratung.",
+    "keywords": "Zahntourismus, Zahnpflege Indien, erschwingliche Zahnheilkunde, Zahnimplantate, kosmetische Zahnheilkunde"
+  }
+}
