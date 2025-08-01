@@ -4,6 +4,7 @@ const database = require('./config/db');
 const Cbci_opg_data=require('./Router/Cbci_opg_dataRoute');
 const DentalRegistration=require('./Router/DentalRegisterRoute');
 const diagnosticLab=require('./Router/DiagnosticLabsRoutes')
+const Contact_US=require('./Router/Contact_Us_route');
 const PharmaBrand=require('./Router/PharmaBrandRoute');
 const UserRoute=require('./Router/UserRoute');
 require('dotenv').config();
@@ -22,6 +23,7 @@ app.use('/', DentalRegistration);
 app.use('/', diagnosticLab);
 app.use('/',PharmaBrand)
 app.use('/',UserRoute)
+app.use('/', Contact_US);
 
 // Health check endpoint
 app.get('/health', (req, res) => {
