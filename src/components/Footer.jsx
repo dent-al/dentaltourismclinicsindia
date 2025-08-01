@@ -44,7 +44,7 @@ const Footer = () => (
           <Link to="/privacy-policy" className="text-sm hover:underline mb-1">Privacy Policy</Link>
           <Link to="/admin/login" className="text-sm hover:underline mb-1">Cookie Policy</Link>
           <Link to="/terms" className="text-sm hover:underline mb-1">T&C</Link>
-          <Link to="/admin/login" className="text-sm hover:underline mb-1">Site Map</Link>
+          <Link to="/admin/analytics" className="text-sm hover:underline mb-1">Site Map</Link>
           <Link to="/contact" className="text-sm hover:underline mb-1">Contact Us</Link>
           <Link to="/articles" className="text-sm hover:underline mb-1">Articles</Link>
         </div>
