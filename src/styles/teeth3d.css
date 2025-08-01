@@ -1,0 +1,157 @@
+/* 3D Teeth Component Animations */
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes toothPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+@keyframes detectAnimation {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) rotate(180deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+    opacity: 1;
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.4);
+  }
+}
+
+.tooth-3d {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.tooth-3d:hover {
+  animation: toothPulse 0.6s ease-in-out;
+}
+
+.tooth-detected {
+  animation: detectAnimation 1s ease-out;
+}
+
+.tooth-glow {
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+.tooth-crown {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(248, 250, 252, 0.8) 30%,
+    rgba(241, 245, 249, 0.7) 70%,
+    rgba(226, 232, 240, 0.6) 100%);
+  border-radius: 3px;
+  box-shadow: 
+    inset 0 1px 3px rgba(255, 255, 255, 0.8),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.1),
+    0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tooth-crown.problem {
+  background: linear-gradient(135deg, 
+    rgba(255, 200, 200, 0.95) 0%,
+    rgba(255, 180, 180, 0.8) 30%,
+    rgba(255, 160, 160, 0.7) 70%,
+    rgba(255, 140, 140, 0.6) 100%);
+}
+
+.tooth-crown.ai-detected {
+  background: linear-gradient(135deg, 
+    rgba(255, 220, 150, 0.95) 0%,
+    rgba(255, 200, 130, 0.8) 30%,
+    rgba(255, 180, 110, 0.7) 70%,
+    rgba(255, 160, 90, 0.6) 100%);
+}
+
+/* Mobile touch improvements */
+@media (hover: none) and (pointer: coarse) {
+  .tooth-3d:active {
+    transform: scale(1.1);
+    transition: transform 0.1s ease-out;
+  }
+  
+  .tooth-glow {
+    animation: none; /* Reduce animations on mobile for performance */
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .tooth-3d {
+    width: 16px !important;
+    height: 22px !important;
+  }
+  
+  .teeth-container {
+    height: 320px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .tooth-3d {
+    width: 14px !important;
+    height: 20px !important;
+  }
+  
+  .teeth-container {
+    height: 280px !important;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .tooth-3d,
+  .tooth-detected,
+  .tooth-glow,
+  .animate-pulse,
+  .animate-bounce {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .tooth-3d {
+    border-width: 4px !important;
+  }
+  
+  .tooth-crown {
+    background: white !important;
+  }
+  
+  .tooth-crown.problem {
+    background: #ff0000 !important;
+  }
+  
+  .tooth-crown.ai-detected {
+    background: #ff8800 !important;
+  }
+}

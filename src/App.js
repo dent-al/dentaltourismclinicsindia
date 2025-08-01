@@ -1,14 +1,18 @@
 import AppointmentDetails from "./pages/AppointmentDetails";
 import React, { Suspense, lazy, useEffect } from "react";
 import SEOMeta from "./components/SEOMeta";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, Link } from "react-router-dom";
 import './App.css';
+import './styles/theme.css';
 import { AuthProvider } from "./contexts/AuthContext";
 import { SEOProvider } from "./contexts/SEOContext.jsx";
 import { AnalyticsProvider } from "./contexts/AnalyticsContext";
 import { AdminProvider } from "./contexts/AdminContext";
+import { ThemeProvider } from "./contexts/ThemeContext";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import OffersStrip from "./components/OffersStrip";
+import DisclaimerBanner from "./components/DisclaimerBanner";
 import ScrollToTop from "./components/ScrollToTop";
 import { usePerformance } from './hooks/usePerformance';
 import { registerSW, initPerformanceMonitoring } from './utils/buildOptimization';
@@ -28,6 +32,7 @@ const ShopPage = lazy(() => import("./pages/ShopPage"));
 const ArticlesPage = lazy(() => import("./pages/ArticlesPage"));
 const DentistList = lazy(() => import("./pages/DentistList.jsx"));
 const HelpSupport = lazy(() => import("./pages/HelpSupport"));
+const FixMyTeeth = lazy(() => import("./pages/FixMyTeeth"));
 const DentistRegistrationForm = lazy(() => import("./components/DentistRegistrationForm"));
 const PricingPlansPage = lazy(() => import("./pages/PricingPlansPage"));
 const CBCTRegistrationForm = lazy(() => import("./pages/CBCTRegistrationForm"));
@@ -42,6 +47,7 @@ const SEOPage = lazy(() => import("./pages/SEOPage"));
 const ChatBot = lazy(() => import("./components/ChatBot"));
 const AppDownloadPage = lazy(() => import("./pages/AppDownloadPage"));
 const FloatingSocialButtons = lazy(() => import("./components/FloatingSocialButtons"));
+const FloatingThemeToggle = lazy(() => import("./components/FloatingThemeToggle"));
 const AdminAnalyticsDashboard = lazy(() => import("./pages/AdminAnalyticsDashboard"));
 const AdminLogin = lazy(() => import("./pages/AdminLogin"));
 const ProtectedAdminRoute = lazy(() => import("./components/ProtectedAdminRoute"));
@@ -49,6 +55,7 @@ const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const TermsAndConditions = lazy(() => import("./pages/TermsAndConditions"));
 const RefundPolicy = lazy(() => import("./pages/RefundPolicy"));
 const PatientRefundPolicy = lazy(() => import("./pages/PatientRefundPolicy"));
+const ThemeShowcase = lazy(() => import("./pages/ThemeShowcase"));
 
 // Loading component
 const LoadingSpinner = () => (
@@ -94,70 +101,18 @@ function App() {
   const showDisclaimer = ["/login", "/consult", "/consult-form"].includes(location.pathname);
 
   return (
-    <SEOProvider>
-      <SEOMeta />
-      <AnalyticsProvider>
-        <AdminProvider>
-          <AuthProvider>
-            <ScrollToTop />
-            {!hideHeader && <Header />}
-        {/* Animated Offers Strip - now global, appears on all pages below header */}
-        <div style={{
-          width: '100%',
-          background: 'linear-gradient(90deg, #2C73D2 0%, #F4A300 100%)',
-        color: 'white',
-        fontWeight: 'bold',
-        fontSize: '0.95rem',
-        letterSpacing: '0.5px',
-        boxShadow: '0 2px 12px 0 rgba(44,115,210,0.10)',
-        padding: '0.18rem 0',
-        marginBottom: '0.5rem',
-        borderTop: '3px solid #FFD700',
-        borderBottom: '3px solid #FFD700',
-        display: 'flex',
-        alignItems: 'center',
-        overflow: 'hidden',
-      }}>
-        <span style={{marginLeft: '1.5rem', marginRight: '1.2rem', fontSize: '1.2rem', color: '#FFD700', textShadow: '0 2px 8px #2056AE44'}}>Latest Offers:</span>
-        <marquee behavior="scroll" direction="left" scrollamount="8" style={{width: '80%', fontWeight: '600', fontSize: '1.1rem', color: 'black'}}>
-          {/* Example offers, replace with dynamic data if needed */}
-          <span style={{marginRight: '2.5rem', display: 'inline-block', animation: 'pulseOffer 1.2s infinite alternate'}}>
-            <span style={{color: 'black'}}>★</span> Smile Dental Care: <span style={{color: 'black'}}>10% off on first visit</span>
-          </span>
-          <span style={{marginRight: '2.5rem', display: 'inline-block', animation: 'pulseOffer 1.2s infinite alternate'}}>
-            <span style={{color: 'black'}}>★</span> Pearl Dental Studio: <span style={{color: 'black'}}>Free consultation for new patients</span>
-          </span>
-          <span style={{marginRight: '2.5rem', display: 'inline-block', animation: 'pulseOffer 1.2s infinite alternate'}}>
-            <span style={{color: 'black'}}>★</span> Bright Smiles Clinic: <span style={{color: 'black'}}>Complimentary dental checkup</span>
-          </span>
-        </marquee>
-        <style>{`
-          @keyframes pulseOffer {
-            0% { opacity: 1; }
-            100% { opacity: 0.7; }
-          }
-        `}</style>
-      </div>
+    <ThemeProvider>
+      <SEOProvider>
+        <SEOMeta />
+        <AnalyticsProvider>
+          <AdminProvider>
+            <AuthProvider>
+              <ScrollToTop />
+              {!hideHeader && <Header />}
+              <OffersStrip />
       {/* Disclaimer banner for login/consult pages */}
-      {showDisclaimer && (
-        <div style={{
-          background: 'linear-gradient(90deg, #FFD700 0%, #F4A300 100%)',
-          color: '#2056AE',
-          fontWeight: 'bold',
-          fontSize: '1.05rem',
-          padding: '1rem 2rem',
-          margin: '0 auto 1rem auto',
-          borderRadius: '1.2rem',
-          maxWidth: '900px',
-          boxShadow: '0 2px 16px 0 rgba(44,115,210,0.10)',
-          border: '2px solid #2C73D2',
-          textAlign: 'center',
-        }}>
-          This online platform helps users find Dental Clinics across India but is not a healthcare provider. Information provided on this platform is for general guidance only and does not constitute medical advice. We do not own or control any listed clinics, all operate independently. Users are solely responsible for their decision to contact or engage with any clinic. We do not guarantee the accuracy, quality, or outcomes of any clinic's services. We are not liable for any issues, misguidance, complications, or dissatisfaction arising from use of the platform or treatment by any third party. Reviews and ratings are personal opinions and not verified by us. Platform content and listings may change without prior notice. This platform only guides users to suitable clinics and is not responsible for any resulting problems.
-          <br /><span style={{color: '#C0392B', fontWeight: 'bold'}}>ALWAYS CONSULT A LICENSED PROFESSIONAL.</span>
-        </div>
-      )}
-      <div className={`${noTopPadding ? '' : 'pt-2'} min-h-screen bg-white w-full overflow-x-hidden`}>
+      {showDisclaimer && <DisclaimerBanner />}
+      <div className={`${noTopPadding ? '' : 'pt-2'} min-h-screen bg-white dark:bg-gray-900 w-full overflow-x-hidden transition-colors duration-300`}>
         <Suspense fallback={<LoadingSpinner />}>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -176,6 +131,7 @@ function App() {
             <Route path="/shop" element={<ShopPage />} />
             <Route path="/articles" element={<ArticlesPage />} />
             <Route path="/help" element={<HelpSupport />} />
+            <Route path="/fix-my-teeth" element={<FixMyTeeth />} />
             <Route path="/dentist-registration" element={<DentistRegistrationForm />} />
             <Route path="/cbct-registration" element={<CBCTRegistrationForm />} />
             <Route path="/diagnostic-lab-registration" element={<DiagnosticLabRegistrationForm />} />
@@ -191,8 +147,16 @@ function App() {
             <Route path="/terms" element={<TermsAndConditions />} />
             <Route path="/refund-policy" element={<RefundPolicy />} />
             <Route path="/patient-refund-policy" element={<PatientRefundPolicy />} />
+            <Route path="/theme-showcase" element={<ThemeShowcase />} />
             <Route path="/admin/login" element={<AdminLogin />} />
-            <Route path="/analytics-dashboard" element={<AdminLogin />} />
+            <Route 
+              path="/analytics-dashboard" 
+              element={
+                <ProtectedAdminRoute>
+                  <AdminAnalyticsDashboard />
+                </ProtectedAdminRoute>
+              } 
+            />
             <Route path="/admin-panel" element={<AdminLogin />} />
             <Route 
               path="/admin/analytics" 
@@ -212,10 +176,14 @@ function App() {
       <Suspense fallback={null}>
         <FloatingSocialButtons />
       </Suspense>
+      <Suspense fallback={null}>
+        <FloatingThemeToggle />
+      </Suspense>
       </AuthProvider>
       </AdminProvider>
       </AnalyticsProvider>
     </SEOProvider>
+  </ThemeProvider>
   );
 }
 

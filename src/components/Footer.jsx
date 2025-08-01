@@ -2,9 +2,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 import customLogo from '../logo.svg';
 import OptimizedImage from './OptimizedImage';
+import { useTheme } from '../contexts/ThemeContext';
 
-const Footer = () => (
-  <footer className="w-full bg-[#2C73D2] text-white pt-6 sm:pt-10 pb-4 mt-0 overflow-x-hidden">
+const Footer = () => {
+  const { currentColors, isDarkMode } = useTheme();
+  
+  return (
+    <footer 
+      className="w-full pt-6 sm:pt-10 pb-4 mt-0 overflow-x-hidden transition-colors duration-300"
+      style={{
+        backgroundColor: isDarkMode ? currentColors.surface : '#2C73D2',
+        color: 'white' // Always white text
+      }}
+    >
     <div className="max-w-7xl mx-auto flex flex-col items-center px-3 sm:px-4 md:px-8">
       <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-7 items-start gap-x-3 gap-y-6 sm:gap-y-4 mb-5"key="footer-grid">
         <div className="min-w-[120px] flex flex-col items-start sm:items-start">
@@ -36,15 +46,11 @@ const Footer = () => (
         </div>
         <div className="min-w-[120px] flex flex-col items-start sm:items-start">
           <span className="font-bold text-base mb-2">More</span>
-          <Link to="/download-app" className="bg-[#F4A300] text-white font-bold px-3 py-1 rounded-full hover:bg-yellow-500 transition text-xs whitespace-nowrap shadow-lg flex items-center gap-1 mb-2 w-fit">
-            <span>📱</span>
-            Download App
-          </Link>
           <Link to="/help" className="text-sm hover:underline mb-1">Help & Center</Link>
           <Link to="/privacy-policy" className="text-sm hover:underline mb-1">Privacy Policy</Link>
           <Link to="/admin/login" className="text-sm hover:underline mb-1">Cookie Policy</Link>
           <Link to="/terms" className="text-sm hover:underline mb-1">T&C</Link>
-          <Link to="/admin/analytics" className="text-sm hover:underline mb-1">Site Map</Link>
+          <Link to="/admin/login" className="text-sm hover:underline mb-1">Site Map</Link>
           <Link to="/contact" className="text-sm hover:underline mb-1">Contact Us</Link>
           <Link to="/articles" className="text-sm hover:underline mb-1">Articles</Link>
         </div>
@@ -68,7 +74,7 @@ const Footer = () => (
           </div>
         </div>
       </div>
-      <div className="flex flex-col items-center mt-4 sm:mt-2 mb-8 sm:mb-14">
+      <div className="flex flex-col items-center mt-4 sm:mt-2 mb-2 sm:mb-4">
         <OptimizedImage 
           src={customLogo} 
           alt="Dental Tourism Clinics India Logo" 
@@ -85,23 +91,34 @@ const Footer = () => (
           </Link>
         </span>
         
-        {/* Download App Button */}
-        <div className="mt-4 mb-2">
-          <Link 
-            to="/download-app" 
-            className="bg-[#F4A300] text-white font-bold px-6 py-3 rounded-full hover:bg-yellow-500 transition text-base whitespace-nowrap shadow-lg flex items-center gap-2"
-          >
-            <span>📱</span>
-            Download App
-          </Link>
+        {/* Disclaimer */}
+        <div className="text-xs text-white/80 text-center px-4 sm:px-6 md:px-8 mt-3 leading-relaxed max-w-4xl">
+          <p className="mb-2">
+            <strong>Disclaimer:</strong> The information provided on this website is for general informational purposes only and should not be considered as medical advice. 
+            Always consult with qualified dental professionals before making any treatment decisions.
+          </p>
+          <p>
+            Dental Tourism Clinics India serves as a platform connecting patients with dental clinics and does not directly provide medical services. 
+            Treatment outcomes may vary, and we recommend verifying credentials and facilities before proceeding with any dental treatment.
+          </p>
         </div>
         
         {/* Hidden Admin Link - Only visible to those who know */}
         <div className="mt-1 opacity-20 hover:opacity-100 transition-opacity duration-500">
           <Link 
             to="/admin/login" 
-            className="text-xs text-white/30 hover:text-white/80 tracking-widest transition-colors duration-300"
-            style={{ fontSize: '8px', letterSpacing: '1px' }}
+            className="text-xs tracking-widest transition-colors duration-300"
+            style={{ 
+              fontSize: '8px', 
+              letterSpacing: '1px',
+              color: `${currentColors.text}30`,
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.color = `${currentColors.text}80`;
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.color = `${currentColors.text}30`;
+            }}
             title="Admin Access"
           >
             •
@@ -110,6 +127,7 @@ const Footer = () => (
       </div>
     </div>
   </footer>
-);
+  );
+};
 
 export default Footer;

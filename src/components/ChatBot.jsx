@@ -244,7 +244,7 @@ const ChatBot = () => {
 
   if (!isOpen) {
     return (
-      <div className="fixed bottom-6 right-6 z-50">
+      <div className="fixed bottom-6 left-6 z-50">
         <button
           onClick={() => setIsOpen(true)}
           className="bg-[#2C73D2] text-white p-4 rounded-full shadow-lg hover:bg-[#2056AE] transition-all duration-300 hover:scale-110 animate-pulse"
@@ -259,7 +259,7 @@ const ChatBot = () => {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 w-80 h-96 bg-white rounded-2xl shadow-2xl border border-[#2C73D2]/20 flex flex-col overflow-hidden">
+    <div className="fixed bottom-6 left-6 z-50 w-80 h-96 bg-white rounded-2xl shadow-2xl border border-[#2C73D2]/20 flex flex-col overflow-hidden">
       {/* Header */}
       <div className="bg-[#2C73D2] text-white p-4 flex items-center justify-between">
         <div className="flex items-center space-x-2">

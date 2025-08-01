@@ -11,7 +11,8 @@ const navLinks = [
   { name: "Dental Scans", to: "/cbct-opg-lab" },
   { name: "Blood Test Labs", to: "/blood-test-lab" },
   { name: "Dental Essentials", to: "/shop" },
-  { name: "Support", to: "/admin/login", isHidden: true },
+  { name: "Fix My Teeth", to: "/fix-my-teeth" },
+  { name: "Support", to: "/help" },
   { name: "Log In", to: "/login" }, // Ensure login is always present
 ];
 
@@ -44,14 +45,19 @@ const Header = () => {
             ⚫
           </Link>
           <span
-            className="font-extrabold text-white drop-shadow-lg text-lg md:text-xl lg:text-2xl leading-tight text-left ml-3"
+            className="font-extrabold drop-shadow-lg text-lg md:text-xl lg:text-2xl leading-tight text-left ml-3"
             style={{
               lineHeight: "1.1",
               display: "flex",
               flexDirection: "column",
               minWidth: 0,
               letterSpacing: '0.5px',
-              textShadow: '2px 2px 8px rgba(44,115,210,0.3), 0 1px 0 #fff',
+              background: 'linear-gradient(135deg, #FF9933 0%, #FFFFFF 50%, #138808 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              textShadow: 'none',
+              filter: 'drop-shadow(1px 1px 2px rgba(0,0,0,0.3))',
             }}
           >
             Dental Tourism{" "}
@@ -59,8 +65,11 @@ const Header = () => {
           </span>
         </div>
         
+        {/* Vertical Separator */}
+        <div className="hidden md:block h-8 w-0.5 bg-white mx-6"></div>
+        
         {/* Navigation (Desktop) - directly positioned like image */}
-        <nav className="hidden md:flex gap-6 items-center ml-8">
+        <nav className="hidden md:flex gap-3 items-center">
           {navLinks.map((link) => (
             link.to === "/login" ? null : (
               <Link

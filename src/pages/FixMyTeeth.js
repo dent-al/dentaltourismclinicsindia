@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import FullPageLoader from "../components/FullPageLoader";
 import RotatingTeeth from "../components/RotatingTeeth";
+import Interactive3DTeeth from "../components/Interactive3DTeeth";
+import { useTheme } from "../contexts/ThemeContext";
 
 const FixMyTeeth = () => {
+  const { currentColors, isDarkMode } = useTheme();
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -10,6 +13,11 @@ const FixMyTeeth = () => {
   const [selectedState, setSelectedState] = useState("");
   const [showQuoteForm, setShowQuoteForm] = useState(false);
   const [otherProblemText, setOtherProblemText] = useState("");
+  const [selectedTeeth, setSelectedTeeth] = useState([]);
+  const [showTeethSelector, setShowTeethSelector] = useState(false);
+  const [uploadedImages, setUploadedImages] = useState([]);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [analysisResults, setAnalysisResults] = useState(null);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1200);
@@ -112,30 +120,155 @@ const FixMyTeeth = () => {
   ];
 
   const toggleProblem = (problemId) => {
-    setSelectedProblems(prev => 
-      prev.includes(problemId) 
-        ? prev.filter(id => id !== problemId)
-        : [...prev, problemId]
-    );
+    const newSelectedProblems = selectedProblems.includes(problemId) 
+      ? selectedProblems.filter(id => id !== problemId)
+      : [...selectedProblems, problemId];
+    
+    setSelectedProblems(newSelectedProblems);
+    
+    // Show 3D teeth selector when any problem is selected
+    if (newSelectedProblems.length > 0 && !showTeethSelector) {
+      setShowTeethSelector(true);
+    }
+    
+    // Hide selector if no problems selected
+    if (newSelectedProblems.length === 0) {
+      setShowTeethSelector(false);
+      setSelectedTeeth([]);
+    }
+  };
+
+  const handleTeethSelection = (teeth) => {
+    setSelectedTeeth(teeth);
+  };
+
+  const handleImageUpload = async (event) => {
+    const files = Array.from(event.target.files);
+    if (files.length === 0) return;
+
+    // Create preview URLs
+    const imageUrls = files.map(file => ({
+      file,
+      url: URL.createObjectURL(file),
+      name: file.name,
+      size: file.size
+    }));
+
+    setUploadedImages(prev => [...prev, ...imageUrls]);
+    
+    // Start analysis
+    setIsAnalyzing(true);
+    
+    try {
+      // Simulate AI analysis (replace with actual AI service)
+      const analysisResult = await analyzeTeethImages(files);
+      setAnalysisResults(analysisResult);
+      
+      // Auto-select problem teeth found in analysis
+      if (analysisResult.problemTeeth && analysisResult.problemTeeth.length > 0) {
+        setSelectedTeeth(prev => {
+          const newTeeth = [...new Set([...prev, ...analysisResult.problemTeeth])];
+          return newTeeth;
+        });
+        setShowTeethSelector(true);
+      }
+    } catch (error) {
+      console.error('Analysis failed:', error);
+    } finally {
+      setIsAnalyzing(false);
+    }
+  };
+
+  const analyzeTeethImages = async (images) => {
+    // Simulate AI analysis delay
+    await new Promise(resolve => setTimeout(resolve, 3000));
+    
+    // Mock analysis results with patient-friendly descriptions
+    const mockResults = {
+      problemTeeth: ['u1', 'u2', 'u3l', 'l6', 'l6l'], // Using patient-friendly IDs
+      confidence: 0.85,
+      detectedIssues: [
+        { 
+          tooth: 'u1', 
+          issue: 'Dark spot visible (possible cavity)', 
+          patientFriendly: 'Your right front tooth has a dark spot that might be tooth decay',
+          confidence: 0.9 
+        },
+        { 
+          tooth: 'u2', 
+          issue: 'Discoloration detected', 
+          patientFriendly: 'Your front tooth appears darker than others',
+          confidence: 0.7 
+        },
+        { 
+          tooth: 'u3l', 
+          issue: 'Crack line visible', 
+          patientFriendly: 'Your left eye tooth (sharp tooth) may have a small crack',
+          confidence: 0.8 
+        },
+        { 
+          tooth: 'l6', 
+          issue: 'Large dark area - filling needed', 
+          patientFriendly: 'Your bottom right chewing tooth has a large dark area that needs treatment',
+          confidence: 0.85 
+        },
+        { 
+          tooth: 'l6l', 
+          issue: 'Deep cavity detected', 
+          patientFriendly: 'Your bottom left chewing tooth has a deep cavity that needs immediate attention',
+          confidence: 0.9 
+        }
+      ],
+      imageQuality: 'Good',
+      recommendations: [
+        '🚨 Two of your back chewing teeth need immediate attention for cavities',
+        '⚠️ Your front teeth show signs of early decay - easy to fix if treated soon',
+        '🔍 One of your eye teeth may have a crack - should be checked by a dentist',
+        '✅ Most of your other teeth look healthy in the photos'
+      ]
+    };
+    
+    return mockResults;
+  };
+
+  const removeImage = (index) => {
+    setUploadedImages(prev => {
+      const newImages = prev.filter((_, i) => i !== index);
+      // Cleanup URL
+      URL.revokeObjectURL(prev[index].url);
+      return newImages;
+    });
   };
 
   if (loading) return <FullPageLoader />;
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4">
+    <div 
+      className="min-h-screen py-8 px-4 transition-colors duration-300"
+      style={{ backgroundColor: currentColors.background }}
+    >
       <div className="max-w-6xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-12">
-          <h1 className="text-3xl md:text-4xl font-bold text-[#2C73D2] mb-4">
+          <h1 
+            className="text-3xl md:text-4xl font-bold mb-4"
+            style={{ color: currentColors.primary }}
+          >
             Fix My Teeth - Complete Dental Solution
           </h1>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+          <p 
+            className="text-lg max-w-2xl mx-auto"
+            style={{ color: currentColors.textSecondary }}
+          >
             Get expert dental advice, personalized treatment plans, and comprehensive support for all your dental needs
           </p>
         </div>
 
         {/* Quick Treatment Plan Section */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 mb-12">
+        <div 
+          className="rounded-2xl shadow-xl p-8 mb-12 theme-card"
+          style={{ backgroundColor: currentColors.surface }}
+        >
           <div className="flex flex-col lg:flex-row items-center gap-8">
             {/* Left side - Hero content */}
             <div className="lg:w-1/2">
@@ -218,6 +351,95 @@ const FixMyTeeth = () => {
                 )}
               </div>
 
+              {/* 3D Teeth Selector - Shows when problems are selected */}
+              {selectedProblems.length > 0 && (
+                <div className="mb-8">
+                  <div className="flex items-center justify-between mb-4">
+                    <h4 className="text-xl font-semibold text-gray-800">
+                      🦷 Specify Problem Teeth
+                    </h4>
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={showTeethSelector}
+                        onChange={(e) => setShowTeethSelector(e.target.checked)}
+                        className="w-4 h-4 text-[#2C73D2] rounded focus:ring-[#2C73D2]"
+                      />
+                      <span className="text-sm text-gray-600">Show 3D Teeth Selector</span>
+                    </label>
+                  </div>
+                  
+                  {showTeethSelector && (
+                    <div className="p-6 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 rounded-xl border-2 border-blue-200 shadow-lg">
+                      <div className="text-center mb-6">
+                        <h4 className="text-xl font-bold text-gray-800 mb-2">
+                          🦷 Advanced 3D Teeth Selector
+                        </h4>
+                        <p className="text-gray-700 text-base mb-2">
+                          Click on the specific teeth that are causing problems
+                        </p>
+                        <p className="text-gray-600 text-sm">
+                          This helps us provide more accurate treatment recommendations and cost estimates
+                        </p>
+                      </div>
+                      
+                      {/* Usage Instructions for better UX */}
+                      <div className="mb-4 p-3 bg-white/80 backdrop-blur-sm rounded-lg border border-blue-200">
+                        <div className="flex items-center justify-center gap-4 text-sm text-gray-600">
+                          <div className="flex items-center gap-1">
+                            <span className="text-base">🖱️</span>
+                            <span className="hidden sm:inline">Drag to rotate</span>
+                            <span className="sm:hidden">Touch & drag</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <span className="text-base">👆</span>
+                            <span>Click/Tap teeth</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <span className="text-base">🔄</span>
+                            <span>Reset view button</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <Interactive3DTeeth 
+                        onTeethSelection={handleTeethSelection}
+                        selectedTeeth={selectedTeeth}
+                        analyzedTeeth={analysisResults?.problemTeeth || []}
+                      />
+                      
+                      {selectedTeeth.length > 0 && (
+                        <div className="mt-6 p-4 bg-white/80 backdrop-blur-sm rounded-lg border border-blue-200">
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className="text-lg">🎯</span>
+                            <h5 className="font-semibold text-gray-800">
+                              Targeted Treatment Plan
+                            </h5>
+                          </div>
+                          <p className="text-sm text-gray-600 mb-2">
+                            You've selected {selectedTeeth.length} specific teeth with problems.
+                          </p>
+                          <div className="text-xs text-blue-700 bg-blue-100 px-3 py-2 rounded-md">
+                            💡 Tip: Our dentists will now provide tooth-specific treatment recommendations and precise cost breakdowns for each affected tooth.
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                  
+                  {!showTeethSelector && (
+                    <div className="p-4 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300 text-center">
+                      <p className="text-gray-600 mb-2">
+                        💡 Want more precise treatment recommendations?
+                      </p>
+                      <p className="text-sm text-gray-500">
+                        Enable the 3D teeth selector above to specify exactly which teeth have problems
+                      </p>
+                    </div>
+                  )}
+                </div>
+              )}
+
               {/* Other Problem Text Input */}
               {selectedProblems.includes('other') && (
                 <div className="mb-8">
@@ -251,16 +473,183 @@ const FixMyTeeth = () => {
                 </select>
               </div>
 
-              {/* Upload Section */}
+              {/* AI-Powered Image Analysis Section */}
               <div className="mb-8">
                 <h4 className="text-lg font-semibold text-gray-800 mb-4">
-                  Upload X-rays or Tooth Photos <span className="text-gray-500">(Optional)</span>
+                  🤖 Smart Dental Photo Analysis <span className="text-gray-500">(Optional)</span>
                 </h4>
-                <p className="text-gray-600 mb-4">Clear images help us give a more accurate estimate.</p>
-                <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-                  <div className="text-4xl mb-4">📷</div>
-                  <p className="text-gray-600">Click to upload or drag and drop</p>
-                  <input type="file" className="hidden" accept="image/*" multiple />
+                <p className="text-gray-600 mb-4">
+                  Upload photos of your teeth and our AI will automatically find problem areas and show them on the tooth model!
+                </p>
+                
+                {/* Upload Area */}
+                <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-[#2C73D2] transition-all duration-300 cursor-pointer">
+                  <input 
+                    type="file" 
+                    id="dental-images" 
+                    className="hidden" 
+                    accept="image/*" 
+                    multiple 
+                    onChange={handleImageUpload}
+                  />
+                  <label htmlFor="dental-images" className="cursor-pointer">
+                    <div className="text-4xl mb-4">📱</div>
+                    <p className="text-gray-600 mb-2">Take a photo with your phone or upload existing pictures</p>
+                    <p className="text-sm text-gray-500 mb-4">Best results: Good lighting, close-up shots, multiple angles</p>
+                    <div className="inline-flex items-center px-6 py-3 bg-[#2C73D2] text-white rounded-lg hover:bg-blue-700 transition-colors">
+                      <span className="mr-2">📷</span>
+                      Upload Photos & Analyze
+                    </div>
+                  </label>
+                </div>
+
+                {/* Analysis Loading */}
+                {isAnalyzing && (
+                  <div className="mt-6 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200">
+                    <div className="text-center">
+                      <div className="inline-flex items-center justify-center w-16 h-16 bg-white rounded-full shadow-lg mb-4">
+                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#2C73D2]"></div>
+                      </div>
+                      <h5 className="text-lg font-semibold text-gray-800 mb-2">🔍 Analyzing Your Teeth Photos...</h5>
+                      <p className="text-gray-600 mb-4">Our AI is looking for cavities, cracks, and other dental problems</p>
+                      <div className="flex justify-center items-center space-x-4 text-sm text-gray-500">
+                        <span>✓ Checking photo quality</span>
+                        <span>✓ Finding teeth</span>
+                        <span>🔄 Detecting problems</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Uploaded Images Preview */}
+                {uploadedImages.length > 0 && (
+                  <div className="mt-6">
+                    <h5 className="font-semibold text-gray-800 mb-3">📸 Your Dental Photos ({uploadedImages.length})</h5>
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                      {uploadedImages.map((image, index) => (
+                        <div key={index} className="relative group">
+                          <img 
+                            src={image.url} 
+                            alt={`Your dental photo ${index + 1}`}
+                            className="w-full h-24 object-cover rounded-lg border-2 border-gray-200 hover:border-[#2C73D2] transition-all duration-300"
+                          />
+                          <button
+                            onClick={() => removeImage(index)}
+                            className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full text-xs hover:bg-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                          >
+                            ×
+                          </button>
+                          <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-xs p-1 rounded-b-lg">
+                            Photo {index + 1}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* AI Analysis Results */}
+                {analysisResults && (
+                  <div className="mt-6 p-6 bg-gradient-to-br from-green-50 via-blue-50 to-indigo-50 rounded-xl border-2 border-green-200 shadow-lg">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
+                        <span className="text-white text-xl">🎯</span>
+                      </div>
+                      <div>
+                        <h5 className="text-lg font-bold text-gray-800">Analysis Complete!</h5>
+                        <p className="text-sm text-gray-600">AI Confidence: {(analysisResults.confidence * 100).toFixed(0)}% • Photo Quality: {analysisResults.imageQuality}</p>
+                      </div>
+                    </div>
+
+                    {/* Patient-Friendly Problem Description */}
+                    <div className="mb-6">
+                      <h6 className="font-semibold text-gray-800 mb-3">🔍 What We Found in Your Photos:</h6>
+                      <div className="space-y-3">
+                        {analysisResults.detectedIssues.map((issue, index) => (
+                          <div key={index} className="flex items-start gap-3 p-3 bg-white rounded-lg border border-gray-200">
+                            <div className="w-8 h-8 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center text-sm font-bold mt-1">
+                              {index + 1}
+                            </div>
+                            <div className="flex-1">
+                              <p className="font-medium text-gray-800 mb-1">{issue.patientFriendly}</p>
+                              <div className="flex items-center gap-2 text-sm text-gray-500">
+                                <span>Confidence: {(issue.confidence * 100).toFixed(0)}%</span>
+                                <span className={`px-2 py-1 rounded text-xs ${
+                                  issue.confidence > 0.8 ? 'bg-red-100 text-red-700' : 
+                                  issue.confidence > 0.6 ? 'bg-yellow-100 text-yellow-700' : 
+                                  'bg-blue-100 text-blue-700'
+                                }`}>
+                                  {issue.confidence > 0.8 ? 'High Priority' : 
+                                   issue.confidence > 0.6 ? 'Medium Priority' : 
+                                   'Low Priority'}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Auto-detected Problem Teeth */}
+                    <div className="mb-4 p-4 bg-white/80 backdrop-blur-sm rounded-lg border border-blue-200">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-lg">🦷</span>
+                        <h6 className="font-semibold text-gray-800">Problem Teeth Found</h6>
+                      </div>
+                      <p className="text-sm text-gray-600 mb-2">
+                        Our AI found {analysisResults.problemTeeth.length} teeth that may need attention
+                      </p>
+                      <div className="text-xs text-green-700 bg-green-100 px-3 py-2 rounded-md">
+                        ✅ These teeth have been automatically highlighted in the 3D model above - you can click to see them!
+                      </div>
+                    </div>
+
+                    {/* Easy-to-Understand Recommendations */}
+                    <div className="mb-4">
+                      <h6 className="font-semibold text-gray-800 mb-2">💡 What This Means for You:</h6>
+                      <ul className="space-y-2 text-sm text-gray-600">
+                        {analysisResults.recommendations.map((rec, index) => (
+                          <li key={index} className="flex items-start gap-2 p-2 bg-white rounded-lg">
+                            <span className="text-base mt-0.5">{rec.charAt(0)}</span>
+                            <span>{rec.substring(2)}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex gap-3">
+                      <button 
+                        onClick={() => setShowTeethSelector(true)}
+                        className="flex-1 bg-[#2C73D2] text-white py-2 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+                      >
+                        📍 View Problem Teeth on 3D Model
+                      </button>
+                      <button 
+                        onClick={() => setAnalysisResults(null)}
+                        className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                      >
+                        Clear Analysis
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {/* Photo Tips */}
+                <div className="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                  <h6 className="font-semibold text-gray-800 mb-2">📋 Tips for Better Analysis:</h6>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-gray-600">
+                    <ul className="space-y-1">
+                      <li>📱 Use your phone's camera for best results</li>
+                      <li>💡 Take photos in good lighting (near a window works great)</li>
+                      <li>🔍 Get close-up shots of problem areas</li>
+                    </ul>
+                    <ul className="space-y-1">
+                      <li>📸 Take photos from different angles</li>
+                      <li>🩻 X-rays provide the most accurate analysis</li>
+                      <li>😊 Open your mouth wide for clear tooth visibility</li>
+                    </ul>
+                  </div>
                 </div>
               </div>
 

@@ -179,8 +179,8 @@ const HelpSupport = () => {
             </div>
             <h3 className="text-lg font-semibold text-gray-800 mb-2">Email Support</h3>
             <p className="text-gray-600 text-sm mb-3">Get help via email</p>
-            <a href="mailto:info@dentaltourismclinicsindia.com" className="text-[#2C73D2] font-medium hover:underline break-words text-sm">
-              info@dentaltourismclinicsindia.com
+            <a href="mailto:support@dentaltourismclinicsindia.com" className="text-[#2C73D2] font-medium hover:underline">
+              support@dentaltourismclinicsindia.com
             </a>
           </div>
 
