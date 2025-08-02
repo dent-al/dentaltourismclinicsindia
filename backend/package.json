@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node index.js",
-    "start": "nodemon index.js",
+    "dev": "node simple-unified-server.js",
+    "start": "nodemon simple-unified-server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -27,6 +27,7 @@
     "multer": "^2.0.2",
     "multer-storage-cloudinary": "^4.0.0",
     "nodemailer": "^7.0.5",
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.10",
+    "ua-parser-js": "^2.0.4"
   }
 }

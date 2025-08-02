@@ -49,24 +49,32 @@ const features = [
 
 // Slider data for problems (62 real problems)
 const sliderProblems = [
+  { name: "Audible Breathing" },
   { name: "Adding Bone to the Socket" },
   { name: "Bad Breath" },
   { name: "Burning Mouth" },
+  { name: "Braces Adjustment" },
+  { name: "Bleeding Gums" },
   { name: "Biting Down Hard" },
   { name: "Complete Denture" },
+  { name: "Crooked Tooth" },
   { name: "Children’s Dentistry" },
   { name: "Dental Implants" },
+  { name: "Dental Implant Pain" },
   { name: "Dental Braces" },
   { name: "Dry Mouth" },
   { name: "Dental Jewellery" },
+  { name: "Discoloured Teeth" },
   { name: "Fractured Tooth" },
   { name: "Facial Twitch" },
-  { name: "Mouth Breathing in Kids" },
   { name: "Front Tooth Gap" },
+  { name: "Facial Asymmetry" },
   { name: "Gum Treatment" },
   { name: "Diabetic Mouth Changes" },
   { name: "Lump on the Facial Nerve" },
   { name: "Loud Sleeping" },
+  { name: "Loose Teeth" },
+  { name: "Mouth Breathing in Kids" },
   { name: "Mouth Guard for Sports" },
   { name: "Missing Front Tooth" },
   { name: "Mouth Ulcer" },
@@ -79,7 +87,7 @@ const sliderProblems = [
   { name: "Producing Too Much Saliva" },
   { name: "Pain in the Jaw Joint" },
   { name: "Ringing Sound in Ears" },
-  { name: "Root Canal TreatmentRinging Sound in Ears" },
+  { name: "Root Canal Treatment" },
   { name: "Re-Root Canal Treatment" },
   { name: "Removable Teeth" },
   { name: "Split Lip" },
@@ -109,30 +117,22 @@ const sliderProblems = [
   { name: "Wearing Down of Teeth" },
   { name: "Gum Pocket" },
   { name: "Sensitive Teeth" },
-  { name: "Tooth Filling" },
-  { name: "Crooked Tooth" },
-  // New problems added below
-  { name: "Bleeding Gums" },
   { name: "Swollen Gums" },
-  { name: "Loose Teeth" },
-  { name: "Discoloured Teeth" },
+  { name: "Tooth Filling" },
+  { name: "Wisdom Tooth Swelling" },
+   // New problems added below
   { name: "Swelling Inside Mouth" },
   { name: "Eruption Issues in Kids" },
   { name: "Mouth Breathing in Kids" },
   { name: "Grinding Teeth at Night" },
-  { name: "Audible Breathing" },
   { name: "Uncomfortable Denture" },
-  { name: "Facial Asymmetry" },
   { name: "Oral Cancer Screening" },
   { name: "Delayed Eruption of Teeth" },
   { name: "Hole in the Roof of the Mouth" },
   { name: "Nutrition Deficiency Symptoms" },
   { name: "Difficulty in Chewing & Kids Speaking" },
   { name: "Facial Muscle Twitching on One Side" },
-  { name: "Braces Adjustment" },
-  { name: "Toothache" },
-  { name: "Dental Implant Pain" },
-  { name: "Wisdom Tooth Swelling" },
+  
 ].map((problem) => {
   let image;
   let points = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
@@ -576,6 +576,7 @@ const sliderProblems = [
         "Mottled enamel.",
         "Pitted or rough enamel."
       ];
+      break;
     case "Invisible Braces":
       points = [
         "Malocclusion.",
@@ -1308,8 +1309,8 @@ const Home = () => {
     }
   }, [search]);
 
-  // Update sectionSpacing for even less vertical spacing
-  const sectionSpacing = "py-2 md:py-3 lg:py-4"; // Even more compact spacing
+  // Update sectionSpacing for attractive visual spacing
+  const sectionSpacing = "py-6 md:py-8 lg:py-10"; // More attractive spacing
 
   if (loading) return <FullPageLoader />;
   return (
@@ -1376,7 +1377,7 @@ const Home = () => {
                   <img src={spec.img} alt={spec.name} className="h-20 w-20 object-contain rounded-full mb-4" />
                   <div className="text-lg font-bold text-[#2C73D2] mb-2 text-center">{spec.name}</div>
                   <div className="text-base text-gray-700 text-center mb-2">{spec.desc}</div>
-                  <ul className="text-sm text-[#333333] text-left w-full mb-2 px-2" style={{ fontSize: '15px', listStyleType: 'disc', paddingLeft: '1.2em' }}>
+                  <ul className="text-sm text-[#333333] text-left w-full mb-2 px-2" style={{ fontSize: '15px', listStyleType: 'disc', paddingLeft: '1.8em' }}>
                     {spec.points.map((point, i) => <li key={i}>{point}</li>)}
                   </ul>
                 </div>
@@ -1472,7 +1473,7 @@ const Home = () => {
                     <img src={problem.image} alt={problem.name} className="h-32 w-32 object-contain rounded-full" />
                   </div>
                   <div className="text-lg font-bold text-[#2C73D2] text-center w-full leading-tight mt-2 mb-2 px-4">{problem.name}</div>
-                  <ul className="text-base text-[#333333] text-left w-full mb-2 px-6" style={{ fontSize: '16px', listStyleType: 'disc', paddingLeft: '1.2em' }}>
+                  <ul className="text-base text-[#333333] text-left w-full mb-2 px-6 ml-3" style={{ fontSize: '16px', listStyleType: 'disc', paddingLeft: '1.2em' }}>
                     {Array.isArray(problem.points)
                       ? problem.points.map((point, i) => <li key={i}>{point}</li>)
                       : <li>{problem.points}</li>}
@@ -1533,8 +1534,6 @@ const Home = () => {
             type="text"
             placeholder="Search by State/ UTs"
             value={search}
-            onChange={e => setSearch(e.target.value)}
-            className="flex-1 min-w-[220px] px-6 py-3 rounded-lg border-2 border-[#2C73D2] text-[#2C73D2] text-base focus:outline-none focus:border-[#F4A300] bg-white font-sans placeholder-gray-400"
             onChange={e => setSearch(e.target.value)}
             className="flex-1 min-w-[220px] px-6 py-3 rounded-lg border-2 border-[#2C73D2] text-[#2C73D2] text-base focus:outline-none focus:border-[#F4A300] bg-white font-sans placeholder-gray-400"
           />
@@ -1669,7 +1668,7 @@ const Home = () => {
                   {/* Back Side */}
                   <div className="flip-card-back flex flex-col items-center bg-white rounded-2xl shadow-lg p-6 border border-[#2C73D2]/10 w-64 h-80 absolute inset-0" style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
                     <div className="text-base font-bold text-[#2C73D2] mb-2 text-center w-full leading-tight">{spec.name}</div>
-                    <ul className="text-[#333333] text-left w-full mb-4" style={{ fontSize: '15px', listStyleType: 'disc', paddingLeft: '1.2em' }}>
+                    <ul className="text-[#333333] text-left w-full mb-4" style={{ fontSize: '15px', listStyleType: 'disc', paddingLeft: '1.5em' }}>
                       {Array.isArray(spec.points)
                         ? spec.points.map((point, i) => <li key={i}>{point}</li>)
                         : <li>{spec.points}</li>}

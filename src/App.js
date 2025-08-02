@@ -8,7 +8,6 @@ import { AuthProvider } from "./contexts/AuthContext";
 import { SEOProvider } from "./contexts/SEOContext.jsx";
 import { AnalyticsProvider } from "./contexts/AnalyticsContext";
 import { AdminProvider } from "./contexts/AdminContext";
-import { ThemeProvider } from "./contexts/ThemeContext";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import OffersStrip from "./components/OffersStrip";
@@ -16,6 +15,7 @@ import DisclaimerBanner from "./components/DisclaimerBanner";
 import ScrollToTop from "./components/ScrollToTop";
 import { usePerformance } from './hooks/usePerformance';
 import { registerSW, initPerformanceMonitoring } from './utils/buildOptimization';
+import { initializeAnalytics } from './services/analyticsService';
 import './i18n'; // Initialize internationalization
 
 // Lazy load components for better performance
@@ -47,8 +47,8 @@ const SEOPage = lazy(() => import("./pages/SEOPage"));
 const ChatBot = lazy(() => import("./components/ChatBot"));
 const AppDownloadPage = lazy(() => import("./pages/AppDownloadPage"));
 const FloatingSocialButtons = lazy(() => import("./components/FloatingSocialButtons"));
-const FloatingThemeToggle = lazy(() => import("./components/FloatingThemeToggle"));
 const AdminAnalyticsDashboard = lazy(() => import("./pages/AdminAnalyticsDashboard"));
+const AdminDataDashboard = lazy(() => import("./pages/AdminDataDashboard"));
 const AdminLogin = lazy(() => import("./pages/AdminLogin"));
 const ProtectedAdminRoute = lazy(() => import("./components/ProtectedAdminRoute"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
@@ -56,6 +56,11 @@ const TermsAndConditions = lazy(() => import("./pages/TermsAndConditions"));
 const RefundPolicy = lazy(() => import("./pages/RefundPolicy"));
 const PatientRefundPolicy = lazy(() => import("./pages/PatientRefundPolicy"));
 const ThemeShowcase = lazy(() => import("./pages/ThemeShowcase"));
+const ConnectionTest = lazy(() => import("./components/ConnectionTest"));
+const OnlineConsultation = lazy(() => import("./pages/OnlineConsultation"));
+const PatientConsultationForm = lazy(() => import("./pages/PatientConsultationForm"));
+const VideoConsultation = lazy(() => import("./pages/VideoConsultation"));
+const DentistSelection = lazy(() => import("./pages/DentistSelection"));
 
 // Loading component
 const LoadingSpinner = () => (
@@ -91,6 +96,12 @@ function App() {
     registerSW();
     initPerformanceMonitoring();
     measurePerformance('App Mount', performance.now());
+    
+    // Initialize analytics tracking
+    const analytics = initializeAnalytics();
+    
+    // Store analytics functions globally for easy access
+    window.dentistryAnalytics = analytics;
 
     return () => {
       cleanupListeners();
@@ -98,21 +109,20 @@ function App() {
   }, [measurePerformance, cleanupListeners]);
 
   // Disclaimer routes
-  const showDisclaimer = ["/login", "/consult", "/consult-form"].includes(location.pathname);
+  const showDisclaimer = ["/login", "/consult-form"].includes(location.pathname);
 
   return (
-    <ThemeProvider>
-      <SEOProvider>
-        <SEOMeta />
-        <AnalyticsProvider>
-          <AdminProvider>
-            <AuthProvider>
-              <ScrollToTop />
-              {!hideHeader && <Header />}
-              <OffersStrip />
-      {/* Disclaimer banner for login/consult pages */}
-      {showDisclaimer && <DisclaimerBanner />}
-      <div className={`${noTopPadding ? '' : 'pt-2'} min-h-screen bg-white dark:bg-gray-900 w-full overflow-x-hidden transition-colors duration-300`}>
+    <SEOProvider>
+      <SEOMeta />
+      <AnalyticsProvider>
+        <AdminProvider>
+          <AuthProvider>
+            <ScrollToTop />
+            {!hideHeader && <Header />}
+            <OffersStrip />
+    {/* Disclaimer banner for login/consult pages */}
+    {showDisclaimer && <DisclaimerBanner />}
+    <div className={`${noTopPadding ? '' : 'pt-2'} min-h-screen bg-white w-full overflow-x-hidden transition-colors duration-300`}>
         <Suspense fallback={<LoadingSpinner />}>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -148,6 +158,11 @@ function App() {
             <Route path="/refund-policy" element={<RefundPolicy />} />
             <Route path="/patient-refund-policy" element={<PatientRefundPolicy />} />
             <Route path="/theme-showcase" element={<ThemeShowcase />} />
+            <Route path="/test-connection" element={<ConnectionTest />} />
+            <Route path="/online-consultation" element={<OnlineConsultation />} />
+            <Route path="/select-dentist" element={<DentistSelection />} />
+            <Route path="/patient-consultation" element={<PatientConsultationForm />} />
+            <Route path="/video-consultation" element={<VideoConsultation />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route 
               path="/analytics-dashboard" 
@@ -166,6 +181,14 @@ function App() {
                 </ProtectedAdminRoute>
               } 
             />
+            <Route 
+              path="/admin/data" 
+              element={
+                <ProtectedAdminRoute>
+                  <AdminDataDashboard />
+                </ProtectedAdminRoute>
+              } 
+            />
           </Routes>
         </Suspense>
       </div>
@@ -176,14 +199,10 @@ function App() {
       <Suspense fallback={null}>
         <FloatingSocialButtons />
       </Suspense>
-      <Suspense fallback={null}>
-        <FloatingThemeToggle />
-      </Suspense>
       </AuthProvider>
       </AdminProvider>
       </AnalyticsProvider>
     </SEOProvider>
-  </ThemeProvider>
   );
 }
 

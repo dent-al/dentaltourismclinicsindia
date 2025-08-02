@@ -29,6 +29,7 @@ const ShopPage = () => {
     GumPaints: false,
     NicotineTablets: false,
     DentalProblems: false,
+    ProductCategories: false,
   });
 
   useEffect(() => {
@@ -2839,16 +2840,21 @@ const ShopPage = () => {
           </div>
 
           {/* Product Categories */}
-          <h4 className="text-lg font-semibold text-[#2C73D2] mb-3 mt-6">Product Categories</h4>
-          
-          {/* Tooth Brush Main Category */}
           <div className="mb-4">
-            <div className="flex items-center justify-between font-semibold text-[#2C73D2] mb-2 cursor-pointer" onClick={() => toggleGroup('ToothBrush')}>
-              <span>Tooth Brush</span>
-              <span className="text-lg">{openGroups.ToothBrush ? '-' : '+'}</span>
+            <div className="flex items-center justify-between font-semibold text-[#2C73D2] mb-2 cursor-pointer" onClick={() => toggleGroup('ProductCategories')}>
+              <span>Filter by Product Category</span>
+              <span className="text-lg">{openGroups.ProductCategories ? '-' : '+'}</span>
             </div>
-            {openGroups.ToothBrush && (
-              <div className="ml-4">
+            {openGroups.ProductCategories && (
+              <div className="ml-2">
+                {/* Tooth Brush Main Category */}
+                <div className="mb-4">
+                  <div className="flex items-center justify-between font-semibold text-[#2C73D2] mb-2 cursor-pointer" onClick={() => toggleGroup('ToothBrush')}>
+                    <span>Tooth Brush</span>
+                    <span className="text-lg">{openGroups.ToothBrush ? '-' : '+'}</span>
+                  </div>
+                  {openGroups.ToothBrush && (
+                    <div className="ml-4">
                 {/* Soft Bristles Toothbrushes */}
                 <div className="mb-3">
                   <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-[#2C73D2]">
@@ -2887,18 +2893,18 @@ const ShopPage = () => {
                     <span>Kids Tooth Brushes ({getProductsByCategory('KidsToothBrushes').length})</span>
                   </label>
                 </div>
-              </div>
-            )}
-          </div>
+                    </div>
+                  )}
+                </div>
 
-          {/* Toothpaste */}
-          <div className="mb-4">
-            <div className="flex items-center justify-between font-semibold text-[#2C73D2] mb-2 cursor-pointer" onClick={() => toggleGroup('Toothpaste')}>
-              <span>Toothpaste</span>
-              <span className="text-lg">{openGroups.Toothpaste ? '-' : '+'}</span>
-            </div>
-            {openGroups.Toothpaste && (
-              <div className="ml-4">
+                {/* Toothpaste */}
+                <div className="mb-4">
+                  <div className="flex items-center justify-between font-semibold text-[#2C73D2] mb-2 cursor-pointer" onClick={() => toggleGroup('Toothpaste')}>
+                    <span>Toothpaste</span>
+                    <span className="text-lg">{openGroups.Toothpaste ? '-' : '+'}</span>
+                  </div>
+                  {openGroups.Toothpaste && (
+                    <div className="ml-4">
                 {/* Kids Toothpaste */}
                 <div className="mb-3">
                   <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-[#2C73D2]">
@@ -2980,14 +2986,14 @@ const ShopPage = () => {
             )}
           </div>
 
-          {/* MouthWash */}
-          <div className="mb-4">
-            <div className="flex items-center justify-between font-semibold text-[#2C73D2] mb-2 cursor-pointer" onClick={() => toggleGroup('MouthWash')}>
-              <span>MouthWash</span>
-              <span className="text-lg">{openGroups.MouthWash ? '-' : '+'}</span>
-            </div>
-            {openGroups.MouthWash && (
-              <div className="ml-4">
+                {/* MouthWash */}
+                <div className="mb-4">
+                  <div className="flex items-center justify-between font-semibold text-[#2C73D2] mb-2 cursor-pointer" onClick={() => toggleGroup('MouthWash')}>
+                    <span>MouthWash</span>
+                    <span className="text-lg">{openGroups.MouthWash ? '-' : '+'}</span>
+                  </div>
+                  {openGroups.MouthWash && (
+                    <div className="ml-4">
                 {/* Whitening Mouthwash */}
                 <div className="mb-3">
                   <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-[#2C73D2]">
@@ -3069,14 +3075,14 @@ const ShopPage = () => {
             )}
           </div>
 
-          {/* Tongue Cleaner */}
-          <div className="mb-4">
-            <div className="flex items-center justify-between font-semibold text-[#2C73D2] mb-2 cursor-pointer" onClick={() => toggleGroup('TongueCleaner')}>
-              <span>Tongue Cleaner</span>
-              <span className="text-lg">{openGroups.TongueCleaner ? '-' : '+'}</span>
-            </div>
-            {openGroups.TongueCleaner && (
-              <div className="ml-4">
+                {/* Tongue Cleaner */}
+                <div className="mb-4">
+                  <div className="flex items-center justify-between font-semibold text-[#2C73D2] mb-2 cursor-pointer" onClick={() => toggleGroup('TongueCleaner')}>
+                    <span>Tongue Cleaner</span>
+                    <span className="text-lg">{openGroups.TongueCleaner ? '-' : '+'}</span>
+                  </div>
+                  {openGroups.TongueCleaner && (
+                    <div className="ml-4">
                 {/* Metal Tongue Cleaner */}
                 <div className="mb-3">
                   <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-[#2C73D2]">
@@ -3145,14 +3151,14 @@ const ShopPage = () => {
             )}
           </div>
 
-          {/* Flossers */}
-          <div className="mb-4">
-            <div className="flex items-center justify-between font-semibold text-[#2C73D2] mb-2 cursor-pointer" onClick={() => toggleGroup('Flossers')}>
-              <span>Flossers</span>
-              <span className="text-lg">{openGroups.Flossers ? '-' : '+'}</span>
-            </div>
-            {openGroups.Flossers && (
-              <div className="ml-4">
+                {/* Flossers */}
+                <div className="mb-4">
+                  <div className="flex items-center justify-between font-semibold text-[#2C73D2] mb-2 cursor-pointer" onClick={() => toggleGroup('Flossers')}>
+                    <span>Flossers</span>
+                    <span className="text-lg">{openGroups.Flossers ? '-' : '+'}</span>
+                  </div>
+                  {openGroups.Flossers && (
+                    <div className="ml-4">
                 {/* Power Flosser */}
                 <div className="mb-3">
                   <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-[#2C73D2]">
@@ -3169,14 +3175,14 @@ const ShopPage = () => {
             )}
           </div>
 
-          {/* Gum Paints */}
-          <div className="mb-4">
-            <div className="flex items-center justify-between font-semibold text-[#2C73D2] mb-2 cursor-pointer" onClick={() => toggleGroup('GumPaints')}>
-              <span>Gum Paints</span>
-              <span className="text-lg">{openGroups.GumPaints ? '-' : '+'}</span>
-            </div>
-            {openGroups.GumPaints && (
-              <div className="ml-4">
+                {/* Gum Paints */}
+                <div className="mb-4">
+                  <div className="flex items-center justify-between font-semibold text-[#2C73D2] mb-2 cursor-pointer" onClick={() => toggleGroup('GumPaints')}>
+                    <span>Gum Paints</span>
+                    <span className="text-lg">{openGroups.GumPaints ? '-' : '+'}</span>
+                  </div>
+                  {openGroups.GumPaints && (
+                    <div className="ml-4">
                 {/* Oil Pulling Rinses */}
                 <div className="mb-3">
                   <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-[#2C73D2]">
@@ -3245,14 +3251,14 @@ const ShopPage = () => {
             )}
           </div>
 
-          {/* Nicotine Tablets */}
-          <div className="mb-4">
-            <div className="flex items-center justify-between font-semibold text-[#2C73D2] mb-2 cursor-pointer" onClick={() => toggleGroup('NicotineTablets')}>
-              <span>Nicotine Products</span>
-              <span className="text-lg">{openGroups.NicotineTablets ? '-' : '+'}</span>
-            </div>
-            {openGroups.NicotineTablets && (
-              <div className="ml-4">
+                {/* Nicotine Tablets */}
+                <div className="mb-4">
+                  <div className="flex items-center justify-between font-semibold text-[#2C73D2] mb-2 cursor-pointer" onClick={() => toggleGroup('NicotineTablets')}>
+                    <span>Nicotine Products</span>
+                    <span className="text-lg">{openGroups.NicotineTablets ? '-' : '+'}</span>
+                  </div>
+                  {openGroups.NicotineTablets && (
+                    <div className="ml-4">
                 {/* Nicotex Gums */}
                 <div className="mb-3">
                   <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-[#2C73D2]">
@@ -3291,6 +3297,10 @@ const ShopPage = () => {
                     <span>Nicotine Patches ({getProductsByCategory('NicotinePatches').length})</span>
                   </label>
                 </div>
+                    </div>
+                  )}
+                </div>
+          
               </div>
             )}
           </div>

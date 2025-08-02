@@ -2,16 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import customLogo from '../logo.svg';
 import OptimizedImage from './OptimizedImage';
-import { useTheme } from '../contexts/ThemeContext';
 
 const Footer = () => {
-  const { currentColors, isDarkMode } = useTheme();
   
   return (
     <footer 
       className="w-full pt-6 sm:pt-10 pb-4 mt-0 overflow-x-hidden transition-colors duration-300"
       style={{
-        backgroundColor: isDarkMode ? currentColors.surface : '#2C73D2',
+        backgroundColor: '#2C73D2',
         color: 'white' // Always white text
       }}
     >
@@ -93,11 +91,9 @@ const Footer = () => {
         
         {/* Disclaimer */}
         <div className="text-xs text-white/80 text-center px-4 sm:px-6 md:px-8 mt-3 leading-relaxed max-w-4xl">
-          <p className="mb-2">
-            <strong>Disclaimer:</strong> The information provided on this website is for general informational purposes only and should not be considered as medical advice. 
-            Always consult with qualified dental professionals before making any treatment decisions.
-          </p>
           <p>
+            <strong>Disclaimer:</strong> The information provided on this website is for general informational purposes only and should not be considered as medical advice. 
+            Always consult with qualified dental professionals before making any treatment decisions. 
             Dental Tourism Clinics India serves as a platform connecting patients with dental clinics and does not directly provide medical services. 
             Treatment outcomes may vary, and we recommend verifying credentials and facilities before proceeding with any dental treatment.
           </p>
@@ -111,13 +107,13 @@ const Footer = () => {
             style={{ 
               fontSize: '8px', 
               letterSpacing: '1px',
-              color: `${currentColors.text}30`,
+              color: '#ffffff30',
             }}
             onMouseEnter={(e) => {
-              e.target.style.color = `${currentColors.text}80`;
+              e.target.style.color = '#ffffff80';
             }}
             onMouseLeave={(e) => {
-              e.target.style.color = `${currentColors.text}30`;
+              e.target.style.color = '#ffffff30';
             }}
             title="Admin Access"
           >

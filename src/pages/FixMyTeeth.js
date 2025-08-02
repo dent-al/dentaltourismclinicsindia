@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import FullPageLoader from "../components/FullPageLoader";
 import RotatingTeeth from "../components/RotatingTeeth";
 import Interactive3DTeeth from "../components/Interactive3DTeeth";
-import { useTheme } from "../contexts/ThemeContext";
 
 const FixMyTeeth = () => {
-  const { currentColors, isDarkMode } = useTheme();
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -244,21 +242,18 @@ const FixMyTeeth = () => {
 
   return (
     <div 
-      className="min-h-screen py-8 px-4 transition-colors duration-300"
-      style={{ backgroundColor: currentColors.background }}
+      className="min-h-screen py-4 sm:py-6 lg:py-8 px-3 sm:px-4 lg:px-6 transition-colors duration-300 bg-white"
     >
       <div className="max-w-6xl mx-auto">
         {/* Header Section */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-8 sm:mb-12">
           <h1 
-            className="text-3xl md:text-4xl font-bold mb-4"
-            style={{ color: currentColors.primary }}
+            className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 px-2 text-[#2C73D2]"
           >
             Fix My Teeth - Complete Dental Solution
           </h1>
           <p 
-            className="text-lg max-w-2xl mx-auto"
-            style={{ color: currentColors.textSecondary }}
+            className="text-base sm:text-lg max-w-2xl mx-auto px-2 sm:px-4 text-gray-700"
           >
             Get expert dental advice, personalized treatment plans, and comprehensive support for all your dental needs
           </p>
@@ -266,8 +261,7 @@ const FixMyTeeth = () => {
 
         {/* Quick Treatment Plan Section */}
         <div 
-          className="rounded-2xl shadow-xl p-8 mb-12 theme-card"
-          style={{ backgroundColor: currentColors.surface }}
+          className="rounded-2xl shadow-xl p-8 mb-12 theme-card bg-white"
         >
           <div className="flex flex-col lg:flex-row items-center gap-8">
             {/* Left side - Hero content */}
@@ -318,31 +312,31 @@ const FixMyTeeth = () => {
 
           {/* Treatment Plan Form */}
           {showQuoteForm && (
-            <div className="mt-8 pt-8 border-t border-gray-200">
-              <h3 className="text-2xl font-bold text-gray-800 mb-6">
+            <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-gray-200">
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6 px-2 text-center sm:text-left">
                 Tell Us What Dental Problems You're Facing
               </h3>
               
               {/* Dental Problems Grid */}
-              <div className="mb-8">
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-6">
+              <div className="mb-6 sm:mb-8">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3 mb-4 sm:mb-6">
                   {dentalProblems.map((problem) => (
                     <button
                       key={problem.id}
                       onClick={() => toggleProblem(problem.id)}
-                      className={`p-3 rounded-lg border-2 transition-all duration-300 text-center hover:shadow-md ${
+                      className={`p-2 sm:p-3 rounded-lg border-2 transition-all duration-300 text-center hover:shadow-md active:scale-95 ${
                         selectedProblems.includes(problem.id)
                           ? 'border-[#2C73D2] bg-blue-50 text-[#2C73D2] shadow-md'
                           : 'border-gray-200 hover:border-[#2C73D2] hover:bg-gray-50'
                       }`}
                     >
-                      <div className="text-xl mb-1">{problem.icon}</div>
-                      <div className="font-medium text-xs leading-tight">{problem.name}</div>
+                      <div className="text-lg sm:text-xl mb-1">{problem.icon}</div>
+                      <div className="font-medium text-xs sm:text-sm leading-tight">{problem.name}</div>
                     </button>
                   ))}
                 </div>
                 {selectedProblems.length > 0 && (
-                  <div className="text-sm text-gray-600 bg-blue-50 p-3 rounded-lg">
+                  <div className="text-xs sm:text-sm text-gray-600 bg-blue-50 p-3 rounded-lg">
                     <span className="font-semibold">Selected: </span>
                     {selectedProblems.map(id => 
                       dentalProblems.find(p => p.id === id)?.name
@@ -353,12 +347,12 @@ const FixMyTeeth = () => {
 
               {/* 3D Teeth Selector - Shows when problems are selected */}
               {selectedProblems.length > 0 && (
-                <div className="mb-8">
-                  <div className="flex items-center justify-between mb-4">
-                    <h4 className="text-xl font-semibold text-gray-800">
+                <div className="mb-6 sm:mb-8">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-3 sm:mb-4 gap-2">
+                    <h4 className="text-lg sm:text-xl font-semibold text-gray-800 text-center sm:text-left">
                       🦷 Specify Problem Teeth
                     </h4>
-                    <label className="flex items-center gap-2 cursor-pointer">
+                    <label className="flex items-center gap-2 cursor-pointer justify-center sm:justify-start">
                       <input
                         type="checkbox"
                         checked={showTeethSelector}
@@ -370,33 +364,33 @@ const FixMyTeeth = () => {
                   </div>
                   
                   {showTeethSelector && (
-                    <div className="p-6 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 rounded-xl border-2 border-blue-200 shadow-lg">
-                      <div className="text-center mb-6">
-                        <h4 className="text-xl font-bold text-gray-800 mb-2">
+                    <div className="p-4 sm:p-6 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 rounded-xl border-2 border-blue-200 shadow-lg">
+                      <div className="text-center mb-4 sm:mb-6">
+                        <h4 className="text-lg sm:text-xl font-bold text-gray-800 mb-2">
                           🦷 Advanced 3D Teeth Selector
                         </h4>
-                        <p className="text-gray-700 text-base mb-2">
+                        <p className="text-gray-700 text-sm sm:text-base mb-2">
                           Click on the specific teeth that are causing problems
                         </p>
-                        <p className="text-gray-600 text-sm">
+                        <p className="text-gray-600 text-xs sm:text-sm">
                           This helps us provide more accurate treatment recommendations and cost estimates
                         </p>
                       </div>
                       
                       {/* Usage Instructions for better UX */}
-                      <div className="mb-4 p-3 bg-white/80 backdrop-blur-sm rounded-lg border border-blue-200">
-                        <div className="flex items-center justify-center gap-4 text-sm text-gray-600">
+                      <div className="mb-3 sm:mb-4 p-2 sm:p-3 bg-white/80 backdrop-blur-sm rounded-lg border border-blue-200">
+                        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600">
                           <div className="flex items-center gap-1">
-                            <span className="text-base">🖱️</span>
+                            <span className="text-sm sm:text-base">🖱️</span>
                             <span className="hidden sm:inline">Drag to rotate</span>
                             <span className="sm:hidden">Touch & drag</span>
                           </div>
                           <div className="flex items-center gap-1">
-                            <span className="text-base">👆</span>
+                            <span className="text-sm sm:text-base">👆</span>
                             <span>Click/Tap teeth</span>
                           </div>
                           <div className="flex items-center gap-1">
-                            <span className="text-base">🔄</span>
+                            <span className="text-sm sm:text-base">🔄</span>
                             <span>Reset view button</span>
                           </div>
                         </div>
@@ -767,8 +761,8 @@ const FixMyTeeth = () => {
             <div className="text-4xl mb-4">📧</div>
             <h3 className="text-lg font-bold text-gray-800 mb-2">Email Support</h3>
             <p className="text-gray-600 mb-4">Send us your questions</p>
-            <a href="mailto:supportinfo@dentaltourismclinicsindia.com" className="text-[#2C73D2] font-semibold hover:underline break-words text-sm leading-tight">
-              supportinfo@dentaltourismclinicsindia.com
+            <a href="mailto:info@dentaltourismclinicsindia.com" className="text-[#2C73D2] font-semibold hover:underline break-words text-sm leading-tight">
+              info@dentaltourismclinicsindia.com
             </a>
           </div>
 

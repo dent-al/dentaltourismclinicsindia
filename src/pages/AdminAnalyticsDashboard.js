@@ -3,6 +3,12 @@ import { Pie, Bar, Line } from 'react-chartjs-2';
 import { useAdmin } from '../contexts/AdminContext';
 import { useNavigate } from 'react-router-dom';
 import {
+  getAnalyticsSummary,
+  getAiReferralBreakdown,
+  getDailyTrend,
+  getDetailedAnalytics
+} from '../services/analyticsService';
+import {
   Chart as ChartJS,
   ArcElement,
   Tooltip,
@@ -37,7 +43,11 @@ const AdminAnalyticsDashboard = () => {
     topStates: [],
     referralSources: [],
     aiReferrals: [], // New: Track AI assistant referrals
-    deviceTypes: [],
+    deviceTypes: [
+      { device: 'Desktop', count: 0 },
+      { device: 'Mobile', count: 0 },
+      { device: 'Tablet', count: 0 }
+    ],
     browsers: [],
     popularPages: [],
     conversionRate: 0,
@@ -66,11 +76,86 @@ const AdminAnalyticsDashboard = () => {
   const fetchAnalyticsData = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`/api/admin/analytics?range=${dateRange}`);
-      const data = await response.json();
-      setAnalyticsData(data);
+      
+      // Get date range as number
+      const rangeDays = dateRange === '7days' ? 7 : 
+                        dateRange === '30days' ? 30 : 
+                        dateRange === '90days' ? 90 : 7;
+      
+      // Fetch data from MongoDB via API
+      const [summaryRes, aiReferralsRes, dailyTrendRes] = await Promise.all([
+        getAnalyticsSummary(rangeDays),
+        getAiReferralBreakdown(rangeDays),
+        getDailyTrend(rangeDays)
+      ]);
+      
+      const summary = summaryRes.data || {};
+      const aiReferrals = aiReferralsRes.data || [];
+      const dailyTrend = dailyTrendRes.data || [];
+      
+      // Process and set analytics data
+      setAnalyticsData({
+        totalVisitors: summary.totalUniqueVisitors || 0,
+        totalSessions: summary.totalSessions || 0,
+        averageSessionDuration: summary.avgTimeSpent || 0,
+        conversionRate: summary.conversionRate || 0,
+        appointmentBookings: summary.conversions || 0,
+        aiReferrals: aiReferrals,
+        aiTrafficTrend: dailyTrend.map(day => ({
+          date: day.date,
+          count: day.aiReferrals, // Changed to match chart expectations
+          totalVisitors: day.uniqueVisitors
+        })),
+        dailyVisitors: dailyTrend.map(day => ({
+          date: day.date,
+          count: day.uniqueVisitors, // Changed from 'visitors' to 'count' to match chart expectations
+          sessions: day.sessions
+        })),
+        // Process device types from summary - convert object to array
+        deviceTypes: summary.deviceBreakdown ? 
+          Object.entries(summary.deviceBreakdown).map(([device, count]) => ({ device, count })) : 
+          [
+            { device: 'Desktop', count: 0 },
+            { device: 'Mobile', count: 0 },
+            { device: 'Tablet', count: 0 }
+          ],
+        topCountries: summary.topCountries || [],
+        // Mock data for features not yet implemented
+        topStates: [],
+        referralSources: [],
+        browsers: [],
+        popularPages: [],
+        socialMediaClicks: [],
+        appDownloads: [],
+        timeSpent: {}
+      });
+      
     } catch (error) {
-      console.error('Failed to fetch analytics:', error);
+      console.error('Error fetching analytics data:', error);
+      // Set default/mock data on error
+      setAnalyticsData({
+        totalVisitors: 0,
+        totalSessions: 0,
+        averageSessionDuration: 0,
+        topCountries: [],
+        topStates: [],
+        referralSources: [],
+        aiReferrals: [],
+        deviceTypes: [
+          { device: 'Desktop', count: 0 },
+          { device: 'Mobile', count: 0 },
+          { device: 'Tablet', count: 0 }
+        ],
+        browsers: [],
+        popularPages: [],
+        conversionRate: 0,
+        appointmentBookings: 0,
+        socialMediaClicks: [],
+        appDownloads: [],
+        dailyVisitors: [],
+        aiTrafficTrend: [],
+        timeSpent: {},
+      });
     } finally {
       setLoading(false);
     }
@@ -203,10 +288,10 @@ const AdminAnalyticsDashboard = () => {
 
   // New: AI Referrals Chart Data
   const aiReferralChartData = {
-    labels: analyticsData.aiReferrals.map(item => item.aiSource),
+    labels: (analyticsData.aiReferrals || []).map(item => item.aiSource),
     datasets: [
       {
-        data: analyticsData.aiReferrals.map(item => item.count),
+        data: (analyticsData.aiReferrals || []).map(item => item.count),
         backgroundColor: [
           '#10A37F', // ChatGPT Green
           '#FF6B35', // Claude Orange
@@ -225,11 +310,11 @@ const AdminAnalyticsDashboard = () => {
 
   // AI Traffic Trend Chart
   const aiTrafficTrendData = {
-    labels: analyticsData.aiTrafficTrend.map(item => item.date),
+    labels: (analyticsData.aiTrafficTrend || []).map(item => item.date),
     datasets: [
       {
         label: 'AI-Driven Visitors',
-        data: analyticsData.aiTrafficTrend.map(item => item.count),
+        data: (analyticsData.aiTrafficTrend || []).map(item => item.count),
         borderColor: '#10A37F',
         backgroundColor: 'rgba(16, 163, 127, 0.1)',
         tension: 0.4,
@@ -239,10 +324,10 @@ const AdminAnalyticsDashboard = () => {
   };
 
   const deviceChartData = {
-    labels: analyticsData.deviceTypes.map(item => item.device),
+    labels: (analyticsData.deviceTypes || []).map(item => item.device),
     datasets: [
       {
-        data: analyticsData.deviceTypes.map(item => item.count),
+        data: (analyticsData.deviceTypes || []).map(item => item.count),
         backgroundColor: ['#2C73D2', '#F4A300', '#27AE60'],
         borderWidth: 2,
         borderColor: '#fff',
@@ -251,11 +336,11 @@ const AdminAnalyticsDashboard = () => {
   };
 
   const dailyVisitorsData = {
-    labels: analyticsData.dailyVisitors.map(item => item.date),
+    labels: (analyticsData.dailyVisitors || []).map(item => item.date),
     datasets: [
       {
         label: 'Daily Visitors',
-        data: analyticsData.dailyVisitors.map(item => item.count),
+        data: (analyticsData.dailyVisitors || []).map(item => item.count),
         borderColor: '#2C73D2',
         backgroundColor: 'rgba(44, 115, 210, 0.1)',
         tension: 0.4,
@@ -312,6 +397,17 @@ const AdminAnalyticsDashboard = () => {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center">
+              {/* Navigation Buttons */}
+              <button
+                onClick={() => navigate('/admin/data')}
+                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm flex items-center"
+              >
+                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 1.79 4 4 4h8c0 2.21 1.79 4 4 4h8c0-2.21-1.79-4-4-4H8c-2.21 0-4-1.79-4-4V7" />
+                </svg>
+                Database Records
+              </button>
+              
               {/* Admin Info */}
               <div className="flex items-center gap-3 bg-gray-50 px-4 py-2 rounded-lg">
                 <span className="text-sm text-gray-600">
