@@ -36,6 +36,7 @@ const AdminAnalyticsDashboard = () => {
     topCountries: [],
     topStates: [],
     referralSources: [],
+    aiReferrals: [], // New: Track AI assistant referrals
     deviceTypes: [],
     browsers: [],
     popularPages: [],
@@ -44,6 +45,7 @@ const AdminAnalyticsDashboard = () => {
     socialMediaClicks: [],
     appDownloads: [],
     dailyVisitors: [],
+    aiTrafficTrend: [], // New: Daily AI traffic trend
     timeSpent: {},
   });
 
@@ -199,6 +201,43 @@ const AdminAnalyticsDashboard = () => {
     ],
   };
 
+  // New: AI Referrals Chart Data
+  const aiReferralChartData = {
+    labels: analyticsData.aiReferrals.map(item => item.aiSource),
+    datasets: [
+      {
+        data: analyticsData.aiReferrals.map(item => item.count),
+        backgroundColor: [
+          '#10A37F', // ChatGPT Green
+          '#FF6B35', // Claude Orange
+          '#4285F4', // Google Bard/Gemini Blue
+          '#FF4081', // Microsoft Copilot Pink
+          '#8B5CF6', // Perplexity Purple
+          '#F59E0B', // Other AI Yellow
+          '#EF4444', // Custom AI Red
+          '#06B6D4', // AI Chat Blue
+        ],
+        borderWidth: 2,
+        borderColor: '#fff',
+      },
+    ],
+  };
+
+  // AI Traffic Trend Chart
+  const aiTrafficTrendData = {
+    labels: analyticsData.aiTrafficTrend.map(item => item.date),
+    datasets: [
+      {
+        label: 'AI-Driven Visitors',
+        data: analyticsData.aiTrafficTrend.map(item => item.count),
+        borderColor: '#10A37F',
+        backgroundColor: 'rgba(16, 163, 127, 0.1)',
+        tension: 0.4,
+        fill: true,
+      },
+    ],
+  };
+
   const deviceChartData = {
     labels: analyticsData.deviceTypes.map(item => item.device),
     datasets: [
@@ -328,7 +367,7 @@ const AdminAnalyticsDashboard = () => {
         </div>
 
         {/* Key Metrics */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-6">
           <div className="bg-white rounded-lg shadow-lg p-6 text-center">
             <div className="text-3xl font-bold text-[#2C73D2] mb-2">
               {analyticsData.totalVisitors.toLocaleString()}
@@ -355,6 +394,17 @@ const AdminAnalyticsDashboard = () => {
               {analyticsData.conversionRate.toFixed(1)}%
             </div>
             <div className="text-gray-600">Conversion Rate</div>
+          </div>
+
+          {/* New: AI Traffic Metric */}
+          <div className="bg-white rounded-lg shadow-lg p-6 text-center border-2 border-[#10A37F]">
+            <div className="text-3xl font-bold text-[#10A37F] mb-2">
+              {analyticsData.aiReferrals.reduce((sum, ai) => sum + ai.count, 0).toLocaleString()}
+            </div>
+            <div className="text-gray-600 flex items-center justify-center gap-1">
+              <span>🤖</span>
+              <span>AI-Driven Visits</span>
+            </div>
           </div>
         </div>
 
@@ -390,6 +440,31 @@ const AdminAnalyticsDashboard = () => {
             </div>
           </div>
 
+          {/* New: AI Referrals Chart */}
+          <div className="bg-white rounded-lg shadow-lg p-6 border-2 border-[#10A37F]">
+            <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+              <span>🤖</span>
+              AI Assistant Referrals
+            </h3>
+            <div className="h-64">
+              <Pie data={aiReferralChartData} options={chartOptions} />
+            </div>
+          </div>
+        </div>
+
+        {/* AI Traffic Trend - Full Width */}
+        <div className="bg-white rounded-lg shadow-lg p-6 mb-6 border-2 border-[#10A37F]">
+          <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+            <span>🤖</span>
+            AI-Driven Traffic Trend
+          </h3>
+          <div className="h-64">
+            <Line data={aiTrafficTrendData} options={chartOptions} />
+          </div>
+        </div>
+
+        {/* Original Charts Grid Continued */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
           {/* Device Types */}
           <div className="bg-white rounded-lg shadow-lg p-6">
             <h3 className="text-xl font-semibold text-gray-800 mb-4">
@@ -397,6 +472,48 @@ const AdminAnalyticsDashboard = () => {
             </h3>
             <div className="h-64">
               <Pie data={deviceChartData} options={chartOptions} />
+            </div>
+          </div>
+
+          {/* AI Referrals Detailed Table */}
+          <div className="bg-white rounded-lg shadow-lg p-6 border-2 border-[#10A37F]">
+            <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+              <span>🤖</span>
+              AI Assistant Details
+            </h3>
+            <div className="space-y-3">
+              {analyticsData.aiReferrals.map((ai, index) => (
+                <div key={index} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                  <div className="flex items-center gap-3">
+                    <span className="text-lg">
+                      {ai.aiSource === 'ChatGPT' ? '🟢' : 
+                       ai.aiSource === 'Claude' ? '🟠' : 
+                       ai.aiSource === 'Gemini' ? '🔵' : 
+                       ai.aiSource === 'Copilot' ? '🔮' : 
+                       ai.aiSource === 'Perplexity' ? '🟣' : '🤖'}
+                    </span>
+                    <div>
+                      <span className="font-medium">{ai.aiSource}</span>
+                      <div className="text-xs text-gray-500">
+                        Conversion: {ai.conversions || 0} appointments
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-[#10A37F] font-semibold text-lg">
+                      {ai.count.toLocaleString()}
+                    </span>
+                    <div className="text-xs text-gray-500">
+                      {((ai.count / analyticsData.totalVisitors) * 100).toFixed(1)}%
+                    </div>
+                  </div>
+                </div>
+              ))}
+              {analyticsData.aiReferrals.length === 0 && (
+                <p className="text-gray-500 text-center py-4">
+                  No AI referrals detected yet. Enable AI tracking in your analytics setup.
+                </p>
+              )}
             </div>
           </div>
         </div>
