@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/dentaltourismclinicsindia/static/css/main.f2c2842e.css",
-    "main.js": "/dentaltourismclinicsindia/static/js/main.99ec2cfb.js",
-    "static/js/2154.64a6d002.chunk.js": "/dentaltourismclinicsindia/static/js/2154.64a6d002.chunk.js",
+    "main.css": "/dentaltourismclinicsindia/static/css/main.84de19fc.css",
+    "main.js": "/dentaltourismclinicsindia/static/js/main.5ade266e.js",
+    "static/js/2154.bca1d5b3.chunk.js": "/dentaltourismclinicsindia/static/js/2154.bca1d5b3.chunk.js",
     "static/css/5445.5e0f7933.chunk.css": "/dentaltourismclinicsindia/static/css/5445.5e0f7933.chunk.css",
     "static/js/8105.fd6bbaaf.chunk.js": "/dentaltourismclinicsindia/static/js/8105.fd6bbaaf.chunk.js",
     "static/js/3177.b93ec8c2.chunk.js": "/dentaltourismclinicsindia/static/js/3177.b93ec8c2.chunk.js",
@@ -216,9 +216,9 @@
     "static/media/Expert Dentist.png": "/dentaltourismclinicsindia/static/media/Expert Dentist.c1e318337b45de8e626d.png",
     "static/media/followup.png": "/dentaltourismclinicsindia/static/media/followup.02393bac4ad7541473dd.png",
     "index.html": "/dentaltourismclinicsindia/index.html",
-    "main.f2c2842e.css.map": "/dentaltourismclinicsindia/static/css/main.f2c2842e.css.map",
-    "main.99ec2cfb.js.map": "/dentaltourismclinicsindia/static/js/main.99ec2cfb.js.map",
-    "2154.64a6d002.chunk.js.map": "/dentaltourismclinicsindia/static/js/2154.64a6d002.chunk.js.map",
+    "main.84de19fc.css.map": "/dentaltourismclinicsindia/static/css/main.84de19fc.css.map",
+    "main.5ade266e.js.map": "/dentaltourismclinicsindia/static/js/main.5ade266e.js.map",
+    "2154.bca1d5b3.chunk.js.map": "/dentaltourismclinicsindia/static/js/2154.bca1d5b3.chunk.js.map",
     "5445.5e0f7933.chunk.css.map": "/dentaltourismclinicsindia/static/css/5445.5e0f7933.chunk.css.map",
     "8105.fd6bbaaf.chunk.js.map": "/dentaltourismclinicsindia/static/js/8105.fd6bbaaf.chunk.js.map",
     "3177.b93ec8c2.chunk.js.map": "/dentaltourismclinicsindia/static/js/3177.b93ec8c2.chunk.js.map",
@@ -272,7 +272,7 @@
     "6548.8b82019d.chunk.js.map": "/dentaltourismclinicsindia/static/js/6548.8b82019d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f2c2842e.css",
-    "static/js/main.99ec2cfb.js"
+    "static/css/main.84de19fc.css",
+    "static/js/main.5ade266e.js"
   ]
 }
