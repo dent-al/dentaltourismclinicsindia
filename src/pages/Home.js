@@ -49,24 +49,32 @@ const features = [
 
 // Slider data for problems (62 real problems)
 const sliderProblems = [
+  { name: "Audible Breathing" },
   { name: "Adding Bone to the Socket" },
   { name: "Bad Breath" },
   { name: "Burning Mouth" },
+  { name: "Braces Adjustment" },
+  { name: "Bleeding Gums" },
   { name: "Biting Down Hard" },
   { name: "Complete Denture" },
+  { name: "Crooked Tooth" },
   { name: "Children’s Dentistry" },
   { name: "Dental Implants" },
+  { name: "Dental Implant Pain" },
   { name: "Dental Braces" },
   { name: "Dry Mouth" },
   { name: "Dental Jewellery" },
+  { name: "Discoloured Teeth" },
   { name: "Fractured Tooth" },
   { name: "Facial Twitch" },
-  { name: "Mouth Breathing in Kids" },
   { name: "Front Tooth Gap" },
+  { name: "Facial Asymmetry" },
   { name: "Gum Treatment" },
   { name: "Diabetic Mouth Changes" },
   { name: "Lump on the Facial Nerve" },
   { name: "Loud Sleeping" },
+  { name: "Loose Teeth" },
+  { name: "Mouth Breathing in Kids" },
   { name: "Mouth Guard for Sports" },
   { name: "Missing Front Tooth" },
   { name: "Mouth Ulcer" },
@@ -79,7 +87,7 @@ const sliderProblems = [
   { name: "Producing Too Much Saliva" },
   { name: "Pain in the Jaw Joint" },
   { name: "Ringing Sound in Ears" },
-  { name: "Root Canal TreatmentRinging Sound in Ears" },
+  { name: "Root Canal Treatment" },
   { name: "Re-Root Canal Treatment" },
   { name: "Removable Teeth" },
   { name: "Split Lip" },
@@ -109,30 +117,22 @@ const sliderProblems = [
   { name: "Wearing Down of Teeth" },
   { name: "Gum Pocket" },
   { name: "Sensitive Teeth" },
-  { name: "Tooth Filling" },
-  { name: "Crooked Tooth" },
-  // New problems added below
-  { name: "Bleeding Gums" },
   { name: "Swollen Gums" },
-  { name: "Loose Teeth" },
-  { name: "Discoloured Teeth" },
+  { name: "Tooth Filling" },
+  { name: "Wisdom Tooth Swelling" },
+   // New problems added below
   { name: "Swelling Inside Mouth" },
   { name: "Eruption Issues in Kids" },
   { name: "Mouth Breathing in Kids" },
   { name: "Grinding Teeth at Night" },
-  { name: "Audible Breathing" },
   { name: "Uncomfortable Denture" },
-  { name: "Facial Asymmetry" },
   { name: "Oral Cancer Screening" },
   { name: "Delayed Eruption of Teeth" },
   { name: "Hole in the Roof of the Mouth" },
   { name: "Nutrition Deficiency Symptoms" },
   { name: "Difficulty in Chewing & Kids Speaking" },
   { name: "Facial Muscle Twitching on One Side" },
-  { name: "Braces Adjustment" },
-  { name: "Toothache" },
-  { name: "Dental Implant Pain" },
-  { name: "Wisdom Tooth Swelling" },
+  
 ].map((problem) => {
   let image;
   let points = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
@@ -576,6 +576,7 @@ const sliderProblems = [
         "Mottled enamel.",
         "Pitted or rough enamel."
       ];
+      break;
     case "Invisible Braces":
       points = [
         "Malocclusion.",
@@ -1051,7 +1052,7 @@ function ClinicSlider() {
           {clinicCards.slice(current * clinicsPerSlide, current * clinicsPerSlide + clinicsPerSlide).map((card, idx) => (
             <div
               key={idx}
-              className="transition-all duration-500 w-[340px] max-w-full bg-white rounded-xl shadow p-4 flex flex-col items-start border border-gray-200"
+              className="transition-all duration-500 w-[450px] max-w-full bg-white rounded-xl shadow p-4 flex flex-col items-start border border-gray-200"
             >
               <img src={card.img} alt={card.name} className="w-32 h-32 object-cover rounded-full mb-3 mx-auto" />
               <span className="text-xl font-bold text-[#2C73D2] mb-1">{card.name}</span>
@@ -1238,9 +1239,9 @@ const Home = () => {
   // Fix: Define searchQuery as alias for search
   const searchQuery = search;
 
-  // Responsive: Show 1 problem per slide on mobile, 4 on desktop
+  // Responsive: Show 1 problem per slide on mobile, 3 on desktop
   const isMobile = window.innerWidth < 640;
-  const problemsPerSlide = 3; // Set problemsPerSlide to 3
+  const problemsPerSlide = isMobile ? 1 : 3; // Show 1 problem on mobile, 3 on desktop
   const problemMaxIndex = Math.max(Math.ceil(sliderProblems.length / problemsPerSlide) - 1, 0);
   const productsPerSlide = isMobile ? 1 : 4;
   const productMaxIndex = Math.max(Math.ceil(products.length / productsPerSlide) - 1, 0);
@@ -1308,8 +1309,8 @@ const Home = () => {
     }
   }, [search]);
 
-  // Update sectionSpacing for even less vertical spacing
-  const sectionSpacing = "py-2 md:py-3 lg:py-4"; // Even more compact spacing
+  // Update sectionSpacing for attractive visual spacing
+  const sectionSpacing = "py-6 md:py-8 lg:py-10"; // More attractive spacing
 
   if (loading) return <FullPageLoader />;
   return (
@@ -1376,7 +1377,7 @@ const Home = () => {
                   <img src={spec.img} alt={spec.name} className="h-20 w-20 object-contain rounded-full mb-4" />
                   <div className="text-lg font-bold text-[#2C73D2] mb-2 text-center">{spec.name}</div>
                   <div className="text-base text-gray-700 text-center mb-2">{spec.desc}</div>
-                  <ul className="text-sm text-[#333333] text-left w-full mb-2 px-2" style={{ fontSize: '15px', listStyleType: 'disc', paddingLeft: '1.2em' }}>
+                  <ul className="text-sm text-[#333333] text-left w-full mb-2 px-2" style={{ fontSize: '15px', listStyleType: 'disc', paddingLeft: '1.8em' }}>
                     {spec.points.map((point, i) => <li key={i}>{point}</li>)}
                   </ul>
                 </div>
@@ -1464,29 +1465,29 @@ const Home = () => {
           >
             <FaChevronLeft />
           </button>
-          <div className="flex w-full justify-center gap-8"> {/* 3 cards per slide, gap between cards */}
-            {sliderProblems.slice(problemSliderIndex * 3, problemSliderIndex * 3 + 3).map((problem, idx) => (
+          <div className="flex w-full justify-center gap-2"> {/* Responsive gap for cards */}
+            {sliderProblems.slice(problemSliderIndex * problemsPerSlide, problemSliderIndex * problemsPerSlide + problemsPerSlide).map((problem, idx) => (
               <div key={problem.name} className="flex flex-col items-center w-full cursor-pointer" onClick={() => navigate('/dentistlist', { state: { problem: problem.name } })}>
-                <div className="flex flex-col bg-[#f7f7f7] rounded-2xl shadow-lg p-0 border border-[#2C73D2]/10 w-[270px] h-[370px] mx-2 overflow-hidden justify-between mb-6">
+                <div className="flex flex-col bg-[#f7f7f7] rounded-2xl shadow-lg p-4 border border-[#2C73D2]/10 w-64 h-80 mx-2 overflow-hidden justify-between mb-6">
                   <div className="w-full flex items-center justify-center overflow-hidden mb-4">
-                    <img src={problem.image} alt={problem.name} className="h-32 w-32 object-contain rounded-full" />
+                    <img src={problem.image} alt={problem.name} className="h-20 w-20 object-contain rounded-full" />
                   </div>
-                  <div className="text-lg font-bold text-[#2C73D2] text-center w-full leading-tight mt-2 mb-2 px-4">{problem.name}</div>
-                  <ul className="text-base text-[#333333] text-left w-full mb-2 px-6" style={{ fontSize: '16px', listStyleType: 'disc', paddingLeft: '1.2em' }}>
+                  <div className="text-lg font-bold text-[#2C73D2] text-center w-full leading-tight mb-2">{problem.name}</div>
+                  <ul className="text-sm text-[#333333] text-left w-full mb-2 px-4" style={{ listStyleType: 'disc', paddingLeft: '1.2em' }}>
                     {Array.isArray(problem.points)
-                      ? problem.points.map((point, i) => <li key={i}>{point}</li>)
-                      : <li>{problem.points}</li>}
+                      ? problem.points.slice(0, 4).map((point, i) => <li key={i} className="mb-1 leading-tight">{point}</li>)
+                      : <li className="mb-1 leading-tight">{problem.points}</li>}
                   </ul>
                   <Link
                     to="/consult"
-                    className="mt-2 mb-4 mx-auto px-6 py-2 rounded-full shadow-sm drop-shadow-md bg-gradient-to-r from-[#2C73D2] to-[#F4A300] text-white text-base font-bold tracking-wide hover:from-[#F4A300] hover:to-[#2C73D2] transition-all duration-200"
+                    className="mt-auto mb-0 mx-auto px-6 py-2 rounded-full shadow-lg drop-shadow-md bg-gradient-to-r from-[#2C73D2] to-[#F4A300] text-white text-sm font-bold tracking-wide hover:from-[#F4A300] hover:to-[#2C73D2] transition-all duration-200 w-auto min-w-[180px] max-w-[200px] flex items-center justify-center"
                     style={{ boxShadow: '0 2px 6px rgba(44,115,210,0.10)' }}
                   >
-                    <span className="inline-flex items-center gap-2">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
+                    <span className="inline-flex items-center justify-center gap-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M8 17l4 4 4-4m-4-5v9" />
                       </svg>
-                      Consult Now
+                      <span className="whitespace-nowrap">Consult Now</span>
                     </span>
                   </Link>
                 </div>
@@ -1503,14 +1504,14 @@ const Home = () => {
             <FaChevronRight />
           </button>
         </div>
-        {/* Pagination Dots: Always show, and center below slider, with extra margin on mobile */}
+        {/* Pagination Dots: Responsive size - smaller on mobile, hidden on very small screens */}
         <div className="flex flex-col items-center w-full">
-          <div className="flex justify-center mt-6 gap-2 sm:gap-6">
+          <div className="flex justify-center mt-6 gap-1 sm:gap-2 md:gap-3">
             {Array.from({ length: problemMaxIndex + 1 }).map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => setProblemSliderIndex(idx)}
-                className={`w-3 h-3 rounded-full ${problemSliderIndex === idx ? 'bg-[#2C73D2]' : 'bg-gray-300'} transition`}
+                className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${problemSliderIndex === idx ? 'bg-[#2C73D2]' : 'bg-gray-300'} transition ${isMobile && problemMaxIndex > 8 ? 'hidden' : ''}`}
                 aria-label={`Go to slide ${idx + 1}`}
               />
             ))}
@@ -1533,8 +1534,6 @@ const Home = () => {
             type="text"
             placeholder="Search by State/ UTs"
             value={search}
-            onChange={e => setSearch(e.target.value)}
-            className="flex-1 min-w-[220px] px-6 py-3 rounded-lg border-2 border-[#2C73D2] text-[#2C73D2] text-base focus:outline-none focus:border-[#F4A300] bg-white font-sans placeholder-gray-400"
             onChange={e => setSearch(e.target.value)}
             className="flex-1 min-w-[220px] px-6 py-3 rounded-lg border-2 border-[#2C73D2] text-[#2C73D2] text-base focus:outline-none focus:border-[#F4A300] bg-white font-sans placeholder-gray-400"
           />
@@ -1669,7 +1668,7 @@ const Home = () => {
                   {/* Back Side */}
                   <div className="flip-card-back flex flex-col items-center bg-white rounded-2xl shadow-lg p-6 border border-[#2C73D2]/10 w-64 h-80 absolute inset-0" style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
                     <div className="text-base font-bold text-[#2C73D2] mb-2 text-center w-full leading-tight">{spec.name}</div>
-                    <ul className="text-[#333333] text-left w-full mb-4" style={{ fontSize: '15px', listStyleType: 'disc', paddingLeft: '1.2em' }}>
+                    <ul className="text-[#333333] text-left w-full mb-4" style={{ fontSize: '15px', listStyleType: 'disc', paddingLeft: '1.5em' }}>
                       {Array.isArray(spec.points)
                         ? spec.points.map((point, i) => <li key={i}>{point}</li>)
                         : <li>{spec.points}</li>}

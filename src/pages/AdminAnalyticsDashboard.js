@@ -3,6 +3,12 @@ import { Pie, Bar, Line } from 'react-chartjs-2';
 import { useAdmin } from '../contexts/AdminContext';
 import { useNavigate } from 'react-router-dom';
 import {
+  getAnalyticsSummary,
+  getAiReferralBreakdown,
+  getDailyTrend,
+  getDetailedAnalytics
+} from '../services/analyticsService';
+import {
   Chart as ChartJS,
   ArcElement,
   Tooltip,
@@ -36,7 +42,12 @@ const AdminAnalyticsDashboard = () => {
     topCountries: [],
     topStates: [],
     referralSources: [],
-    deviceTypes: [],
+    aiReferrals: [], // New: Track AI assistant referrals
+    deviceTypes: [
+      { device: 'Desktop', count: 0 },
+      { device: 'Mobile', count: 0 },
+      { device: 'Tablet', count: 0 }
+    ],
     browsers: [],
     popularPages: [],
     conversionRate: 0,
@@ -44,6 +55,7 @@ const AdminAnalyticsDashboard = () => {
     socialMediaClicks: [],
     appDownloads: [],
     dailyVisitors: [],
+    aiTrafficTrend: [], // New: Daily AI traffic trend
     timeSpent: {},
   });
 
@@ -64,11 +76,86 @@ const AdminAnalyticsDashboard = () => {
   const fetchAnalyticsData = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`/api/admin/analytics?range=${dateRange}`);
-      const data = await response.json();
-      setAnalyticsData(data);
+      
+      // Get date range as number
+      const rangeDays = dateRange === '7days' ? 7 : 
+                        dateRange === '30days' ? 30 : 
+                        dateRange === '90days' ? 90 : 7;
+      
+      // Fetch data from MongoDB via API
+      const [summaryRes, aiReferralsRes, dailyTrendRes] = await Promise.all([
+        getAnalyticsSummary(rangeDays),
+        getAiReferralBreakdown(rangeDays),
+        getDailyTrend(rangeDays)
+      ]);
+      
+      const summary = summaryRes.data || {};
+      const aiReferrals = aiReferralsRes.data || [];
+      const dailyTrend = dailyTrendRes.data || [];
+      
+      // Process and set analytics data
+      setAnalyticsData({
+        totalVisitors: summary.totalUniqueVisitors || 0,
+        totalSessions: summary.totalSessions || 0,
+        averageSessionDuration: summary.avgTimeSpent || 0,
+        conversionRate: summary.conversionRate || 0,
+        appointmentBookings: summary.conversions || 0,
+        aiReferrals: aiReferrals,
+        aiTrafficTrend: dailyTrend.map(day => ({
+          date: day.date,
+          count: day.aiReferrals, // Changed to match chart expectations
+          totalVisitors: day.uniqueVisitors
+        })),
+        dailyVisitors: dailyTrend.map(day => ({
+          date: day.date,
+          count: day.uniqueVisitors, // Changed from 'visitors' to 'count' to match chart expectations
+          sessions: day.sessions
+        })),
+        // Process device types from summary - convert object to array
+        deviceTypes: summary.deviceBreakdown ? 
+          Object.entries(summary.deviceBreakdown).map(([device, count]) => ({ device, count })) : 
+          [
+            { device: 'Desktop', count: 0 },
+            { device: 'Mobile', count: 0 },
+            { device: 'Tablet', count: 0 }
+          ],
+        topCountries: summary.topCountries || [],
+        // Mock data for features not yet implemented
+        topStates: [],
+        referralSources: [],
+        browsers: [],
+        popularPages: [],
+        socialMediaClicks: [],
+        appDownloads: [],
+        timeSpent: {}
+      });
+      
     } catch (error) {
-      console.error('Failed to fetch analytics:', error);
+      console.error('Error fetching analytics data:', error);
+      // Set default/mock data on error
+      setAnalyticsData({
+        totalVisitors: 0,
+        totalSessions: 0,
+        averageSessionDuration: 0,
+        topCountries: [],
+        topStates: [],
+        referralSources: [],
+        aiReferrals: [],
+        deviceTypes: [
+          { device: 'Desktop', count: 0 },
+          { device: 'Mobile', count: 0 },
+          { device: 'Tablet', count: 0 }
+        ],
+        browsers: [],
+        popularPages: [],
+        conversionRate: 0,
+        appointmentBookings: 0,
+        socialMediaClicks: [],
+        appDownloads: [],
+        dailyVisitors: [],
+        aiTrafficTrend: [],
+        timeSpent: {},
+      });
     } finally {
       setLoading(false);
     }
@@ -199,11 +286,48 @@ const AdminAnalyticsDashboard = () => {
     ],
   };
 
-  const deviceChartData = {
-    labels: analyticsData.deviceTypes.map(item => item.device),
+  // New: AI Referrals Chart Data
+  const aiReferralChartData = {
+    labels: (analyticsData.aiReferrals || []).map(item => item.aiSource),
     datasets: [
       {
-        data: analyticsData.deviceTypes.map(item => item.count),
+        data: (analyticsData.aiReferrals || []).map(item => item.count),
+        backgroundColor: [
+          '#10A37F', // ChatGPT Green
+          '#FF6B35', // Claude Orange
+          '#4285F4', // Google Bard/Gemini Blue
+          '#FF4081', // Microsoft Copilot Pink
+          '#8B5CF6', // Perplexity Purple
+          '#F59E0B', // Other AI Yellow
+          '#EF4444', // Custom AI Red
+          '#06B6D4', // AI Chat Blue
+        ],
+        borderWidth: 2,
+        borderColor: '#fff',
+      },
+    ],
+  };
+
+  // AI Traffic Trend Chart
+  const aiTrafficTrendData = {
+    labels: (analyticsData.aiTrafficTrend || []).map(item => item.date),
+    datasets: [
+      {
+        label: 'AI-Driven Visitors',
+        data: (analyticsData.aiTrafficTrend || []).map(item => item.count),
+        borderColor: '#10A37F',
+        backgroundColor: 'rgba(16, 163, 127, 0.1)',
+        tension: 0.4,
+        fill: true,
+      },
+    ],
+  };
+
+  const deviceChartData = {
+    labels: (analyticsData.deviceTypes || []).map(item => item.device),
+    datasets: [
+      {
+        data: (analyticsData.deviceTypes || []).map(item => item.count),
         backgroundColor: ['#2C73D2', '#F4A300', '#27AE60'],
         borderWidth: 2,
         borderColor: '#fff',
@@ -212,11 +336,11 @@ const AdminAnalyticsDashboard = () => {
   };
 
   const dailyVisitorsData = {
-    labels: analyticsData.dailyVisitors.map(item => item.date),
+    labels: (analyticsData.dailyVisitors || []).map(item => item.date),
     datasets: [
       {
         label: 'Daily Visitors',
-        data: analyticsData.dailyVisitors.map(item => item.count),
+        data: (analyticsData.dailyVisitors || []).map(item => item.count),
         borderColor: '#2C73D2',
         backgroundColor: 'rgba(44, 115, 210, 0.1)',
         tension: 0.4,
@@ -273,6 +397,17 @@ const AdminAnalyticsDashboard = () => {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center">
+              {/* Navigation Buttons */}
+              <button
+                onClick={() => navigate('/admin/data')}
+                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm flex items-center"
+              >
+                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 1.79 4 4 4h8c0 2.21 1.79 4 4 4h8c0-2.21-1.79-4-4-4H8c-2.21 0-4-1.79-4-4V7" />
+                </svg>
+                Database Records
+              </button>
+              
               {/* Admin Info */}
               <div className="flex items-center gap-3 bg-gray-50 px-4 py-2 rounded-lg">
                 <span className="text-sm text-gray-600">
@@ -328,7 +463,7 @@ const AdminAnalyticsDashboard = () => {
         </div>
 
         {/* Key Metrics */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-6">
           <div className="bg-white rounded-lg shadow-lg p-6 text-center">
             <div className="text-3xl font-bold text-[#2C73D2] mb-2">
               {analyticsData.totalVisitors.toLocaleString()}
@@ -355,6 +490,17 @@ const AdminAnalyticsDashboard = () => {
               {analyticsData.conversionRate.toFixed(1)}%
             </div>
             <div className="text-gray-600">Conversion Rate</div>
+          </div>
+
+          {/* New: AI Traffic Metric */}
+          <div className="bg-white rounded-lg shadow-lg p-6 text-center border-2 border-[#10A37F]">
+            <div className="text-3xl font-bold text-[#10A37F] mb-2">
+              {analyticsData.aiReferrals.reduce((sum, ai) => sum + ai.count, 0).toLocaleString()}
+            </div>
+            <div className="text-gray-600 flex items-center justify-center gap-1">
+              <span>🤖</span>
+              <span>AI-Driven Visits</span>
+            </div>
           </div>
         </div>
 
@@ -390,6 +536,31 @@ const AdminAnalyticsDashboard = () => {
             </div>
           </div>
 
+          {/* New: AI Referrals Chart */}
+          <div className="bg-white rounded-lg shadow-lg p-6 border-2 border-[#10A37F]">
+            <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+              <span>🤖</span>
+              AI Assistant Referrals
+            </h3>
+            <div className="h-64">
+              <Pie data={aiReferralChartData} options={chartOptions} />
+            </div>
+          </div>
+        </div>
+
+        {/* AI Traffic Trend - Full Width */}
+        <div className="bg-white rounded-lg shadow-lg p-6 mb-6 border-2 border-[#10A37F]">
+          <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+            <span>🤖</span>
+            AI-Driven Traffic Trend
+          </h3>
+          <div className="h-64">
+            <Line data={aiTrafficTrendData} options={chartOptions} />
+          </div>
+        </div>
+
+        {/* Original Charts Grid Continued */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
           {/* Device Types */}
           <div className="bg-white rounded-lg shadow-lg p-6">
             <h3 className="text-xl font-semibold text-gray-800 mb-4">
@@ -397,6 +568,48 @@ const AdminAnalyticsDashboard = () => {
             </h3>
             <div className="h-64">
               <Pie data={deviceChartData} options={chartOptions} />
+            </div>
+          </div>
+
+          {/* AI Referrals Detailed Table */}
+          <div className="bg-white rounded-lg shadow-lg p-6 border-2 border-[#10A37F]">
+            <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+              <span>🤖</span>
+              AI Assistant Details
+            </h3>
+            <div className="space-y-3">
+              {analyticsData.aiReferrals.map((ai, index) => (
+                <div key={index} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                  <div className="flex items-center gap-3">
+                    <span className="text-lg">
+                      {ai.aiSource === 'ChatGPT' ? '🟢' : 
+                       ai.aiSource === 'Claude' ? '🟠' : 
+                       ai.aiSource === 'Gemini' ? '🔵' : 
+                       ai.aiSource === 'Copilot' ? '🔮' : 
+                       ai.aiSource === 'Perplexity' ? '🟣' : '🤖'}
+                    </span>
+                    <div>
+                      <span className="font-medium">{ai.aiSource}</span>
+                      <div className="text-xs text-gray-500">
+                        Conversion: {ai.conversions || 0} appointments
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-[#10A37F] font-semibold text-lg">
+                      {ai.count.toLocaleString()}
+                    </span>
+                    <div className="text-xs text-gray-500">
+                      {((ai.count / analyticsData.totalVisitors) * 100).toFixed(1)}%
+                    </div>
+                  </div>
+                </div>
+              ))}
+              {analyticsData.aiReferrals.length === 0 && (
+                <p className="text-gray-500 text-center py-4">
+                  No AI referrals detected yet. Enable AI tracking in your analytics setup.
+                </p>
+              )}
             </div>
           </div>
         </div>

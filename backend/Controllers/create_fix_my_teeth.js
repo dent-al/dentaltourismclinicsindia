@@ -4,32 +4,53 @@ const getDataUri = require("../config/datauri");
 
 const createFixMyTeeth = async (req, res) => {
   try {
-    let { name, email, selectedProblems, selectedState, otherProblemText, photoUrls } = req.body;
+    // Debugging logs
+    console.log("Request body:", req.body);
+    console.log("Request files:", req.files);
 
-    // Parse selectedProblems if needed
-    if (selectedProblems && typeof selectedProblems === 'string') {
+    // Initialize variables with proper defaults
+    const { 
+      name = '', 
+      email = '', 
+      selectedState = '', 
+      otherProblemText = '',
+      selectedProblems = '',
+      photo // Initialize as string
+    } = req.body;
+
+    // Process selectedProblems - handle both string and array inputs
+    let problemsArray = [];
+    if (selectedProblems) {
       try {
-        selectedProblems = JSON.parse(selectedProblems);
+        // Try parsing as JSON if it looks like JSON
+        if (selectedProblems.startsWith('[') || selectedProblems.startsWith('{')) {
+          problemsArray = JSON.parse(selectedProblems);
+        } else {
+          // Handle comma-separated string
+          problemsArray = selectedProblems.split(',').map(p => p.trim());
+        }
       } catch (err) {
-        // Ignore parse errors, fallback to default below
+        // Fallback to single problem
+        problemsArray = [selectedProblems];
       }
     }
 
-    // Default values
-    if (!Array.isArray(selectedProblems)) selectedProblems = selectedProblems ? [selectedProblems] : [];
-    if (!otherProblemText) otherProblemText = "";
+    // Ensure we have an array
+    if (!Array.isArray(problemsArray)) {
+      problemsArray = problemsArray ? [problemsArray] : [];
+    }
 
     // Normalize photoUrls if sent in request body
     let uploadedPhotoUrls = [];
-    if (photoUrls) {
-      if (typeof photoUrls === 'string') {
+    if (photo) {
+      if (typeof photo === 'string') {
         try {
-          uploadedPhotoUrls = JSON.parse(photoUrls);
+          uploadedPhotoUrls = JSON.parse(photo);
         } catch (err) {
           uploadedPhotoUrls = [];
         }
-      } else if (Array.isArray(photoUrls)) {
-        uploadedPhotoUrls = photoUrls;
+      } else if (Array.isArray(photo)) {
+        uploadedPhotoUrls = photo;
       }
     }
 
@@ -77,18 +98,21 @@ const createFixMyTeeth = async (req, res) => {
     }
 
     // Validate required fields
-    if (!name || !email || !selectedProblems.length || !selectedState) {
-      return res.status(400).json({ message: 'Please fill all required fields', success: false });
+    if (!name || !email || !problemsArray.length || !selectedState) {
+      return res.status(400).json({ 
+        message: 'Name, email, at least one problem, and state are required', 
+        success: false 
+      });
     }
 
-    // Create a new Fix My Teeth document
+    // Create new document
     const newFixMyTeeth = new FixMyTeeth({
       name,
       email,
-      selectedProblems,
+      selectedProblems: problemsArray,
       selectedState,
       otherProblemText,
-      photoUrls: uploadedPhotoUrls
+      photo: uploadedPhotoUrls
     });
 
     await newFixMyTeeth.save();
@@ -101,7 +125,11 @@ const createFixMyTeeth = async (req, res) => {
     });
   } catch (error) {
     console.error('Error during Fix My Teeth submission:', error);
-    res.status(500).json({ message: 'Internal server error', success: false });
+    res.status(500).json({ 
+      message: 'Internal server error', 
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined,
+      success: false 
+    });
   }
 };
 

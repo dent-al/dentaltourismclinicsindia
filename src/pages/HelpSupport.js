@@ -1,19 +1,15 @@
-import React, { useState, useEffect } from "react";
-import FullPageLoader from "../components/FullPageLoader";
+import React, { useState } from "react";
 
 const HelpSupport = () => {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({ 
+    name: "", 
+    email: "", 
+    phone: "",
+    subject: "",
+    message: "" 
+  });
   const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [selectedProblems, setSelectedProblems] = useState([]);
-  const [selectedState, setSelectedState] = useState("");
-  const [showQuoteForm, setShowQuoteForm] = useState(false);
-  const [otherProblemText, setOtherProblemText] = useState("");
-
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1200);
-    return () => clearTimeout(timer);
-  }, []);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -21,371 +17,218 @@ const HelpSupport = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
-    setForm({ name: "", email: "", message: "" });
+    setIsSubmitting(true);
+    
+    // Simulate form submission
+    setTimeout(() => {
+      setSubmitted(true);
+      setIsSubmitting(false);
+      setForm({ name: "", email: "", phone: "", subject: "", message: "" });
+      
+      // Hide success message after 5 seconds
+      setTimeout(() => setSubmitted(false), 5000);
+    }, 2000);
   };
-
-  const dentalProblems = [
-    // Common Problems
-    { id: 'toothache', name: 'Toothache', icon: '😣', category: 'common' },
-    { id: 'tooth-cavities', name: 'Tooth Cavities', icon: '🦷', category: 'common' },
-    { id: 'bleeding-gums', name: 'Bleeding Gums', icon: '🩸', category: 'common' },
-    { id: 'missing-tooth', name: 'Missing Tooth', icon: '🦷', category: 'common' },
-    { id: 'broken-chipped', name: 'Broken/Chipped Tooth', icon: '💔', category: 'common' },
-    { id: 'crooked-teeth', name: 'Crooked Teeth', icon: '↪️', category: 'common' },
-    { id: 'yellow-teeth', name: 'Yellow Teeth', icon: '🟡', category: 'common' },
-    { id: 'gaps-between-teeth', name: 'Gaps Between Teeth', icon: '↔️', category: 'common' },
-    
-    // Gum Problems
-    { id: 'gum-disease', name: 'Gum Disease', icon: '🦷', category: 'gum' },
-    { id: 'swollen-gums', name: 'Swollen Gums', icon: '🔴', category: 'gum' },
-    { id: 'receding-gums', name: 'Receding Gums', icon: '�', category: 'gum' },
-    { id: 'gum-infection', name: 'Severe Gum Infection', icon: '🦠', category: 'gum' },
-    { id: 'gum-pocket', name: 'Gum Pocket', icon: '🕳️', category: 'gum' },
-    { id: 'bad-breath', name: 'Bad Breath', icon: '💨', category: 'gum' },
-    
-    // Jaw & TMJ Problems
-    { id: 'jaw-pain', name: 'Jaw Pain', icon: '😖', category: 'jaw' },
-    { id: 'tmj-disorder', name: 'TMJ Disorder', icon: '�', category: 'jaw' },
-    { id: 'jaw-lock', name: 'Jaw Lock', icon: '🔒', category: 'jaw' },
-    { id: 'teeth-grinding', name: 'Teeth Grinding', icon: '😬', category: 'jaw' },
-    { id: 'jaw-clenching', name: 'Jaw Clenching', icon: '💪', category: 'jaw' },
-    
-    // Tooth Problems
-    { id: 'tooth-sensitivity', name: 'Tooth Sensitivity', icon: '❄️', category: 'tooth' },
-    { id: 'wisdom-tooth', name: 'Wisdom Tooth Problems', icon: '🦷', category: 'tooth' },
-    { id: 'tooth-wear', name: 'Tooth Wear', icon: '⚡', category: 'tooth' },
-    { id: 'loose-tooth', name: 'Loose Tooth', icon: '🪫', category: 'tooth' },
-    { id: 'fractured-tooth', name: 'Fractured Tooth', icon: '💥', category: 'tooth' },
-    { id: 'tooth-pain', name: 'Severe Tooth Pain', icon: '⚡', category: 'tooth' },
-    
-    // Cosmetic Problems
-    { id: 'smile-makeover', name: 'Smile Makeover', icon: '✨', category: 'cosmetic' },
-    { id: 'teeth-whitening', name: 'Teeth Whitening', icon: '⚪', category: 'cosmetic' },
-    { id: 'gummy-smile', name: 'Gummy Smile', icon: '😊', category: 'cosmetic' },
-    { id: 'front-tooth-gap', name: 'Front Tooth Gap', icon: '↔️', category: 'cosmetic' },
-    { id: 'dental-jewellery', name: 'Dental Jewellery', icon: '💎', category: 'cosmetic' },
-    { id: 'white-spots', name: 'White Spots on Teeth', icon: '⚪', category: 'cosmetic' },
-    
-    // Treatment Needs
-    { id: 'root-canal', name: 'Root Canal Treatment', icon: '🔧', category: 'treatment' },
-    { id: 'dental-implants', name: 'Dental Implants', icon: '🦷', category: 'treatment' },
-    { id: 'dental-braces', name: 'Dental Braces', icon: '🦷', category: 'treatment' },
-    { id: 'tooth-extraction', name: 'Tooth Extraction', icon: '🔧', category: 'treatment' },
-    { id: 'dental-crown', name: 'Dental Crown', icon: '👑', category: 'treatment' },
-    { id: 'tooth-filling', name: 'Tooth Filling', icon: '🔧', category: 'treatment' },
-    
-    // Children's Problems
-    { id: 'kids-cavities', name: 'Children\'s Cavities', icon: '👶', category: 'kids' },
-    { id: 'thumb-sucking', name: 'Thumb Sucking', icon: '👍', category: 'kids' },
-    { id: 'mouth-breathing', name: 'Mouth Breathing', icon: '💨', category: 'kids' },
-    { id: 'baby-teeth', name: 'Baby Teeth Problems', icon: '🍼', category: 'kids' },
-    
-    // Oral Health Issues
-    { id: 'dry-mouth', name: 'Dry Mouth', icon: '🏜️', category: 'oral' },
-    { id: 'mouth-sores', name: 'Mouth Sores', icon: '🔴', category: 'oral' },
-    { id: 'burning-sensation', name: 'Burning Sensation', icon: '🔥', category: 'oral' },
-    { id: 'oral-cancer', name: 'Oral Cancer Screening', icon: '🔍', category: 'oral' },
-    
-    // Other
-    { id: 'other', name: 'Other', icon: '📝', category: 'other' }
-  ];
-
-  const steps = [
-    { number: 1, title: 'Choose Dental Problems', icon: '🦷', color: 'bg-blue-500' },
-    { number: 2, title: 'Select Preferred Location', icon: '📍', color: 'bg-green-500' },
-    { number: 3, title: 'Upload Photos (X-rays optional)', icon: '📷', color: 'bg-purple-500' },
-    { number: 4, title: 'Pay ₹149', icon: '💳', color: 'bg-orange-500' },
-    { number: 5, title: 'Receive Report in 24 hrs', icon: '📄', color: 'bg-red-500' }
-  ];
-
-  const states = [
-    'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh', 
-    'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jharkhand', 'Karnataka', 
-    'Kerala', 'Madhya Pradesh', 'Maharashtra', 'Manipur', 'Meghalaya', 'Mizoram', 
-    'Nagaland', 'Odisha', 'Punjab', 'Rajasthan', 'Sikkim', 'Tamil Nadu', 
-    'Telangana', 'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal',
-    'Delhi', 'Jammu and Kashmir', 'Ladakh', 'Puducherry', 'Chandigarh',
-    'Andaman and Nicobar Islands', 'Dadra and Nagar Haveli and Daman and Diu', 'Lakshadweep'
-  ];
-
-  const toggleProblem = (problemId) => {
-    setSelectedProblems(prev => 
-      prev.includes(problemId) 
-        ? prev.filter(id => id !== problemId)
-        : [...prev, problemId]
-    );
-  };
-
-  if (loading) return <FullPageLoader />;
 
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-12">
           <h1 className="text-3xl md:text-4xl font-bold text-[#2C73D2] mb-4">
-            Help & Support Center
+            Help & Support
           </h1>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Get expert dental advice, treatment plans, and support for all your dental needs
+            Need assistance? We're here to help! Fill out the form below and our support team will get back to you within 24 hours.
           </p>
         </div>
 
-        {/* Quick Treatment Plan Section */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 mb-12">
-          <div className="flex flex-col lg:flex-row items-center gap-8">
-            {/* Left side - Hero content */}
-            <div className="lg:w-1/2">
-              <div className="mb-6">
-                <img 
-                  src="data:image/svg+xml,%3csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3e%3cdefs%3e%3clinearGradient id='a' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3e%3cstop offset='0%25' style='stop-color:%232C73D2'/%3e%3cstop offset='100%25' style='stop-color:%23F4A300'/%3e%3c/linearGradient%3e%3c/defs%3e%3crect width='100' height='100' rx='50' fill='url(%23a)'/%3e%3ctext x='50' y='65' font-family='Arial' font-size='40' fill='white' text-anchor='middle'%3e😊%3c/text%3e%3c/svg%3e" 
-                  alt="Happy Patient" 
-                  className="w-24 h-24 mb-4" 
-                />
-              </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
-                Get Your Dental Treatment Plan + Quote in 24 Hours - Only ₹149
-              </h2>
-              <p className="text-gray-600 mb-6 text-lg">
-                Select your dental problems, preferred location, and receive a detailed treatment 
-                plan and estimate from top clinics in India.
-              </p>
-              <button 
-                onClick={() => setShowQuoteForm(!showQuoteForm)}
-                className="bg-[#2C73D2] text-white px-8 py-3 rounded-lg font-semibold text-lg hover:bg-blue-700 transition-colors duration-300"
-              >
-                Start Now - ₹149 Only
-              </button>
-            </div>
-
-            {/* Right side - Steps */}
-            <div className="lg:w-1/2">
-              <div className="space-y-4">
-                {steps.map((step, index) => (
-                  <div key={step.number} className="flex items-center gap-4">
-                    <div className={`w-12 h-12 ${step.color} rounded-full flex items-center justify-center text-white font-bold text-lg`}>
-                      {step.number}
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-semibold text-gray-800">{step.title}</h3>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+        {/* Support Form */}
+        <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+              Contact Our Support Team
+            </h2>
+            <p className="text-gray-600">
+              Tell us how we can help you. Whether you have questions about our services, 
+              need technical support, or want to provide feedback, we're here for you.
+            </p>
           </div>
 
-          {/* Treatment Plan Form */}
-          {showQuoteForm && (
-            <div className="mt-8 pt-8 border-t border-gray-200">
-              <h3 className="text-2xl font-bold text-gray-800 mb-6">
-                Tell Us What Dental Problems You're Facing
-              </h3>
-              
-              {/* Dental Problems Grid */}
-              <div className="mb-8">
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-6">
-                  {dentalProblems.map((problem) => (
-                    <button
-                      key={problem.id}
-                      onClick={() => toggleProblem(problem.id)}
-                      className={`p-3 rounded-lg border-2 transition-all duration-300 text-center hover:shadow-md ${
-                        selectedProblems.includes(problem.id)
-                          ? 'border-[#2C73D2] bg-blue-50 text-[#2C73D2] shadow-md'
-                          : 'border-gray-200 hover:border-[#2C73D2] hover:bg-gray-50'
-                      }`}
-                    >
-                      <div className="text-xl mb-1">{problem.icon}</div>
-                      <div className="font-medium text-xs leading-tight">{problem.name}</div>
-                    </button>
-                  ))}
-                </div>
-                {selectedProblems.length > 0 && (
-                  <div className="text-sm text-gray-600 bg-blue-50 p-3 rounded-lg">
-                    <span className="font-semibold">Selected: </span>
-                    {selectedProblems.map(id => 
-                      dentalProblems.find(p => p.id === id)?.name
-                    ).join(', ')}
-                  </div>
-                )}
-              </div>
-
-              {/* Other Problem Text Input */}
-              {selectedProblems.includes('other') && (
-                <div className="mb-8">
-                  <h4 className="text-lg font-semibold text-gray-800 mb-4">
-                    Please describe your dental problem:
-                  </h4>
-                  <textarea
-                    value={otherProblemText}
-                    onChange={(e) => setOtherProblemText(e.target.value)}
-                    placeholder="Describe your specific dental problem in detail..."
-                    rows={3}
-                    className="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-[#2C73D2] outline-none transition-all duration-300"
-                  />
-                </div>
-              )}
-
-              {/* State Selection */}
-              <div className="mb-8">
-                <h4 className="text-lg font-semibold text-gray-800 mb-4">
-                  Where Would You Prefer to Get Treated?
-                </h4>
-                <select
-                  value={selectedState}
-                  onChange={(e) => setSelectedState(e.target.value)}
-                  className="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-[#2C73D2] outline-none"
-                >
-                  <option value="">Select State</option>
-                  {states.map((state) => (
-                    <option key={state} value={state}>{state}</option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Upload Section */}
-              <div className="mb-8">
-                <h4 className="text-lg font-semibold text-gray-800 mb-4">
-                  Upload X-rays or Tooth Photos <span className="text-gray-500">(Optional)</span>
-                </h4>
-                <p className="text-gray-600 mb-4">Clear images help us give a more accurate estimate.</p>
-                <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-                  <div className="text-4xl mb-4">📷</div>
-                  <p className="text-gray-600">Click to upload or drag and drop</p>
-                  <input type="file" className="hidden" accept="image/*" multiple />
-                </div>
-              </div>
-
-              {/* Contact Form */}
-              <div className="grid md:grid-cols-2 gap-4 mb-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Name and Email Row */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-gray-700 font-semibold mb-2">
+                  Full Name *
+                </label>
                 <input
                   type="text"
-                  placeholder="Name"
-                  className="p-3 border-2 border-gray-200 rounded-lg focus:border-[#2C73D2] outline-none"
+                  name="name"
+                  value={form.name}
+                  onChange={handleChange}
+                  className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C73D2] focus:border-transparent transition-all duration-300"
+                  placeholder="Enter your full name"
+                  required
                 />
+              </div>
+              <div>
+                <label className="block text-gray-700 font-semibold mb-2">
+                  Email Address *
+                </label>
                 <input
                   type="email"
-                  placeholder="Email"
-                  className="p-3 border-2 border-gray-200 rounded-lg focus:border-[#2C73D2] outline-none"
+                  name="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C73D2] focus:border-transparent transition-all duration-300"
+                  placeholder="Enter your email address"
+                  required
                 />
               </div>
-
-              <button className="w-full bg-gradient-to-r from-[#2C73D2] to-[#F4A300] text-white py-4 rounded-lg font-semibold text-lg hover:from-blue-700 hover:to-yellow-500 transition-all duration-300">
-                Get Treatment Plan - Pay ₹149
-              </button>
             </div>
-          )}
-        </div>
 
-        {/* FAQ Section */}
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
-          <div className="bg-white rounded-xl shadow-lg p-6">
-            <h3 className="text-xl font-bold text-[#2C73D2] mb-4">Frequently Asked Questions</h3>
-            <div className="space-y-4">
+            {/* Phone and Subject Row */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <h4 className="font-semibold text-gray-800 mb-2">How does the treatment plan work?</h4>
-                <p className="text-gray-600 text-sm">Simply select your dental problems and preferred location. Our expert dentists will review your case and provide a detailed treatment plan within 24 hours.</p>
+                <label className="block text-gray-700 font-semibold mb-2">
+                  Phone Number (Optional)
+                </label>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={form.phone}
+                  onChange={handleChange}
+                  className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C73D2] focus:border-transparent transition-all duration-300"
+                  placeholder="Enter your phone number"
+                />
               </div>
               <div>
-                <h4 className="font-semibold text-gray-800 mb-2">Is the ₹149 fee refundable?</h4>
-                <p className="text-gray-600 text-sm">The consultation fee is non-refundable, but it will be adjusted against your final treatment cost if you proceed with any of our partner clinics.</p>
-              </div>
-              <div>
-                <h4 className="font-semibold text-gray-800 mb-2">How accurate are the cost estimates?</h4>
-                <p className="text-gray-600 text-sm">Our estimates are based on current market rates and expert analysis. Final costs may vary after in-person examination.</p>
+                <label className="block text-gray-700 font-semibold mb-2">
+                  Subject *
+                </label>
+                <select
+                  name="subject"
+                  value={form.subject}
+                  onChange={handleChange}
+                  className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C73D2] focus:border-transparent transition-all duration-300"
+                  required
+                >
+                  <option value="">Select a subject</option>
+                  <option value="general-inquiry">General Inquiry</option>
+                  <option value="technical-support">Technical Support</option>
+                  <option value="appointment-help">Appointment Help</option>
+                  <option value="billing-question">Billing Question</option>
+                  <option value="clinic-information">Clinic Information</option>
+                  <option value="feedback">Feedback</option>
+                  <option value="complaint">Complaint</option>
+                  <option value="other">Other</option>
+                </select>
               </div>
             </div>
-          </div>
 
-          {/* Contact Support Form */}
-          <div className="bg-white rounded-xl shadow-lg p-6">
-            <h3 className="text-xl font-bold text-[#2C73D2] mb-4">Contact Our Support</h3>
-            <p className="text-gray-600 mb-4">
-              We're here to help! Fill out the form and our team will get back to you soon.
-            </p>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <input
-                type="text"
-                name="name"
-                value={form.name}
-                onChange={handleChange}
-                placeholder="Your Name"
-                className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-[#2C73D2] outline-none transition-all duration-300"
-                required
-              />
-              <input
-                type="email"
-                name="email"
-                value={form.email}
-                onChange={handleChange}
-                placeholder="Your Email"
-                className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-[#2C73D2] outline-none transition-all duration-300"
-                required
-              />
+            {/* Message */}
+            <div>
+              <label className="block text-gray-700 font-semibold mb-2">
+                Message *
+              </label>
               <textarea
                 name="message"
                 value={form.message}
                 onChange={handleChange}
-                placeholder="How can we help you?"
-                rows={4}
-                className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-[#2C73D2] outline-none transition-all duration-300"
+                rows="6"
+                className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C73D2] focus:border-transparent transition-all duration-300"
+                placeholder="Please describe your question or issue in detail..."
                 required
               />
+            </div>
+
+            {/* Submit Button */}
+            <div className="text-center">
               <button
                 type="submit"
-                className="w-full py-3 rounded-lg bg-gradient-to-r from-[#2C73D2] to-[#F4A300] text-white font-semibold hover:from-blue-700 hover:to-yellow-500 transition-all duration-300"
+                disabled={isSubmitting}
+                className="bg-gradient-to-r from-[#2C73D2] to-[#F4A300] text-white px-12 py-4 rounded-lg font-bold text-lg hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Send Message
+                {isSubmitting ? (
+                  <span className="flex items-center gap-2">
+                    <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                      <path fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                    </svg>
+                    Sending...
+                  </span>
+                ) : (
+                  'Send Message'
+                )}
               </button>
-              {submitted && (
-                <div className="text-green-600 text-center font-semibold">
-                  Thank you! We'll get back to you soon.
+              <p className="text-gray-500 text-sm mt-3">
+                We'll respond to your inquiry within 24 hours during business days.
+              </p>
+            </div>
+          </form>
+        </div>
+
+        {/* Contact Information */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="bg-white rounded-xl shadow-lg p-6 text-center">
+            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg className="w-8 h-8 text-[#2C73D2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h3 className="text-lg font-semibold text-gray-800 mb-2">Email Support</h3>
+            <p className="text-gray-600 text-sm mb-3">Get help via email</p>
+            <a href="mailto:info@dentaltourismclinicsindia.com" className="text-[#2C73D2] font-medium hover:underline break-words text-sm">
+              info@dentaltourismclinicsindia.com
+            </a>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-lg p-6 text-center">
+            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+            </div>
+            <h3 className="text-lg font-semibold text-gray-800 mb-2">Phone Support</h3>
+            <p className="text-gray-600 text-sm mb-3">Call us directly</p>
+            <a href="tel:+911234567890" className="text-green-600 font-medium hover:underline">
+              +91 1234 567 890
+            </a>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-lg p-6 text-center">
+            <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 className="text-lg font-semibold text-gray-800 mb-2">Response Time</h3>
+            <p className="text-gray-600 text-sm mb-3">How quickly we respond</p>
+            <p className="text-purple-600 font-medium">
+              Within 24 hours
+            </p>
+          </div>
+        </div>
+
+        {/* Success Message */}
+        {submitted && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white p-8 rounded-2xl shadow-2xl max-w-md mx-4">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
                 </div>
-              )}
-            </form>
+                <h3 className="text-xl font-bold text-gray-800 mb-2">Message Sent Successfully!</h3>
+                <p className="text-gray-600">
+                  Thank you for contacting us. Our support team will respond to your inquiry within 24 hours.
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
-
-        {/* Additional Help Resources */}
-        <div className="grid md:grid-cols-4 gap-6">
-          <div className="bg-white rounded-xl shadow-lg p-6 text-center">
-            <div className="text-4xl mb-4">📞</div>
-            <h3 className="text-lg font-bold text-gray-800 mb-2">Phone Support</h3>
-            <p className="text-gray-600 mb-4">Speak directly with our support team</p>
-            <a href="tel:+911234567890" className="text-[#2C73D2] font-semibold hover:underline">
-              +91 123 456 7890
-            </a>
-          </div>
-          
-          <div className="bg-white rounded-xl shadow-lg p-6 text-center">
-            <div className="text-4xl mb-4">💬</div>
-            <h3 className="text-lg font-bold text-gray-800 mb-2">Live Chat</h3>
-            <p className="text-gray-600 mb-4">Get instant help from our team</p>
-            <button className="text-[#2C73D2] font-semibold hover:underline">
-              Start Chat
-            </button>
-          </div>
-          
-          <div className="bg-white rounded-xl shadow-lg p-6 text-center">
-            <div className="text-4xl mb-4">📧</div>
-            <h3 className="text-lg font-bold text-gray-800 mb-2">Email Support</h3>
-            <p className="text-gray-600 mb-4">Send us your questions</p>
-            <a href="mailto:support@dentaltourismclinicsindia.com" className="text-[#2C73D2] font-semibold hover:underline">
-              support@dentaltourismclinicsindia.com
-            </a>
-          </div>
-
-          <div className="bg-white rounded-xl shadow-lg p-6 text-center">
-            <div className="text-4xl mb-4">📊</div>
-            <h3 className="text-lg font-bold text-gray-800 mb-2">Site Feedback</h3>
-            <p className="text-gray-600 mb-4">Help us improve our platform</p>
-            <a href="/admin/login" className="text-[#2C73D2] font-semibold hover:underline">
-              Submit Feedback
-            </a>
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );

@@ -1,8 +1,10 @@
 // middleware/authMiddleware.js
 const jwt = require("jsonwebtoken");
 const patientModel = require("../Models/patientModel");
+const dotenv=require('dotenv');
+dotenv.config()
 
-const protect = async (req, res, next) => {
+const  auth= async (req, res, next) => {
   let token;
 
   try {
@@ -20,7 +22,7 @@ const protect = async (req, res, next) => {
     }
 
  
-    const decoded = jwt.verify(token, "tarzen");
+    const decoded = jwt.verify(token, process.env.SECRET_KEY);
  
     const user = await patientModel.findById(decoded.id);
     if (!user) {
@@ -37,4 +39,4 @@ const protect = async (req, res, next) => {
   }
 };
 
-module.exports = { protect };
+module.exports = auth;

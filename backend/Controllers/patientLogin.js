@@ -1,5 +1,7 @@
 const  patientModel = require('../Models/patientModel');
 const bcrypt = require('bcrypt');
+const dotenv=require('dotenv');
+dotenv.config()
 const jwt = require('jsonwebtoken');   
 
 const userLogin = async (req, res) => {
@@ -24,10 +26,10 @@ const userLogin = async (req, res) => {
     }
 
     // Generate JWT token
-    const token = jwt.sign({ id: user._id },"tarzen", { expiresIn: '1h' });
+    const token = jwt.sign({ id: user._id },process.env.SECRET_KEY, { expiresIn: '24h' });
     res.cookie('token', token, {
       httpOnly: true, 
-      maxAge: 3600000 // 1 hour
+      maxAge: 86400000 // 24 hour
     });
 
     res.status(200).json({ message: 'Login successful', token, data: user });

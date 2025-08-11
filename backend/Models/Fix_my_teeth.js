@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const FixMyTeethSchema = new mongoose.Schema({
   name: { type: String, required: true, trim: true },
@@ -6,12 +6,9 @@ const FixMyTeethSchema = new mongoose.Schema({
   selectedProblems: { type: [String], required: true },
   selectedState: { type: String, required: true },
   otherProblemText: { type: String, default: "" },
-  photoUrls: { type: [String], default: [] },
+  photo: { type: [String], default: [] },
   createdAt: { type: Date, default: Date.now }
 });
 
-const teethModel = mongoose.model('FixMyTeeth', FixMyTeethSchema);
+const teethModel = mongoose.model("FixMyTeeth", FixMyTeethSchema);
 module.exports = teethModel;
-
-
-

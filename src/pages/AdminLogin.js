@@ -17,7 +17,7 @@ const AdminLogin = () => {
     const result = await adminLogin(credentials.username, credentials.password);
     
     if (result.success) {
-      navigate('/admin/analytics');
+      navigate('/analytics-dashboard');
     } else {
       setError(result.message);
     }
