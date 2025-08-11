@@ -7,11 +7,14 @@ const diagnosticLab=require('./Router/DiagnosticLabsRoutes')
 const Contact_US=require('./Router/Contact_Us_route');
 const PharmaBrand=require('./Router/PharmaBrandRoute');
 const patientRoute=require('./Router/patientRoute')
-const FixMyTeeth = require('./Router/Fixmyteeth');
-const appointmentRoute = require('./Router/appointment'); // ✅ correct
+const FixMyTeeth = require('./Router/Fixmyteeth'); // ✅ correct
+const appointmentRoute = require('./Router/appointment');
+
+
+
 const cookieParser = require("cookie-parser");
 require('dotenv').config();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 const app = express();
 
 //middleware
@@ -34,7 +37,6 @@ app.use('/',patientRoute)
 app.use('/', Contact_US);
 app.use('/',appointmentRoute)
 app.use('/', FixMyTeeth);
-
 
 
 
