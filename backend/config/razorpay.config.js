@@ -5,5 +5,5 @@ const razorpayInstance = new Razorpay({
   key_id: RAZORPAY_KEY_ID,
   key_secret: RAZORPAY_KEY_SECRET
 });
-
+// console.log()
 module.exports = razorpayInstance;

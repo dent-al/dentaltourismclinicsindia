@@ -17,4 +17,4 @@ const verifyPaymentSchema = Joi.object({
 module.exports = {
   validateDentalServiceRequest: (data) => dentalServiceSchema.validate(data),
   validateVerification: (data) => verifyPaymentSchema.validate(data)
-};
+};// console.log()

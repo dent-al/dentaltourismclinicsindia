@@ -7,7 +7,7 @@ const FixMyTeethSchema = new mongoose.Schema({
   selectedState: { type: String, required: true },
   otherProblemText: { type: String, default: "" },
   photo: { type: [String], default: [] },
-  createdAt: { type: Date, default: Date.now }
+  createdAt: { type: Date, default: Date.now },
 });
 
 const teethModel = mongoose.model("FixMyTeeth", FixMyTeethSchema);

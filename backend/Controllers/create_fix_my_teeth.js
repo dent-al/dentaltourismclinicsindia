@@ -15,7 +15,7 @@ const createFixMyTeeth = async (req, res) => {
       selectedState = '', 
       otherProblemText = '',
       selectedProblems = '',
-      photo // Initialize as string
+        photo
     } = req.body;
 
     // Process selectedProblems - handle both string and array inputs
@@ -53,6 +53,8 @@ const createFixMyTeeth = async (req, res) => {
         uploadedPhotoUrls = photo;
       }
     }
+    console.log('Uploaded photo URLs so far:', uploadedPhotoUrls);
+
 
     // Process uploaded files in req.files (from multer .array('photo'))
     const photoFiles = Array.isArray(req.files) ? req.files : [];

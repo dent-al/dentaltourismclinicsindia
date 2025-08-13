@@ -8,6 +8,7 @@ class PaymentService {
       if (!serviceId || !patientId) {
         throw new Error('Missing serviceId or patientId');
       }
+      // console.log()
 
       const service = getServiceById(serviceId);
       

@@ -6,6 +6,7 @@ const DentalAppointmentEmail = ({
   time,
   clinicName,
   doctorName,
+  // console.log()
   bookingFor,
   bookedBy,
   address
