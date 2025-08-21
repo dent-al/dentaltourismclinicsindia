@@ -31,7 +31,7 @@ app.use('/api/appointments', appointmentRoutes);
 app.use('/api/payments', paymentRoutes);
 
 const PORT = process.env.PORT || 3001;
-
+console.log('MONGO_URI value:', process.env.MONGO_URI); // Add this line
 // Connect to MongoDB and start server only after successful connection
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
