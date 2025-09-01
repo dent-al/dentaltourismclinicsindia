@@ -8,6 +8,7 @@ import { AuthProvider } from "./contexts/AuthContext";
 import { SEOProvider } from "./contexts/SEOContext.jsx";
 import { AnalyticsProvider } from "./contexts/AnalyticsContext";
 import { AdminProvider } from "./contexts/AdminContext";
+import { ThemeProvider } from "./contexts/ThemeContext";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import OffersStrip from "./components/OffersStrip";
@@ -117,6 +118,7 @@ function App() {
       <AnalyticsProvider>
         <AdminProvider>
           <AuthProvider>
+            <ThemeProvider>
             <ScrollToTop />
             {!hideHeader && <Header />}
             <OffersStrip />
@@ -199,6 +201,7 @@ function App() {
       <Suspense fallback={null}>
         <FloatingSocialButtons />
       </Suspense>
+            </ThemeProvider>
       </AuthProvider>
       </AdminProvider>
       </AnalyticsProvider>
@@ -206,4 +209,8 @@ function App() {
   );
 }
 
-export default App;
+function AppWrapper() {
+  return <App />;
+}
+
+export default AppWrapper;
