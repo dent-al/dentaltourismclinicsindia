@@ -14,6 +14,7 @@ const AppointmentDetails = () => {
   const [email, setEmail] = useState("");
   const [whatsappUpdates, setWhatsappUpdates] = useState(true);
   // Removed paymentOption state
+  const [confirmed, setConfirmed] = useState(false);
 
   return (
     <div className="min-h-screen bg-[#F4F6FA] w-full flex flex-col items-center py-8 px-2">
@@ -80,9 +81,18 @@ const AppointmentDetails = () => {
               Get updates on WhatsApp number +917206685462
             </label>
           </div>
-          <button className="bg-[#2056AE] text-white px-6 py-3 rounded-xl shadow font-bold w-full mt-2 disabled:opacity-50 disabled:cursor-not-allowed">
-            Confirm Appointment
+          <button
+            className="bg-[#2056AE] text-white px-6 py-3 rounded-xl shadow font-bold w-full mt-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            onClick={() => setConfirmed(true)}
+            disabled={confirmed}
+          >
+            {confirmed ? "Appointment is confirmed" : "Confirm Appointment"}
           </button>
+          {confirmed && (
+            <div className="mt-4 text-green-600 font-semibold text-center">
+              Appointment is confirmed!
+            </div>
+          )}
         </div>
       </div>
     </div>
