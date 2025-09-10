@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkdental_tourism_clinics_india=self.webpackChunkdental_tourism_clinics_india||[]).push([[117],{1117:(i,e,n)=>{n.r(e),n.d(e,{default:()=>t});n(6205);var s=n(6713);function t(){return(0,s.jsxs)("div",{style:{padding:"2rem"},children:[(0,s.jsx)("h1",{style:{fontSize:"2rem",fontWeight:"bold"},children:"Patient Consultation Form"}),(0,s.jsx)("p",{children:"This is a placeholder for the patient consultation form. Add form fields and submission logic here."})]})}}}]);
+//# sourceMappingURL=117.e53b90fb.chunk.js.map
