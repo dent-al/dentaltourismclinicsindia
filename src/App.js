@@ -15,7 +15,7 @@ import DisclaimerBanner from "./components/DisclaimerBanner";
 import ScrollToTop from "./components/ScrollToTop";
 import { usePerformance } from './hooks/usePerformance';
 import { registerSW, initPerformanceMonitoring } from './utils/buildOptimization';
-import { initializeAnalytics } from './services/analyticsService';
+// import { initializeAnalytics } from './services/analyticsService';
 import './i18n'; // Initialize internationalization
 
 // Lazy load components for better performance
@@ -102,10 +102,10 @@ function App() {
     measurePerformance('App Mount', performance.now());
     
     // Initialize analytics tracking
-    const analytics = initializeAnalytics();
+    // const analytics = initializeAnalytics();
     
     // Store analytics functions globally for easy access
-    window.dentistryAnalytics = analytics;
+    // window.dentistryAnalytics = analytics;
 
     return () => {
       cleanupListeners();

@@ -3,12 +3,12 @@
 
 import axios from "axios";
 
-const API_BASE_URL = "/api";
+const API_BASE_URL = "http://localhost:5000/api";
 
 export const trackEvent = async (eventName, eventData = {}) => {
   try {
-    const res = await axios.post(`${API_BASE_URL}/event`, {
-      event: eventName,
+    const res = await axios.post(`${API_BASE_URL}/analytics`, {
+      eventType: eventName,
       ...eventData,
     });
     return res.data;
