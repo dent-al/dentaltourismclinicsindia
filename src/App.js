@@ -8,7 +8,6 @@ import { AuthProvider } from "./contexts/AuthContext";
 import { SEOProvider } from "./contexts/SEOContext.jsx";
 import { AnalyticsProvider } from "./contexts/AnalyticsContext";
 import { AdminProvider } from "./contexts/AdminContext";
-import { ThemeProvider } from "./contexts/ThemeContext";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import OffersStrip from "./components/OffersStrip";
@@ -39,6 +38,7 @@ const PricingPlansPage = lazy(() => import("./pages/PricingPlansPage"));
 const CBCTRegistrationForm = lazy(() => import("./pages/CBCTRegistrationForm"));
 const LoginSignup = lazy(() => import("./pages/LoginSignup"));
 const SignUp = lazy(() => import("./pages/SignUp"));
+const ForgotPassword = lazy(() => import("./pages/ForgotPassword"));
 const DiagnosticLabRegistrationForm = lazy(() => import("./pages/DiagnosticLabRegistrationForm"));
 const PharmaBrandsRegistrationForm = lazy(() => import("./pages/PharmaBrandsRegistrationForm"));
 const BookingPage = lazy(() => import("./pages/BookingPage"));
@@ -85,7 +85,9 @@ const LoadingSpinner = () => (
 
 function App() {
   const location = useLocation();
-  const hideHeader = location.pathname === "/login";
+  const hideHeader = ["/login", "/signup", "/forgot-password"].includes(location.pathname);
+  const hideOffers = ["/login", "/signup", "/forgot-password"].includes(location.pathname);
+  const hideFooter = ["/login", "/signup", "/forgot-password"].includes(location.pathname);
   const noTopPaddingRoutes = ["/dentist-registration", "/cbct-registration"];
   const noTopPadding = noTopPaddingRoutes.includes(location.pathname);
 
@@ -118,13 +120,12 @@ function App() {
       <AnalyticsProvider>
         <AdminProvider>
           <AuthProvider>
-            <ThemeProvider>
             <ScrollToTop />
             {!hideHeader && <Header />}
-            <OffersStrip />
+            {!hideOffers && <OffersStrip />}
     {/* Disclaimer banner for login/consult pages */}
     {showDisclaimer && <DisclaimerBanner />}
-    <div className={`${noTopPadding ? '' : 'pt-2'} min-h-screen bg-white w-full overflow-x-hidden transition-colors duration-300`}>
+      <div className={`${noTopPadding ? '' : 'pt-2'} min-h-screen bg-white w-full overflow-x-hidden transition-colors duration-300`}>
         <Suspense fallback={<LoadingSpinner />}>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -135,6 +136,7 @@ function App() {
             <Route path="/register-clinic" element={<RegisterClinic />} />
             <Route path="/login" element={<LoginSignup />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/consult" element={<ConsultPage />} />
             <Route path="/consult-form" element={<ConsultForm />} />
             <Route path="/dentist-list" element={<DentistList />} />
@@ -194,14 +196,13 @@ function App() {
           </Routes>
         </Suspense>
       </div>
-      <Footer />
+  {!hideFooter && <Footer />}
       <Suspense fallback={null}>
         <ChatBot />
       </Suspense>
       <Suspense fallback={null}>
         <FloatingSocialButtons />
       </Suspense>
-            </ThemeProvider>
       </AuthProvider>
       </AdminProvider>
       </AnalyticsProvider>
@@ -209,8 +210,4 @@ function App() {
   );
 }
 
-function AppWrapper() {
-  return <App />;
-}
-
-export default AppWrapper;
+export default App;
