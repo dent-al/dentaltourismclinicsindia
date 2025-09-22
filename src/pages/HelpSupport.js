@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { submitContactUs } from "../services/contactUsService";
 
 const HelpSupport = () => {
   const [form, setForm] = useState({ 
@@ -10,24 +11,45 @@ const HelpSupport = () => {
   });
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
+  const [apiResponse, setApiResponse] = useState(null);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError("");
+    setApiResponse(null);
     
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // Make actual API call to backend
+      const response = await submitContactUs({
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        subject: form.subject,
+        message: form.message
+      });
+      
+      console.log("API Response:", response);
+      setApiResponse(response);
       setSubmitted(true);
-      setIsSubmitting(false);
       setForm({ name: "", email: "", phone: "", subject: "", message: "" });
       
       // Hide success message after 5 seconds
-      setTimeout(() => setSubmitted(false), 5000);
-    }, 2000);
+      setTimeout(() => {
+        setSubmitted(false);
+        setApiResponse(null);
+      }, 5000);
+    } catch (err) {
+      console.error("API Error:", err);
+      setError(err.response?.data?.message || err.message || "Failed to send message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -56,6 +78,24 @@ const HelpSupport = () => {
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Error Message */}
+            {error && (
+              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg">
+                <p className="font-semibold">Error:</p>
+                <p>{error}</p>
+              </div>
+            )}
+
+            {/* API Response Display */}
+            {apiResponse && (
+              <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg">
+                <p className="font-semibold">Backend Response:</p>
+                <pre className="text-sm mt-2 overflow-x-auto">
+                  {JSON.stringify(apiResponse, null, 2)}
+                </pre>
+              </div>
+            )}
+
             {/* Name and Email Row */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
@@ -214,7 +254,7 @@ const HelpSupport = () => {
         {/* Success Message */}
         {submitted && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white p-8 rounded-2xl shadow-2xl max-w-md mx-4">
+            <div className="bg-white p-8 rounded-2xl shadow-2xl max-w-lg mx-4 max-h-96 overflow-y-auto">
               <div className="text-center">
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -222,9 +262,17 @@ const HelpSupport = () => {
                   </svg>
                 </div>
                 <h3 className="text-xl font-bold text-gray-800 mb-2">Message Sent Successfully!</h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 mb-4">
                   Thank you for contacting us. Our support team will respond to your inquiry within 24 hours.
                 </p>
+                {apiResponse && (
+                  <div className="text-left bg-gray-50 p-4 rounded-lg">
+                    <p className="font-semibold text-sm text-gray-700 mb-2">API Response:</p>
+                    <pre className="text-xs text-gray-600 overflow-x-auto">
+                      {JSON.stringify(apiResponse, null, 2)}
+                    </pre>
+                  </div>
+                )}
               </div>
             </div>
           </div>

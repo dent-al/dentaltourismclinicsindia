@@ -5,7 +5,7 @@ const products = [
     name: "Kids Toothpaste – Bubblegum Blast",
     description: "Fluoride-free, bubblegum flavor, safe for kids.",
     price: "₹199",
-    image: require("../assets/KidsToothpaste.png"),
+    image: require("../assets/Tooth Paste.png"),
     category: "Toothpaste",
     buyLinks: [
       { name: "Amazon", url: "https://www.amazon.in/dp/B0CXYZ123" },

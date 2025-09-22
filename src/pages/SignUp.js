@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 const UserIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -63,7 +65,11 @@ const PhoneIcon = () => (
 );
 
 // Main Component
+
+
+
 const SignUp = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -82,16 +88,36 @@ const SignUp = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      const response = await fetch('http://localhost:5000/Registration', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: fullName,
+          phone: phone,
+          email: email,
+          password: password,
+        }),
+      });
+      const data = await response.json();
       setIsLoading(false);
-      // You can redirect to login or dashboard here
-      alert('Account created successfully!');
-    }, 2000);
+      if (response.ok) {
+        // Optionally store user data in localStorage or context
+        localStorage.setItem('user', JSON.stringify(data.data));
+        // Redirect to home page
+        navigate('/');
+      } else {
+        alert(data.message || 'Registration failed');
+      }
+    } catch {
+      setIsLoading(false);
+      alert('An error occurred, please try again.');
+    }
   };
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white flex items-center justify-center p-4">
@@ -105,7 +131,7 @@ const SignUp = () => {
           <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
             <div
               className="signup-progress bg-gradient-to-r from-blue-600 to-blue-500 h-2 rounded-full transition-all duration-500 ease-out"
-              style={{ width: `${(step / 3) * 100}%` }}
+             style={{ width: `${(step / 3) * 100}%` }}
             />
           </div>
         </div>

@@ -10,11 +10,10 @@ const AppointmentDetails = () => {
 
   const [forWhom, setForWhom] = useState("myself");
   const [name, setName] = useState("");
-  const [mobile, setMobile] = useState("+917206685462");
+  const [mobile, setMobile] = useState("+919999999999");
   const [email, setEmail] = useState("");
   const [whatsappUpdates, setWhatsappUpdates] = useState(true);
   // Removed paymentOption state
-  const [confirmed, setConfirmed] = useState(false);
 
   return (
     <div className="min-h-screen bg-[#F4F6FA] w-full flex flex-col items-center py-8 px-2">
@@ -78,21 +77,14 @@ const AppointmentDetails = () => {
             <input type="email" className="border rounded px-3 py-2 w-full mb-2" placeholder="Enter Your Email ID (Optional)" value={email} onChange={e => setEmail(e.target.value)} />
             <label className="flex items-center gap-2 mb-2 text-sm">
               <input type="checkbox" checked={whatsappUpdates} onChange={e => setWhatsappUpdates(e.target.checked)} />
-              Get updates on WhatsApp number +917206685462
+              Get updates on WhatsApp number +91 9999999999
+            </label>
+            <label className="text-xs text-gray-600">
             </label>
           </div>
-          <button
-            className="bg-[#2056AE] text-white px-6 py-3 rounded-xl shadow font-bold w-full mt-2 disabled:opacity-50 disabled:cursor-not-allowed"
-            onClick={() => setConfirmed(true)}
-            disabled={confirmed}
-          >
-            {confirmed ? "Appointment is confirmed" : "Confirm Appointment"}
+          <button className="bg-[#2056AE] text-white px-6 py-3 rounded-xl shadow font-bold w-full mt-2 disabled:opacity-50 disabled:cursor-not-allowed">
+            Confirm Appointment
           </button>
-          {confirmed && (
-            <div className="mt-4 text-green-600 font-semibold text-center">
-              Appointment is confirmed!
-            </div>
-          )}
         </div>
       </div>
     </div>

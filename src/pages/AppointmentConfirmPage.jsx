@@ -1,3 +1,5 @@
+
+import { bookAppointment, fetchUserAppointments } from '../services/appointmentService';
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import OptimizedImage from '../components/OptimizedImage';
@@ -5,8 +7,13 @@ import OptimizedImage from '../components/OptimizedImage';
 const AppointmentConfirmPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { clinic, timeSlot } = location.state || {};
+  const { clinic, timeSlot, date } = location.state || {};
   const [mobile, setMobile] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   if (!clinic || !timeSlot) {
     navigate('/clinics');
@@ -25,9 +32,68 @@ const AppointmentConfirmPage = () => {
   const doctorSpecialty = clinic.DoctorSpecialty || clinic.doctorSpecialty || '';
   const doctorImage = clinic.DoctorImage || clinic.doctorImage || '';
 
-  // Date (today for demo)
+  // Use passed date or today
   const today = new Date();
-  const dateStr = today.toLocaleDateString('en-IN', { year: 'numeric', month: 'short', day: 'numeric' });
+  const dateStr = date || today.toLocaleDateString('en-IN', { year: 'numeric', month: 'short', day: 'numeric' });
+
+  // Booking handler
+  const handleBookAppointment = async (e) => {
+    e.preventDefault();
+    setError("");
+    setSuccess("");
+    if (!name.trim()) {
+      setError("Please enter your name.");
+      return;
+    }
+    if (!email.trim() || !/^\S+@\S+\.\S+$/.test(email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+    if (!mobile || mobile.length !== 10) {
+      setError("Please enter a valid 10-digit mobile number.");
+      return;
+    }
+    setLoading(true);
+    try {
+      // Prepare booking data
+      const bookingData = {
+        date: dateStr,
+        time: timeSlot,
+        bookingFor: "self", // or "other" if you add that option
+        personName: name,
+        personEmail: email,
+        personPhone: mobile
+      };
+      // Determine type and centerId
+      const type = clinic.type || "dental"; // fallback to dental
+      const centerId = clinic._id || clinic.id;
+      if (!centerId) {
+        setError("Clinic ID missing.");
+        setLoading(false);
+        return;
+      }
+      // Get JWT token from localStorage
+      const token = localStorage.getItem('token');
+      if (!token) {
+        setError('You must be logged in to book an appointment.');
+        setLoading(false);
+        return;
+      }
+      const res = await bookAppointment({ type, centerId, data: bookingData, token });
+      if (res && res.message) {
+        setSuccess(res.message);
+        setTimeout(() => {
+          navigate("/appointment-details", { state: { appointment: res.appointment } });
+        }, 1200);
+      } else {
+        setError(res && res.message ? res.message : "Booking failed. Try again.");
+      }
+    } catch (err) {
+      setError(err?.response?.data?.message || err.message || "Booking failed. Try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#f7f8fa] flex justify-center items-start py-10 px-2">
@@ -71,7 +137,25 @@ const AppointmentConfirmPage = () => {
         {/* Right: Mobile Number Form */}
         <div className="flex-1 flex flex-col items-center justify-center bg-[#f7f7f7] rounded-xl p-6 shadow-md">
           <h2 className="text-xl font-bold text-[#2C73D2] mb-4">Enter your mobile number</h2>
-          <form className="w-full flex flex-col gap-4" onSubmit={e => { e.preventDefault(); /* handle submit */ }}>
+          <form className="w-full flex flex-col gap-4" onSubmit={handleBookAppointment}>
+            <label className="text-base font-medium text-gray-700">Name*</label>
+            <input
+              type="text"
+              value={name}
+              onChange={e => setName(e.target.value)}
+              placeholder="Full Name"
+              className="w-full px-4 py-2 rounded-lg border border-[#2C73D2] text-[#2C73D2] text-base focus:outline-none focus:border-[#F4A300] bg-white font-sans placeholder-gray-400"
+              required
+            />
+            <label className="text-base font-medium text-gray-700">Email*</label>
+            <input
+              type="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              placeholder="Email Address"
+              className="w-full px-4 py-2 rounded-lg border border-[#2C73D2] text-[#2C73D2] text-base focus:outline-none focus:border-[#F4A300] bg-white font-sans placeholder-gray-400"
+              required
+            />
             <label className="text-base font-medium text-gray-700">Mobile*</label>
             <input
               type="tel"
@@ -82,7 +166,11 @@ const AppointmentConfirmPage = () => {
               required
             />
             <div className="text-xs text-gray-500 mb-2">You will receive an OTP shortly.<br />We will send appointment-related communications on this number.</div>
-            <button type="submit" className="w-full py-3 rounded-lg bg-gradient-to-r from-[#2C73D2] to-[#F4A300] text-white font-bold shadow hover:from-[#F4A300] hover:to-[#2C73D2] transition mt-2">Continue</button>
+            <button type="submit" className="w-full py-3 rounded-lg bg-gradient-to-r from-[#2C73D2] to-[#F4A300] text-white font-bold shadow hover:from-[#F4A300] hover:to-[#2C73D2] transition mt-2" disabled={loading}>
+              {loading ? "Booking..." : "Continue"}
+            </button>
+            {error && <div className="text-red-600 text-sm mt-2 text-center">{error}</div>}
+            {success && <div className="text-green-600 text-sm mt-2 text-center">{success}</div>}
           </form>
           <a href="/clinics" className="text-[#2C73D2] text-sm mt-4 underline">Go back to my results</a>
         </div>

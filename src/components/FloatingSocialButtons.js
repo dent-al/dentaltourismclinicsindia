@@ -101,7 +101,7 @@ const FloatingSocialButtons = () => {
           </div>
         </a>
       </div>      {/* Custom Styles */}
-      <style jsx>{`
+      <style>{`
         @keyframes slideUp {
           from {
             opacity: 0;

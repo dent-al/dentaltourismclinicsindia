@@ -1,4 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import {
+  registerPharmaBrand,
+  fetchPharmaBrands,
+} from "../services/pharmaBrandService";
 
 const plans = [
   {
@@ -52,37 +56,95 @@ const iconCross = (
   <span className="inline-block text-red-600 text-xl font-bold align-middle">✖</span>
 );
 
+
 const PharmaBrandsRegistrationForm = () => {
   const [form, setForm] = useState({
     brandName: '',
     ownerName: '',
     email: '',
-    phone: '',
-    altPhone: '',
-    website: '',
-    agreeDisclaimer: false
+    phoneNumber: '',
+    alternativeNumber: '',
+    websiteURL: '',
+    agreeDisclaimer: false,
   });
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
+  const [successMsg, setSuccessMsg] = useState("");
+  const [brands, setBrands] = useState([]);
+
+  useEffect(() => {
+    fetchBrands();
+  }, []);
+
+  const fetchBrands = async () => {
+    const res = await fetchPharmaBrands();
+    if (res.success && Array.isArray(res.brands)) {
+      setBrands(res.brands);
+    } else {
+      setBrands([]);
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     if (type === "checkbox") {
-      setForm({ ...form, [name]: checked });
+      setForm((prev) => ({ ...prev, [name]: checked }));
     } else {
-      setForm({ ...form, [name]: value });
+      setForm((prev) => ({ ...prev, [name]: value }));
     }
   };
 
-  const handleSubmit = (e) => {
+  const validateForm = () => {
+    if (!form.brandName || !form.ownerName || !form.email || !form.phoneNumber || !form.websiteURL) {
+      return "All required fields must be filled";
+    }
+    if (!/^\d{10}$/.test(form.phoneNumber)) {
+      return "Phone number must be 10 digits";
+    }
+    if (form.alternativeNumber && !/^\d{10}$/.test(form.alternativeNumber)) {
+      return "Alternate number must be 10 digits";
+    }
+    if (!/^https?:\/\/.+/.test(form.websiteURL)) {
+      return "Website URL must be valid";
+    }
+    if (!form.agreeDisclaimer) {
+      return "You must agree to the disclaimer";
+    }
+    return null;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    setError("");
+    setSuccessMsg("");
+    const validationError = validateForm();
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
+    const payload = {
+      brandName: form.brandName,
+      OwnerName: form.ownerName,
+      email: form.email,
+      phoneNumber: form.phoneNumber,
+      alternativeNumber: form.alternativeNumber,
+      websiteURL: form.websiteURL,
+    };
+    const res = await registerPharmaBrand(payload);
+    if (res.success) {
+      setSubmitted(true);
+      setSuccessMsg(res.message || "Pharma brand created successfully");
+      fetchBrands();
+    } else {
+      setError(res.message || "Registration failed");
+    }
   };
 
   if (submitted) {
     return (
       <div className="bg-[#F6FAFF] min-h-screen w-full flex flex-col items-center pt-8">
         <div className="bg-white bg-opacity-95 rounded-2xl shadow-2xl p-8 max-w-6xl w-full flex flex-col items-center mt-8 mb-6">
-          <h2 className="text-2xl font-bold text-[#2C73D2] mb-2 text-center">Thank you for registering!</h2>
+          <h2 className="text-2xl font-bold text-[#2C73D2] mb-2 text-center">{successMsg || "Thank you for registering!"}</h2>
           <p className="text-[#2C73D2] text-center mb-8">We have received your details and will contact you soon.</p>
           <div className="w-full flex flex-col md:flex-row gap-8 justify-center items-stretch">
             {plans.map((plan, idx) => (
@@ -153,8 +215,8 @@ const PharmaBrandsRegistrationForm = () => {
           />
           <input
             type="tel"
-            name="phone"
-            value={form.phone}
+            name="phoneNumber"
+            value={form.phoneNumber}
             onChange={handleChange}
             placeholder="Phone Number"
             required
@@ -162,22 +224,22 @@ const PharmaBrandsRegistrationForm = () => {
           />
           <input
             type="tel"
-            name="altPhone"
-            value={form.altPhone}
+            name="alternativeNumber"
+            value={form.alternativeNumber}
             onChange={handleChange}
             placeholder="Alternate Mobile Number"
             className="py-3 px-4 rounded-lg border border-[#E0E7FF] bg-[#F6FAFF] text-[#2C73D2] placeholder-[#A0AEC0] shadow-sm focus:border-[#2C73D2] focus:ring-2 focus:ring-[#2C73D2] focus:outline-none"
           />
           <input
             type="url"
-            name="website"
-            value={form.website}
+            name="websiteURL"
+            value={form.websiteURL}
             onChange={handleChange}
             placeholder="Website URL"
+            required
             className="py-3 px-4 rounded-lg border border-[#E0E7FF] bg-[#F6FAFF] text-[#2C73D2] placeholder-[#A0AEC0] shadow-sm focus:border-[#2C73D2] focus:ring-2 focus:ring-[#2C73D2] focus:outline-none md:col-span-2"
           />
         </div>
-        
         {/* Disclaimer Checkbox */}
         <div className="flex items-start gap-3 mt-4 p-4 bg-[#F6FAFF] rounded-xl border border-[#2C73D2]/20">
           <input 
@@ -193,7 +255,7 @@ const PharmaBrandsRegistrationForm = () => {
             <span className="font-semibold">Disclaimer:</span> I hereby declare that all the information provided above is true and accurate to the best of my knowledge. I understand that any false information may lead to the rejection of my registration. I agree to the terms and conditions of the platform and consent to the use of my data for verification and communication purposes.
           </label>
         </div>
-        
+        {error && <div className="bg-red-100 text-red-700 p-2 rounded text-center font-semibold">{error}</div>}
         <button
           type="submit"
           className="w-full py-3 rounded-lg bg-[#2C73D2] text-white font-bold text-lg shadow-md hover:bg-[#F4A300] hover:text-[#2C73D2] transition mt-2"

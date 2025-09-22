@@ -33,7 +33,7 @@ const RotatingTeeth = ({ size = 100, speed = 2 }) => {
         )}
       </div>
       
-      <style jsx>{`
+      <style>{`
         .rotating-teeth-container {
           perspective: 1000px;
           margin: 0 auto;

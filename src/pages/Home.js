@@ -126,7 +126,7 @@ const sliderProblems = [
   { name: "Mouth Breathing in Kids" },
   { name: "Grinding Teeth at Night" },
   { name: "Uncomfortable Denture" },
-  { name: "Oral Cancer Screening" },
+  { name: "Oral Cancer Screening" },  
   { name: "Delayed Eruption of Teeth" },
   { name: "Hole in the Roof of the Mouth" },
   { name: "Nutrition Deficiency Symptoms" },
