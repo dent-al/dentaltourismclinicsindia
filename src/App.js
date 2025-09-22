@@ -62,6 +62,7 @@ const OnlineConsultation = lazy(() => import("./pages/OnlineConsultation"));
 const PatientConsultationForm = lazy(() => import("./pages/PatientConsultationForm"));
 const VideoConsultation = lazy(() => import("./pages/VideoConsultation"));
 const DentistSelection = lazy(() => import("./pages/DentistSelection"));
+const ProductDetail = lazy(() => import("./pages/ProductDetail"));
 
 // Loading component
 const LoadingSpinner = () => (
@@ -164,6 +165,7 @@ function App() {
             <Route path="/theme-showcase" element={<ThemeShowcase />} />
             <Route path="/test-connection" element={<ConnectionTest />} />
             <Route path="/online-consultation" element={<OnlineConsultation />} />
+           <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/select-dentist" element={<DentistSelection />} />
             <Route path="/patient-consultation" element={<PatientConsultationForm />} />
             <Route path="/video-consultation" element={<VideoConsultation />} />
