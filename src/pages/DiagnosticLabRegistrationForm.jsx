@@ -1,4 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import {
+	registerDiagnosticLab,
+	fetchDiagnosticLabs,
+} from "../services/diagnosticLabService";
 
 const plans = [
 	{
@@ -57,25 +61,82 @@ const DiagnosticLabRegistrationForm = () => {
 		labName: "",
 		ownerName: "",
 		email: "",
-		phone: "",
-		altPhone: "",
-		website: "",
-		agreeDisclaimer: false
+		phoneNumber: "",
+		alternativeNumber: "",
+		websiteURL: "",
+		agreeDisclaimer: false,
 	});
 	const [submitted, setSubmitted] = useState(false);
+	const [error, setError] = useState("");
+	const [successMsg, setSuccessMsg] = useState("");
+	const [labs, setLabs] = useState([]);
+
+	useEffect(() => {
+		fetchLabs();
+	}, []);
+
+	const fetchLabs = async () => {
+		const res = await fetchDiagnosticLabs();
+		if (res.success && Array.isArray(res.labs)) {
+			setLabs(res.labs);
+		} else {
+			setLabs([]);
+		}
+	};
 
 	const handleChange = (e) => {
 		const { name, value, type, checked } = e.target;
 		if (type === "checkbox") {
-			setForm({ ...form, [name]: checked });
+			setForm((prev) => ({ ...prev, [name]: checked }));
 		} else {
-			setForm({ ...form, [name]: value });
+			setForm((prev) => ({ ...prev, [name]: value }));
 		}
 	};
 
-	const handleSubmit = (e) => {
+	const validateForm = () => {
+		if (!form.labName || !form.ownerName || !form.email || !form.phoneNumber || !form.websiteURL) {
+			return "All required fields must be filled";
+		}
+		if (!/^[\d\s\+\-\(\)]{10,}$/.test(form.phoneNumber.replace(/\s/g, ''))) {
+			return "Please enter a valid phone number";
+		}
+		if (form.alternativeNumber && !/^[\d\s\+\-\(\)]{10,}$/.test(form.alternativeNumber.replace(/\s/g, ''))) {
+			return "Please enter a valid alternate phone number";
+		}
+		if (!/^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/.test(form.websiteURL)) {
+			return "Please enter a valid website URL";
+		}
+		if (!form.agreeDisclaimer) {
+			return "You must agree to the disclaimer";
+		}
+		return null;
+	};
+
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		setSubmitted(true);
+		setError("");
+		setSuccessMsg("");
+		const validationError = validateForm();
+		if (validationError) {
+			setError(validationError);
+			return;
+		}
+		const payload = {
+			labName: form.labName,
+			OwnerName: form.ownerName,
+			email: form.email,
+			phoneNumber: form.phoneNumber,
+			alternativeNumber: form.alternativeNumber,
+			websiteURL: form.websiteURL,
+		};
+		const res = await registerDiagnosticLab(payload);
+		if (res.success) {
+			setSubmitted(true);
+			setSuccessMsg(res.message || "Diagnostic lab created successfully");
+			fetchLabs();
+		} else {
+			setError(res.message || "Registration failed");
+		}
 	};
 
 	if (submitted) {
@@ -83,7 +144,7 @@ const DiagnosticLabRegistrationForm = () => {
 			<div className="bg-[#F6FAFF] min-h-screen w-full flex flex-col items-center pt-8">
 				<div className="bg-white bg-opacity-95 rounded-2xl shadow-2xl p-8 max-w-6xl w-full flex flex-col items-center mt-8 mb-6">
 					<h2 className="text-2xl font-bold text-[#2C73D2] mb-2 text-center">
-						Thank you for registering!
+						{successMsg || "Thank you for registering!"}
 					</h2>
 					<p className="text-[#2C73D2] text-center mb-8">
 						We have received your details and will contact you soon.
@@ -185,8 +246,8 @@ const DiagnosticLabRegistrationForm = () => {
 					/>
 					<input
 						type="tel"
-						name="phone"
-						value={form.phone}
+						name="phoneNumber"
+						value={form.phoneNumber}
 						onChange={handleChange}
 						placeholder="Phone Number"
 						required
@@ -194,22 +255,22 @@ const DiagnosticLabRegistrationForm = () => {
 					/>
 					<input
 						type="tel"
-						name="altPhone"
-						value={form.altPhone}
+						name="alternativeNumber"
+						value={form.alternativeNumber}
 						onChange={handleChange}
 						placeholder="Alternate Mobile Number"
 						className="py-3 px-4 rounded-lg border border-[#E0E7FF] bg-[#F6FAFF] text-[#2C73D2] placeholder-[#A0AEC0] shadow-sm focus:border-[#2C73D2] focus:ring-2 focus:ring-[#2C73D2] focus:outline-none"
 					/>
 					<input
 						type="url"
-						name="website"
-						value={form.website}
+						name="websiteURL"
+						value={form.websiteURL}
 						onChange={handleChange}
 						placeholder="Website URL"
+						required
 						className="py-3 px-4 rounded-lg border border-[#E0E7FF] bg-[#F6FAFF] text-[#2C73D2] placeholder-[#A0AEC0] shadow-sm focus:border-[#2C73D2] focus:ring-2 focus:ring-[#2C73D2] focus:outline-none md:col-span-2"
 					/>
 				</div>
-				
 				{/* Disclaimer Checkbox */}
 				<div className="flex items-start gap-3 mt-4 p-4 bg-[#F6FAFF] rounded-xl border border-[#2C73D2]/20">
 					<input 
@@ -225,7 +286,7 @@ const DiagnosticLabRegistrationForm = () => {
 						<span className="font-semibold">Disclaimer:</span> I hereby declare that all the information provided above is true and accurate to the best of my knowledge. I understand that any false information may lead to the rejection of my registration. I agree to the terms and conditions of the platform and consent to the use of my data for verification and communication purposes.
 					</label>
 				</div>
-				
+				{error && <div className="bg-red-100 text-red-700 p-2 rounded text-center font-semibold">{error}</div>}
 				<button
 					type="submit"
 					className="w-full py-3 rounded-lg bg-[#2C73D2] text-white font-bold text-lg shadow-md hover:bg-[#F4A300] hover:text-[#2C73D2] transition mt-2"
