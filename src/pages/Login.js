@@ -12,7 +12,7 @@ const Login = () => {
   const [rolePopup, setRolePopup] = useState(false);
   const [selectedRole, setSelectedRole] = useState("");
   const [loading, setLoading] = useState(true);
-  const [apiLoading, setApiLoading] = useState(false); // Add this line
+  const [apiLoading, setApiLoading] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1200);
@@ -21,10 +21,9 @@ const Login = () => {
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
-    setError(""); // Clear error when user types
+    setError("");
   };
 
-  // Email validation regex
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const validateLoginForm = () => {
@@ -52,20 +51,25 @@ const Login = () => {
     }
     
     setError("");
-    setApiLoading(true); // Now this is defined
+    setApiLoading(true);
     
     try {
-      const res = await loginPatient({ 
+      const loginData = { 
         email: form.email, 
         password: form.password,
-        role: role // Make sure to pass the selected role
-      });
+        role: role
+      };
       
-      if (res.token) {
-        // Login success, redirect to dashboard or home
+      console.log('Attempting login with:', loginData); // Debug log
+      
+      const res = await loginPatient(loginData);
+      
+      console.log('Login response received:', res); // Debug log
+      
+      if (res.token || res.success) {
+        // Login success
         setError("");
-        // Store token if needed
-        localStorage.setItem('authToken', res.token);
+        localStorage.setItem('authToken', res.token || res.data?.token);
         localStorage.setItem('userRole', role);
         navigate("/dashboard");
       } else {
@@ -75,19 +79,19 @@ const Login = () => {
       console.error("Login error:", err);
       setError(err.message || "An error occurred during login. Please try again.");
     } finally {
-      setApiLoading(false); // Now this is defined
+      setApiLoading(false);
     }
   };
 
-  // Show popup before form submit
   const handlePreSubmit = (e) => {
     e.preventDefault();
-    // Validate before showing role popup
+    
     const validationError = validateLoginForm();
     if (validationError) {
       setError(validationError);
       return;
     }
+    
     setError("");
     setRolePopup(true);
   };
@@ -198,4 +202,4 @@ const Login = () => {
   );
 };
 
-export default Login; 
+export default Login;
