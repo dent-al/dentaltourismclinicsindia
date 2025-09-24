@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { registerDentalPractitioner } from "../services/dentalRegistrationService";
 
 const states = [
   "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal"
@@ -126,6 +127,13 @@ const DentistRegistrationForm = () => {
   const problemsRef = React.useRef();
   const navigate = useNavigate();
 
+  // State for registered practitioners
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
+
+
 
   const handleChange = e => {
     const { name, value, type, checked, files } = e.target;
@@ -168,9 +176,55 @@ const DentistRegistrationForm = () => {
     return () => document.removeEventListener('mousedown', handleClick);
   }, [problemsOpen]);
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    navigate('/pricing-plans');
+    setError("");
+    setSuccess("");
+    setLoading(true);
+    try {
+      // Validate required fields
+      if (!form.name || !form.phone || !form.email || !form.state || !form.gradCollege || !form.gradYear || !form.gradReg) {
+        setError("Please fill all required fields.");
+        setLoading(false);
+        return;
+      }
+      if (!form.image) {
+        setError("Personal document file is required.");
+        setLoading(false);
+        return;
+      }
+      // Prepare FormData
+      const fd = new FormData();
+      fd.append("name", form.name);
+      fd.append("email", form.email);
+      fd.append("phoneNumber", form.phone);
+      fd.append("state", form.state);
+      fd.append("qualification", form.gradCollege + ' ' + form.gradYear + ' ' + form.gradReg + (form.postCollege ? ' ' + form.postCollege : '') + (form.postYear ? ' ' + form.postYear : '') + (form.postSpec ? ' ' + form.postSpec : '') + (form.otherQual ? ' ' + form.otherQual : ''));
+      fd.append("file", form.image);
+      if (form.hasClinic) {
+        if (form.clinicName) fd.append("ClinicName", form.clinicName);
+        if (form.clinicPhone) fd.append("ClinicPhoneNumber", form.clinicPhone);
+        if (form.clinicAddress) fd.append("ClinicAddress", form.clinicAddress);
+        if (form.clinicInsta) fd.append("ClinicInstagram", form.clinicInsta);
+        if (form.clinicWebsite) fd.append("ClinicWebsite", form.clinicWebsite);
+        if (form.clinicYoutube) fd.append("ClinicYoutube", form.clinicYoutube);
+        if (form.clinicImage) fd.append("ClinicFile", form.clinicImage);
+      }
+      // Submit to API
+      const res = await registerDentalPractitioner(fd);
+      if (res && res.success) {
+        setSuccess(res.message || "Registration successful!");
+        setTimeout(() => {
+          navigate('/pricing-plans');
+        }, 1200);
+      } else {
+        setError(res && res.message ? res.message : "Registration failed. Try again.");
+      }
+    } catch (err) {
+      setError(err?.response?.data?.message || err.message || "Registration failed. Try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -281,49 +335,52 @@ const DentistRegistrationForm = () => {
               {specialities.map(s => <option key={s} value={s}>{s}</option>)}
             </select>
           </div>
-          <input name="otherQual" value={form.otherQual} onChange={handleChange} placeholder="Other Qualifications" className="rounded-xl shadow px-4 py-3 border border-gray-200 focus:border-[#2C73D2] outline-none bg-white/90 text-[#15396A] text-base" />
-        </div>
-        <div className="flex items-center gap-2 mt-2">
-          <input type="checkbox" name="hasClinic" checked={form.hasClinic} onChange={handleChange} id="hasClinic" />
-          <label htmlFor="hasClinic" className="font-semibold text-[#2C73D2]">Have a Dental Clinic? Fill Out This Form</label>
-        </div>
-        
-        {/* Disclaimer Checkbox */}
-        <div className="flex items-start gap-3 mt-4 p-4 bg-[#F5F8FF]/60 rounded-xl border border-[#2C73D2]/20">
-          <input 
-            type="checkbox" 
-            name="agreeDisclaimer" 
-            checked={form.agreeDisclaimer} 
-            onChange={handleChange} 
-            id="agreeDisclaimer" 
-            className="mt-1 text-[#2C73D2] focus:ring-[#2C73D2]"
-            required 
-          />
-          <label htmlFor="agreeDisclaimer" className="text-sm text-[#15396A] leading-relaxed">
-            <span className="font-semibold text-[#2C73D2]">Disclaimer:</span> I hereby declare that all the information provided above is true and accurate to the best of my knowledge. I understand that any false information may lead to the rejection of my registration. I agree to the terms and conditions of the platform and consent to the use of my data for verification and communication purposes.
-          </label>
-        </div>
-        {form.hasClinic && (
-          <div className="bg-[#F5F8FF]/80 rounded-2xl p-6 mt-2 shadow-inner">
-            <h3 className="font-bold text-[#2C73D2] mb-2">Clinic Details</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input name="clinicName" value={form.clinicName} onChange={handleChange} placeholder="Clinic Name" className="rounded-xl shadow px-4 py-3 border border-gray-200 focus:border-[#2C73D2] outline-none bg-white/90 text-[#15396A] text-base" />
-              <input name="clinicPhone" value={form.clinicPhone} onChange={handleChange} placeholder="Clinic Phone Number" className="rounded-xl shadow px-4 py-3 border border-gray-200 focus:border-[#2C73D2] outline-none bg-white/90 text-[#15396A] text-base" />
-              <input name="clinicAddress" value={form.clinicAddress} onChange={handleChange} placeholder="Clinic Address" className="rounded-xl shadow px-4 py-3 border border-gray-200 focus:border-[#2C73D2] outline-none bg-white/90 text-[#15396A] text-base" />
-              <input name="clinicInsta" value={form.clinicInsta} onChange={handleChange} placeholder="Clinic Instagram" className="rounded-xl shadow px-4 py-3 border border-gray-200 focus:border-[#2C73D2] outline-none bg-white/90 text-[#15396A] text-base" />
-              <input name="clinicWebsite" value={form.clinicWebsite} onChange={handleChange} placeholder="Clinic Website" className="rounded-xl shadow px-4 py-3 border border-gray-200 focus:border-[#2C73D2] outline-none bg-white/90 text-[#15396A] text-base" />
-              <input name="clinicYoutube" value={form.clinicYoutube} onChange={handleChange} placeholder="Clinic Youtube" className="rounded-xl shadow px-4 py-3 border border-gray-200 focus:border-[#2C73D2] outline-none bg-white/90 text-[#15396A] text-base" />
-              <div className="flex flex-col gap-1 md:col-span-2">
-                <label className="text-sm font-semibold text-[#2C73D2]">Clinic Image (Max 200KB)</label>
-                <input type="file" name="clinicImage" accept="image/*" onChange={handleChange} className="rounded-xl shadow px-4 py-3 border border-gray-200 bg-white/90" />
-              </div>
+        <input name="otherQual" value={form.otherQual} onChange={handleChange} placeholder="Other Qualifications" className="rounded-xl shadow px-4 py-3 border border-gray-200 focus:border-[#2C73D2] outline-none bg-white/90 text-[#15396A] text-base" />
+      </div>
+      <div className="flex items-center gap-2 mt-2">
+        <input type="checkbox" name="hasClinic" checked={form.hasClinic} onChange={handleChange} id="hasClinic" />
+        <label htmlFor="hasClinic" className="font-semibold text-[#2C73D2]">Have a Dental Clinic? Fill Out This Form</label>
+      </div>
+      {/* Disclaimer Checkbox */}
+      <div className="flex items-start gap-3 mt-4 p-4 bg-[#F5F8FF]/60 rounded-xl border border-[#2C73D2]/20">
+        <input 
+          type="checkbox" 
+          name="agreeDisclaimer" 
+          checked={form.agreeDisclaimer} 
+          onChange={handleChange} 
+          id="agreeDisclaimer" 
+          className="mt-1 text-[#2C73D2] focus:ring-[#2C73D2]"
+          required 
+        />
+        <label htmlFor="agreeDisclaimer" className="text-sm text-[#15396A] leading-relaxed">
+          <span className="font-semibold text-[#2C73D2]">Disclaimer:</span> I hereby declare that all the information provided above is true and accurate to the best of my knowledge. I understand that any false information may lead to the rejection of my registration. I agree to the terms and conditions of the platform and consent to the use of my data for verification and communication purposes.
+        </label>
+      </div>
+      {form.hasClinic && (
+        <div className="bg-[#F5F8FF]/80 rounded-2xl p-6 mt-2 shadow-inner">
+          <h3 className="font-bold text-[#2C73D2] mb-2">Clinic Details</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input name="clinicName" value={form.clinicName} onChange={handleChange} placeholder="Clinic Name" className="rounded-xl shadow px-4 py-3 border border-gray-200 focus:border-[#2C73D2] outline-none bg-white/90 text-[#15396A] text-base" />
+            <input name="clinicPhone" value={form.clinicPhone} onChange={handleChange} placeholder="Clinic Phone Number" className="rounded-xl shadow px-4 py-3 border border-gray-200 focus:border-[#2C73D2] outline-none bg-white/90 text-[#15396A] text-base" />
+            <input name="clinicAddress" value={form.clinicAddress} onChange={handleChange} placeholder="Clinic Address" className="rounded-xl shadow px-4 py-3 border border-gray-200 focus:border-[#2C73D2] outline-none bg-white/90 text-[#15396A] text-base" />
+            <input name="clinicInsta" value={form.clinicInsta} onChange={handleChange} placeholder="Clinic Instagram" className="rounded-xl shadow px-4 py-3 border border-gray-200 focus:border-[#2C73D2] outline-none bg-white/90 text-[#15396A] text-base" />
+            <input name="clinicWebsite" value={form.clinicWebsite} onChange={handleChange} placeholder="Clinic Website" className="rounded-xl shadow px-4 py-3 border border-gray-200 focus:border-[#2C73D2] outline-none bg-white/90 text-[#15396A] text-base" />
+            <input name="clinicYoutube" value={form.clinicYoutube} onChange={handleChange} placeholder="Clinic Youtube" className="rounded-xl shadow px-4 py-3 border border-gray-200 focus:border-[#2C73D2] outline-none bg-white/90 text-[#15396A] text-base" />
+            <div className="flex flex-col gap-1 md:col-span-2">
+              <label className="text-sm font-semibold text-[#2C73D2]">Clinic Image (Max 200KB)</label>
+              <input type="file" name="clinicImage" accept="image/*" onChange={handleChange} className="rounded-xl shadow px-4 py-3 border border-gray-200 bg-white/90" />
             </div>
           </div>
-        )}
-        <button type="submit" className="w-full py-4 rounded-xl bg-gradient-to-r from-[#2C73D2] to-[#2056AE] text-white font-bold text-xl shadow-lg hover:from-[#2056AE] hover:to-[#2C73D2] transition mt-4 tracking-wide">Submit</button>
-      </form>
-    </div>
-  );
-};
-
+        </div>
+      )}
+      <button type="submit" className="w-full py-4 rounded-xl bg-gradient-to-r from-[#2C73D2] to-[#2056AE] text-white font-bold text-xl shadow-lg hover:from-[#2056AE] hover:to-[#2C73D2] transition mt-4 tracking-wide" disabled={loading}>
+        {loading ? "Submitting..." : "Submit"}
+      </button>
+      {error && <div className="text-center text-red-500 mt-2">{error}</div>}
+      {success && <div className="text-center text-green-600 mt-2">{success}</div>}
+    </form>
+    {/* ...existing code... */}
+  </div>
+);
+}
 export default DentistRegistrationForm;
