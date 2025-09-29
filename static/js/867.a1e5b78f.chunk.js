@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkdental_tourism_clinics_india=self.webpackChunkdental_tourism_clinics_india||[]).push([[867],{4867:(e,i,s)=>{s.r(i),s.d(i,{default:()=>t});s(6205);var n=s(6713);function t(){return(0,n.jsxs)("div",{style:{padding:"2rem"},children:[(0,n.jsx)("h1",{style:{fontSize:"2rem",fontWeight:"bold"},children:"Theme Showcase"}),(0,n.jsx)("p",{children:"This is a placeholder for the theme showcase page. Add theme previews and customization options here."})]})}}}]);
-//# sourceMappingURL=867.a1e5b78f.chunk.js.map
