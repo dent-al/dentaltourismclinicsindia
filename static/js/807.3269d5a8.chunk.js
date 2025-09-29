@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkdental_tourism_clinics_india=self.webpackChunkdental_tourism_clinics_india||[]).push([[321,807],{4339:(t,e,s)=>{s.r(e),s.d(e,{default:()=>a});var u=s(6205),i=s(8901),n=s(2660),c=s(6713);const a=()=>{const[t,e]=(0,u.useState)(!0);return(0,u.useEffect)(()=>{const t=setTimeout(()=>e(!1),1200);return()=>clearTimeout(t)},[]),t?(0,c.jsx)(n.A,{}):(0,c.jsx)(i.default,{type:"bloodtest"})}}}]);
-//# sourceMappingURL=807.3269d5a8.chunk.js.map

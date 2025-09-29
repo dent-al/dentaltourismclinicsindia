@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkdental_tourism_clinics_india=self.webpackChunkdental_tourism_clinics_india||[]).push([[750],{3369:(e,i,n)=>{n.r(i),n.d(i,{default:()=>s});n(6205);var d=n(6713);function s(){return(0,d.jsxs)("div",{style:{padding:"2rem"},children:[(0,d.jsx)("h1",{style:{fontSize:"2rem",fontWeight:"bold"},children:"Video Consultation"}),(0,d.jsx)("p",{children:"This is a placeholder for the video consultation page. Add video call features and scheduling here."})]})}}}]);
-//# sourceMappingURL=750.1be92eef.chunk.js.map

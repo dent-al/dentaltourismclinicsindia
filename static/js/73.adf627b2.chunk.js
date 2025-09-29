@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkdental_tourism_clinics_india=self.webpackChunkdental_tourism_clinics_india||[]).push([[73],{5073:(e,i,n)=>{n.r(i),n.d(i,{default:()=>l});n(5043);var t=n(579);function l(){return(0,t.jsxs)("div",{style:{padding:"2rem"},children:[(0,t.jsx)("h1",{style:{fontSize:"2rem",fontWeight:"bold"},children:"Online Consultation"}),(0,t.jsx)("p",{children:"This is a placeholder for the online consultation page. Add virtual consultation features here."})]})}}}]);
+//# sourceMappingURL=73.adf627b2.chunk.js.map
